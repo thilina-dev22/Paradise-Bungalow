@@ -54,12 +54,6 @@ export default function Navbar({ onOpenBooking }) {
         {/* Desktop CTAs — Right */}
         <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
           
-          {/* Quick Rating Badge */}
-          <div className="hidden xl:flex items-center gap-1.5 bg-amber-50 border border-amber-200/80 text-amber-800 px-3 py-1.5 rounded-full text-xs font-bold">
-            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
-            <span>9.6 / 10 Exceptional</span>
-          </div>
-
           {/* Quick WhatsApp Contact Pill */}
           <a
             href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20want%20to%20inquire%20about%20rooms.`}
@@ -94,11 +88,6 @@ export default function Navbar({ onOpenBooking }) {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-stone-200/80 px-5 py-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
-          
-          <div className="flex items-center justify-between bg-amber-50 border border-amber-200/80 rounded-xl p-3 mb-4 text-xs">
-            <span className="font-semibold text-amber-900">Rating 9.6 / 10 Exceptional</span>
-            <span className="text-amber-700 font-medium">Midigama, Sri Lanka</span>
-          </div>
 
           <nav className="flex flex-col gap-1 mb-5">
             {NAV_LINKS.map(({ href, label }) => (
