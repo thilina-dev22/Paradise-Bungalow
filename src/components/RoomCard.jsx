@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { Users, Maximize2, Bed, Coffee, Check, Eye, Info, MapPin, CheckCircle2 } from 'lucide-react';
 
+const getShortBedText = (bedConfig) => {
+  if (!bedConfig) return '';
+  if (bedConfig.includes('Extra-Large Double')) {
+    return bedConfig.replace('1 Extra-Large Double Bed', '1 King Bed').replace('Extra-Large Double', 'King');
+  }
+  if (bedConfig.includes('Flexible Bedding')) {
+    return 'Family Bedding';
+  }
+  return bedConfig;
+};
+
 export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
   const [includeBreakfast, setIncludeBreakfast] = useState(false);
 
@@ -62,18 +73,20 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
         </div>
 
         {/* Specs Grid */}
-        <div className="grid grid-cols-3 gap-2 bg-stone-50 p-3 rounded-xl text-center text-xs text-emerald-950 font-semibold mb-4 border border-stone-100">
-          <div className="flex flex-col items-center gap-1">
-            <Maximize2 className="w-3.5 h-3.5 text-emerald-600" />
-            <div className="text-stone-700">{room.size}</div>
+        <div className="grid grid-cols-3 gap-1 bg-stone-50 p-2.5 rounded-xl text-center text-xs text-emerald-950 font-semibold mb-4 border border-stone-200/80">
+          <div className="flex flex-col items-center justify-center gap-1 min-w-0 px-1">
+            <Maximize2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <div className="text-stone-700 text-[11px] truncate w-full">{room.size}</div>
           </div>
-          <div className="flex flex-col items-center gap-1 border-x border-stone-200">
-            <Users className="w-3.5 h-3.5 text-emerald-600" />
-            <div className="text-stone-700">Sleeps {room.maxGuests}</div>
+          <div className="flex flex-col items-center justify-center gap-1 border-x border-stone-200 min-w-0 px-1">
+            <Users className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <div className="text-stone-700 text-[11px] truncate w-full">Sleeps {room.maxGuests}</div>
           </div>
-          <div className="flex flex-col items-center gap-1">
-            <Bed className="w-3.5 h-3.5 text-emerald-600" />
-            <div className="text-stone-700 truncate text-[10px] leading-tight px-1">{room.bedConfig.split('+')[0]}</div>
+          <div className="flex flex-col items-center justify-center gap-1 min-w-0 px-1">
+            <Bed className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <div className="text-stone-700 text-[10px] leading-tight text-center truncate w-full" title={room.bedConfig}>
+              {getShortBedText(room.bedConfig)}
+            </div>
           </div>
         </div>
 
