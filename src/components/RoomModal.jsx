@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Check, Coffee, Users, Maximize2, Bed, ChevronLeft, ChevronRight, PhoneCall, Calendar } from 'lucide-react';
+import { X, Check, Coffee, Users, Maximize2, Bed, ChevronLeft, ChevronRight, PhoneCall, Calendar, MapPin } from 'lucide-react';
 import { PROPERTY_DETAILS } from '../data/roomsData';
 
 export default function RoomModal({ room, onClose, onOpenBooking }) {
@@ -77,8 +77,9 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
                 {room.title}
               </h2>
               {room.locationNote && (
-                <p className="text-xs font-semibold text-amber-700 mt-1">
-                  📌 {room.locationNote}
+                <p className="text-xs font-semibold text-amber-700 mt-1 flex items-center gap-1">
+                  <MapPin className="w-3 h-3 text-amber-600 shrink-0" />
+                  <span>{room.locationNote}</span>
                 </p>
               )}
             </div>

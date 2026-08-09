@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Coffee, PhoneCall, Mail, ExternalLink, Sparkles } from 'lucide-react';
+import { X, Coffee, PhoneCall, Mail, ExternalLink, Sparkles, CreditCard, Banknote, Building2, CheckCircle2 } from 'lucide-react';
 import { ROOMS_DATA, PROPERTY_DETAILS } from '../data/roomsData';
 
 export default function BookingModal({ selectedRoom, onClose }) {
@@ -250,10 +250,22 @@ Could you please confirm availability and provide details? Thank you!`;
                 Accepted Payment Methods &amp; Direct Perks
               </span>
               <div className="flex flex-wrap items-center justify-center gap-1.5 text-[11px] font-semibold text-stone-700">
-                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950">💳 Visa &amp; Mastercard</span>
-                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950">💵 Cash (USD &amp; LKR)</span>
-                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950">🏦 Direct Bank Transfer</span>
-                <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">✨ 0% Booking Fee</span>
+                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
+                  <CreditCard className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                  Visa &amp; Mastercard
+                </span>
+                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
+                  <Banknote className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                  Cash (USD &amp; LKR)
+                </span>
+                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
+                  <Building2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                  Direct Bank Transfer
+                </span>
+                <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  0% Booking Fee
+                </span>
               </div>
             </div>
           </div>

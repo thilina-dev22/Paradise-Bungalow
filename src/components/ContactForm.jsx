@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, Zap, Clock, Globe, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, Zap, Clock, Globe, Loader2, CreditCard, Banknote, Building2, Lock, Sparkles } from 'lucide-react';
 import { PROPERTY_DETAILS, HOUSE_RULES } from '../data/roomsData';
 
 export default function ContactForm() {
@@ -287,8 +287,9 @@ export default function ContactForm() {
                     </>
                   )}
                 </button>
-                <p className="text-[11px] text-stone-500 text-center mt-2">
-                  🔒 Message delivered directly to <strong className="font-semibold text-emerald-950">info@paradisebungalow.lk</strong>
+                <p className="text-[11px] text-stone-500 text-center mt-2 flex items-center justify-center gap-1">
+                  <Lock className="w-3 h-3 text-emerald-600 shrink-0" />
+                  <span>Message delivered directly to <strong className="font-semibold text-emerald-950">info@paradisebungalow.lk</strong></span>
                 </p>
 
                 {/* Accepted Payment & Guarantee Badges */}
@@ -298,16 +299,20 @@ export default function ContactForm() {
                   </span>
                   <div className="flex flex-wrap items-center justify-center gap-2 text-stone-700">
                     <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200/80 text-xs font-semibold text-emerald-950 flex items-center gap-1.5 shadow-2xs">
-                      💳 Visa / Mastercard
+                      <CreditCard className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                      Visa / Mastercard
                     </span>
                     <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200/80 text-xs font-semibold text-emerald-950 flex items-center gap-1.5 shadow-2xs">
-                      💵 Cash (USD &amp; LKR)
+                      <Banknote className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                      Cash (USD &amp; LKR)
                     </span>
                     <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200/80 text-xs font-semibold text-emerald-950 flex items-center gap-1.5 shadow-2xs">
-                      🏦 Direct Bank Transfer
+                      <Building2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                      Direct Bank Transfer
                     </span>
                     <span className="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-900 flex items-center gap-1.5 shadow-2xs">
-                      ✨ Pay at Property
+                      <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                      Pay at Property
                     </span>
                   </div>
                 </div>
