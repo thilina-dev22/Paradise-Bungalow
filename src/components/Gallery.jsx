@@ -53,12 +53,12 @@ export default function Gallery() {
         </div>
 
         {/* Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
           {displayedItems.map((item, idx) => (
             <div
               key={idx}
               onClick={() => setLightboxIndex(idx)}
-              className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group shadow-md hover:shadow-xl transition-all duration-300 bg-stone-200"
+              className="relative h-44 sm:h-64 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer group shadow-md hover:shadow-xl transition-all duration-300 bg-stone-200"
             >
               <img
                 src={item.src}

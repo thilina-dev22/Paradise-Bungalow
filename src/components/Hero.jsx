@@ -38,15 +38,15 @@ export default function Hero({ onOpenBooking }) {
       <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/50 via-transparent to-emerald-950/20" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto text-center px-4 sm:px-6 pt-24 pb-36">
+      <div className="relative z-10 w-full max-w-5xl mx-auto text-center px-4 sm:px-6 pt-20 pb-24 sm:pt-24 sm:pb-36">
 
         {/* Rating + Location Badge Row */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white/90">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6 sm:mb-8">
+          <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white/90">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             <span>9.6 / 10 Exceptional · Booking.com</span>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-400/30 text-xs font-semibold text-amber-300">
+          <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-400/30 text-xs font-semibold text-amber-300">
             <MapPin className="w-3.5 h-3.5" />
             <span>Midigama, Sri Lanka · 200 m to Beach</span>
           </div>
@@ -54,10 +54,10 @@ export default function Hero({ onOpenBooking }) {
 
         {/* Hero Heading */}
         <h1 className="font-serif font-extrabold tracking-tight leading-none mb-6">
-          <span className="block text-3xl sm:text-5xl lg:text-6xl text-white/80 font-light italic mb-3">
+          <span className="block text-2xl sm:text-5xl lg:text-6xl text-white/80 font-light italic mb-2 sm:mb-3">
             Experience Tranquility at
           </span>
-          <span className="block text-5xl sm:text-7xl lg:text-8xl bg-gradient-to-r from-amber-200 via-amber-400 to-amber-300 bg-clip-text text-transparent drop-shadow-2xl">
+          <span className="block text-4xl sm:text-7xl lg:text-8xl bg-gradient-to-r from-amber-200 via-amber-400 to-amber-300 bg-clip-text text-transparent drop-shadow-2xl">
             Paradise Bungalow
           </span>
         </h1>
