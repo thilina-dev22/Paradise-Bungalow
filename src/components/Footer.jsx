@@ -108,10 +108,18 @@ export default function Footer({ onOpenBooking }) {
           <div>
             © {new Date().getFullYear()} Paradise Bungalow Midigama. All rights reserved.
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <span>Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-            <span>for Paradise Bungalow</span>
+            <span>by</span>
+            <a
+              href="https://paradisecrew.site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-300 font-semibold hover:text-amber-200 underline underline-offset-2 transition-colors"
+            >
+              Paradise Crew
+            </a>
           </div>
         </div>
 
