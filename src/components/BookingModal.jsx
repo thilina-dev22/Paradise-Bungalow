@@ -40,11 +40,11 @@ Could you please confirm availability and provide details? Thank you!`;
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-3xl w-full max-w-2xl max-h-[92vh] overflow-y-auto relative shadow-2xl animate-fade-in border border-stone-200"
+        className="bg-white rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col relative shadow-2xl animate-fade-in border border-stone-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-emerald-950 to-emerald-900 text-white p-6 sm:p-8 relative">
+        <div className="bg-gradient-to-r from-emerald-950 to-emerald-900 text-white p-6 sm:p-8 relative shrink-0">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
@@ -63,8 +63,8 @@ Could you please confirm availability and provide details? Thank you!`;
           </p>
         </div>
 
-        {/* Form Body */}
-        <form onSubmit={handleWhatsAppSubmit} className="p-6 sm:p-8 space-y-5">
+        {/* Form Body (Scrollable inside card) */}
+        <form onSubmit={handleWhatsAppSubmit} className="p-6 sm:p-8 space-y-5 overflow-y-auto custom-modal-scrollbar flex-grow">
           
           {/* Room Selection */}
           <div>

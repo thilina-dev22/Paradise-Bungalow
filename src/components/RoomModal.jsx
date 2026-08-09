@@ -13,9 +13,10 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-3xl w-full max-w-4xl max-h-[92vh] overflow-y-auto relative shadow-2xl animate-fade-in border border-stone-200"
+        className="bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col relative shadow-2xl animate-fade-in border border-stone-200"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="overflow-y-auto custom-modal-scrollbar flex-grow relative">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -158,5 +159,6 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
