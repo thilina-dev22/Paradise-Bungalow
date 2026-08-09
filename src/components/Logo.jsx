@@ -49,10 +49,10 @@ export default function Logo({ variant = 'dark', size = 'normal' }) {
         } ${isLightText ? 'text-white' : 'text-emerald-950'}`}>
           Paradise Bungalow
         </span>
-        <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-amber-600 mt-1 flex items-center gap-1.5">
-          <span>Garden Sanctuary</span>
-          <span className="w-1 h-1 rounded-full bg-amber-500 inline-block"></span>
-          <span>Midigama</span>
+        <span className={`text-[10px] font-bold tracking-[0.18em] uppercase mt-0.5 ${
+          isLightText ? 'text-amber-400/80' : 'text-amber-600'
+        }`}>
+          Midigama · Sri Lanka
         </span>
       </div>
     </div>
