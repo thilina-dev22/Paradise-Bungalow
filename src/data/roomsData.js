@@ -317,7 +317,7 @@ export const REVIEWS_DATA = [
 
 export const SURROUNDINGS_DATA = {
   beaches: [
-    { name: 'Midigama Beach', distance: '200 m (100 m nearest access point)' },
+    { name: 'Midigama Beach & Famous Lazy Right Surf Break', distance: '50 m (1 min walk)' },
     { name: 'Ahangama Beach', distance: '1.1 km' },
     { name: 'Abimanagama Beach', distance: '3.2 km' },
     { name: 'Kabalana Beach', distance: '4.2 km' },
@@ -358,8 +358,8 @@ export const FAQS_DATA = [
     a: 'Guests staying at Paradise Bungalow enjoy a top-rated breakfast (review score 10/10). Options include Continental, Vegetarian, and traditional Asian/Sri Lankan breakfast served with fresh tropical fruits.'
   },
   {
-    q: 'How close is Paradise Bungalow to the beach?',
-    a: 'The nearest beach is just 100 to 200 meters away (Midigama Beach), famous for world-class surf breaks and relaxing palm shores.'
+    q: 'How close is Paradise Bungalow to the beach & surf breaks?',
+    a: 'Paradise Bungalow is located just 50 meters away (1 minute walk) from Midigama Beach and the famous Lazy Right surf break!'
   },
   {
     q: 'What type of room options are available?',

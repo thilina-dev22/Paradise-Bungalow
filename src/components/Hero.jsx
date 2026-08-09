@@ -48,7 +48,7 @@ export default function Hero({ onOpenBooking }) {
           </div>
           <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-400/30 text-xs font-semibold text-amber-300">
             <MapPin className="w-3.5 h-3.5" />
-            <span>Midigama, Sri Lanka · 200 m to Beach</span>
+            <span>Midigama, Sri Lanka · 50 m to Beach &amp; Famous Lazy Right</span>
           </div>
         </div>
 

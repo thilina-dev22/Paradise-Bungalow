@@ -19,7 +19,7 @@ export default function LocationMap() {
               Where to Find Paradise
             </h2>
             <p className="text-sm sm:text-base text-stone-600">
-              Located in Midigama, just 100–200 m from Midigama Beach & famous surf breaks, and 4.5 km from Weligama town centre.
+              Located in Midigama, just 50 meters (1 min walk) from Midigama Beach &amp; the famous Lazy Right surf break, and 4.5 km from Weligama town centre.
             </p>
           </div>
 
