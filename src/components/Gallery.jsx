@@ -31,7 +31,7 @@ export default function Gallery() {
             Explore Paradise Bungalow
           </h2>
           <p className="text-sm sm:text-base text-stone-600">
-            A complete visual tour featuring all 26 garden &amp; property photos, eco cabanas, room balconies, and private kitchen spaces.
+            A complete visual tour featuring all {ALL_GALLERY_ITEMS.length} high-resolution photos across our tropical gardens, eco cabanas, room balconies, and private kitchen suites.
           </p>
         </div>
 
