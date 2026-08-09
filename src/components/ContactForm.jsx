@@ -273,7 +273,7 @@ export default function ContactForm() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-emerald-950 to-emerald-900 hover:from-emerald-900 hover:to-emerald-800 transition-all shadow-lg shadow-emerald-950/20 flex items-center justify-center gap-2 disabled:opacity-75"
+                  className="w-full py-4 rounded-full text-sm sm:text-base font-bold text-white bg-gradient-to-r from-emerald-950 to-emerald-900 hover:from-emerald-900 hover:to-emerald-800 transition-all shadow-lg shadow-emerald-950/20 flex items-center justify-center gap-2.5 disabled:opacity-75"
                 >
                   {isSubmitting ? (
                     <>
@@ -282,11 +282,35 @@ export default function ContactForm() {
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5 text-amber-400" />
-                      <span>Send Message to info@paradisebungalow.lk</span>
+                      <Send className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
+                      <span>Send Direct Message</span>
                     </>
                   )}
                 </button>
+                <p className="text-[11px] text-stone-500 text-center mt-2">
+                  🔒 Message delivered directly to <strong className="font-semibold text-emerald-950">info@paradisebungalow.lk</strong>
+                </p>
+
+                {/* Accepted Payment & Guarantee Badges */}
+                <div className="pt-5 border-t border-stone-200 mt-6 text-center">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-2.5">
+                    Accepted Payment Methods &amp; Booking Perks
+                  </span>
+                  <div className="flex flex-wrap items-center justify-center gap-2 text-stone-700">
+                    <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200/80 text-xs font-semibold text-emerald-950 flex items-center gap-1.5 shadow-2xs">
+                      💳 Visa / Mastercard
+                    </span>
+                    <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200/80 text-xs font-semibold text-emerald-950 flex items-center gap-1.5 shadow-2xs">
+                      💵 Cash (USD &amp; LKR)
+                    </span>
+                    <span className="px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200/80 text-xs font-semibold text-emerald-950 flex items-center gap-1.5 shadow-2xs">
+                      🏦 Direct Bank Transfer
+                    </span>
+                    <span className="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-900 flex items-center gap-1.5 shadow-2xs">
+                      ✨ Pay at Property
+                    </span>
+                  </div>
+                </div>
               </form>
             )}
           </div>
