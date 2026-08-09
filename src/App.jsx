@@ -137,44 +137,7 @@ export default function App() {
       {/* Footer */}
       <Footer onOpenBooking={() => handleOpenBooking()} />
 
-      {/* Mobile Fixed Bottom Quick Bar (md:hidden) */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-emerald-950/95 backdrop-blur-md border-t border-emerald-800/50 p-2.5 flex items-center justify-around md:hidden text-white shadow-2xl">
-        <a
-          href={`tel:${PROPERTY_DETAILS.phoneClean}`}
-          className="flex flex-col items-center gap-0.5 text-stone-300 hover:text-amber-400"
-        >
-          <Phone className="w-5 h-5 text-amber-400" />
-          <span className="text-[10px] font-medium">Call</span>
-        </a>
 
-        <a
-          href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20want%20to%20inquire%20about%20rooms.`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-0.5 text-stone-300 hover:text-green-400"
-        >
-          <MessageSquare className="w-5 h-5 text-green-400" />
-          <span className="text-[10px] font-medium">WhatsApp</span>
-        </a>
-
-        <a
-          href={PROPERTY_DETAILS.googleMapUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-0.5 text-stone-300 hover:text-amber-400"
-        >
-          <MapPin className="w-5 h-5 text-amber-400" />
-          <span className="text-[10px] font-medium">Map</span>
-        </a>
-
-        <button
-          onClick={() => handleOpenBooking()}
-          className="bg-gradient-to-r from-amber-400 to-amber-500 text-emerald-950 px-4 py-2 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-amber-500/20 active:scale-95"
-        >
-          <Calendar className="w-4 h-4" />
-          <span>Book Now</span>
-        </button>
-      </div>
 
       {/* Modals */}
       {modalRoom && (

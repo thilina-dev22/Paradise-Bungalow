@@ -24,36 +24,7 @@ export default function Navbar({ onOpenBooking }) {
 
   return (
     <>
-      {/* Top Announcement Bar */}
-      <div className="bg-emerald-950 text-emerald-100 text-xs py-2 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-5">
-            <a
-              href={`tel:${PROPERTY_DETAILS.phoneClean}`}
-              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors font-medium"
-            >
-              <Phone className="w-3 h-3 text-amber-400 shrink-0" />
-              <span>{PROPERTY_DETAILS.phone}</span>
-            </a>
-            <a
-              href={`mailto:${PROPERTY_DETAILS.email}`}
-              className="hidden sm:flex items-center gap-1.5 hover:text-amber-400 transition-colors font-medium"
-            >
-              <Mail className="w-3 h-3 text-amber-400 shrink-0" />
-              <span>{PROPERTY_DETAILS.email}</span>
-            </a>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden md:inline text-emerald-300/70 text-[11px]">
-              10 Rooms &amp; Cabanas · Midigama, Sri Lanka
-            </span>
-            <span className="inline-flex items-center gap-1 bg-amber-500/15 border border-amber-500/30 text-amber-300 px-2.5 py-0.5 rounded-full font-semibold text-[11px]">
-              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-              {PROPERTY_DETAILS.rating} / 10 Exceptional
-            </span>
-          </div>
-        </div>
-      </div>
+
 
       {/* Main Sticky Header */}
       <header
