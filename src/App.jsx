@@ -98,20 +98,38 @@ export default function App() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3 w-full md:w-auto justify-center shrink-0">
+            <div className="flex flex-wrap gap-2.5 w-full md:w-auto justify-center shrink-0">
               <button
                 onClick={() => handleOpenBooking()}
-                className="px-6 py-3 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-lg shadow-amber-500/20"
+                className="px-5 py-2.5 rounded-full text-xs font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
               >
-                Inquire / Book Direct
+                <Calendar className="w-3.5 h-3.5" />
+                Book Direct
               </button>
               <a
                 href={PROPERTY_DETAILS.bookingComUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full text-sm font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 transition-all"
+                className="px-4 py-2.5 rounded-full text-xs font-semibold text-white bg-[#003580]/90 hover:bg-[#003580] border border-white/20 transition-all shadow-sm"
               >
-                Book on Booking.com
+                Booking.com
+              </a>
+              <a
+                href={PROPERTY_DETAILS.airbnbUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-full text-xs font-semibold text-white bg-[#FF5A5F]/90 hover:bg-[#FF5A5F] border border-white/20 transition-all shadow-sm"
+              >
+                Airbnb
+              </a>
+              <a
+                href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20want%20to%20inquire%20about%20booking.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-full text-xs font-semibold text-white bg-[#25D366]/90 hover:bg-[#25D366] transition-all shadow-sm flex items-center gap-1"
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+                WhatsApp
               </a>
             </div>
           </div>
