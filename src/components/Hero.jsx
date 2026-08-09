@@ -91,10 +91,10 @@ export default function Hero({ onOpenBooking }) {
         </div>
 
         {/* Action CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
           <button
             onClick={onOpenBooking}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-2xl shadow-amber-500/25 active:scale-95 flex items-center justify-center gap-2 tracking-wide"
+            className="w-full sm:w-auto px-7 py-4 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-2xl shadow-amber-500/25 active:scale-95 flex items-center justify-center gap-2 tracking-wide"
           >
             <Calendar className="w-4 h-4" />
             Check Rates &amp; Availability
@@ -104,16 +104,25 @@ export default function Hero({ onOpenBooking }) {
             href={PROPERTY_DETAILS.bookingComUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-7 py-4 rounded-full text-sm font-bold text-white bg-white/10 backdrop-blur-sm border border-white/25 hover:bg-white/20 transition-all shadow-lg flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-4 rounded-full text-sm font-bold text-white bg-[#003580]/80 hover:bg-[#003580] backdrop-blur-sm border border-white/20 transition-all shadow-lg flex items-center justify-center gap-2"
           >
             Book on Booking.com
+          </a>
+
+          <a
+            href={PROPERTY_DETAILS.airbnbUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-6 py-4 rounded-full text-sm font-bold text-white bg-[#FF5A5F]/90 hover:bg-[#FF5A5F] backdrop-blur-sm transition-all shadow-lg flex items-center justify-center gap-2"
+          >
+            Book on Airbnb
           </a>
 
           <a
             href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20would%20like%20to%20inquire%20about%20room%20availability.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-7 py-4 rounded-full text-sm font-bold text-white bg-[#25D366]/90 hover:bg-[#25D366] transition-all shadow-lg flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-4 rounded-full text-sm font-bold text-white bg-[#25D366]/90 hover:bg-[#25D366] transition-all shadow-lg flex items-center justify-center gap-2"
           >
             <MessageSquare className="w-4 h-4" />
             WhatsApp Inquiry

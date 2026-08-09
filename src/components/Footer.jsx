@@ -89,6 +89,10 @@ export default function Footer({ onOpenBooking }) {
                 <ExternalLink className="w-4 h-4 shrink-0" />
                 <span>Booking.com Official Page</span>
               </a>
+              <a href={PROPERTY_DETAILS.airbnbUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-rose-300 hover:text-rose-200 transition-colors">
+                <ExternalLink className="w-4 h-4 shrink-0" />
+                <span>Airbnb Listing Page</span>
+              </a>
               <a href={PROPERTY_DETAILS.googleMapUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-amber-300 hover:text-amber-200 transition-colors">
                 <MapPin className="w-4 h-4 shrink-0" />
                 <span>Google Maps Location</span>

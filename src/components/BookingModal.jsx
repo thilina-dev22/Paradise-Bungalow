@@ -214,23 +214,33 @@ Could you please confirm availability and provide details? Thank you!`;
               <span>Book Direct via WhatsApp (Instant)</span>
             </button>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <a
                 href={PROPERTY_DETAILS.bookingComUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 rounded-full text-sm font-bold text-white bg-[#003580] hover:bg-[#00255a] transition-colors flex items-center justify-center gap-1.5"
+                className="py-3 px-3 rounded-full text-xs font-bold text-white bg-[#003580] hover:bg-[#00255a] transition-colors flex items-center justify-center gap-1.5"
               >
-                <ExternalLink className="w-4 h-4" />
-                <span>Reserve on Booking.com</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Booking.com</span>
+              </a>
+
+              <a
+                href={PROPERTY_DETAILS.airbnbUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 px-3 rounded-full text-xs font-bold text-white bg-[#FF5A5F] hover:bg-[#e0484d] transition-colors flex items-center justify-center gap-1.5"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Airbnb</span>
               </a>
 
               <a
                 href={`mailto:${PROPERTY_DETAILS.email}?subject=Reservation Inquiry - Paradise Bungalow`}
-                className="py-3 rounded-full text-sm font-bold text-emerald-950 border border-emerald-900/30 hover:bg-emerald-950 hover:text-white transition-colors flex items-center justify-center gap-1.5"
+                className="py-3 px-3 rounded-full text-xs font-bold text-emerald-950 border border-emerald-900/30 hover:bg-emerald-950 hover:text-white transition-colors flex items-center justify-center gap-1.5"
               >
-                <Mail className="w-4 h-4" />
-                <span>Send Email Inquiry</span>
+                <Mail className="w-3.5 h-3.5" />
+                <span>Email Host</span>
               </a>
             </div>
           </div>

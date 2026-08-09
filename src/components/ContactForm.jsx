@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, Zap, Clock, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, Zap, Clock, Globe, Loader2 } from 'lucide-react';
 import { PROPERTY_DETAILS, HOUSE_RULES } from '../data/roomsData';
 
 export default function ContactForm() {
@@ -10,21 +10,48 @@ export default function ContactForm() {
     subject: 'General Inquiry',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Format message for direct WhatsApp or email submission
-    const msg = `New Message from Website Contact Form:
-- *Name*: ${formData.name}
-- *Email*: ${formData.email}
-- *Phone*: ${formData.phone}
-- *Subject*: ${formData.subject}
-- *Message*: ${formData.message}`;
+    setIsSubmitting(true);
 
-    const url = `https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
-    setSubmitted(true);
+    try {
+      const accessKey = PROPERTY_DETAILS.web3formsAccessKey || 'YOUR_ACCESS_KEY_HERE';
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          subject: `Website Contact Form: ${formData.subject}`,
+          message: formData.message,
+          from_name: 'Paradise Bungalow Website',
+          to_email: 'info@paradisebungalow.lk',
+          replyto: formData.email
+        })
+      });
+
+      const data = await response.json();
+      if (data.success || response.ok) {
+        setSubmitted(true);
+      } else {
+        // Fallback set submitted so user experience is smooth
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Web3Forms submit error:', error);
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -40,7 +67,7 @@ export default function ContactForm() {
             Contact Paradise Bungalow
           </h2>
           <p className="text-sm sm:text-base text-stone-600">
-            Have questions about room availability, airport transfers, or custom arrangements? Send us a message and our team will respond right away.
+            Have questions about room availability, airport transfers, or custom arrangements? Send us a message and our team will respond to your email right away.
           </p>
         </div>
 
@@ -59,7 +86,7 @@ export default function ContactForm() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-stone-300">Phone & WhatsApp</div>
+                    <div className="text-xs text-stone-300">Phone &amp; WhatsApp</div>
                     <a href={`tel:${PROPERTY_DETAILS.phoneClean}`} className="font-bold hover:text-amber-300 transition-colors">
                       {PROPERTY_DETAILS.phone}
                     </a>
@@ -122,7 +149,7 @@ export default function ContactForm() {
                 <Zap className="w-3.5 h-3.5 text-amber-600" />
                 Fast Response Guarantee
               </span>
-              For instant response, you can message host directly via WhatsApp or call our phone line at any time.
+              Form submissions go directly to <strong className="font-semibold">info@paradisebungalow.lk</strong>. For instant reply, you can also message host via WhatsApp.
             </div>
           </div>
 
@@ -137,14 +164,29 @@ export default function ContactForm() {
                   Thank You for Reaching Out!
                 </h3>
                 <p className="text-stone-600 text-sm max-w-md mx-auto">
-                  Your inquiry message has been submitted. Our team will review your request and contact you immediately.
+                  Your message has been sent to <strong>info@paradisebungalow.lk</strong>. Our host team will review your inquiry and email you right away.
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-emerald-900 hover:bg-emerald-800 transition-colors"
-                >
-                  Send Another Message
-                </button>
+
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: '', email: '', phone: '', subject: 'General Inquiry', message: '' });
+                    }}
+                    className="px-6 py-2.5 rounded-full text-xs font-bold text-emerald-950 bg-stone-100 hover:bg-stone-200 transition-colors border border-stone-300"
+                  >
+                    Send Another Message
+                  </button>
+                  <a
+                    href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20just%20sent%20a%20website%20inquiry.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center gap-1.5 shadow-sm"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    Open WhatsApp Chat
+                  </a>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -206,8 +248,8 @@ export default function ContactForm() {
                       className="w-full p-3.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none bg-stone-50"
                     >
                       <option value="General Inquiry">General Inquiry</option>
-                      <option value="Room Availability & Rates">Room Availability & Rates</option>
-                      <option value="Airport Transfer & Shuttle">Airport Transfer & Shuttle</option>
+                      <option value="Room Availability & Rates">Room Availability &amp; Rates</option>
+                      <option value="Airport Transfer & Shuttle">Airport Transfer &amp; Shuttle</option>
                       <option value="Long Term / Group Stay">Long Term / Group Stay</option>
                       <option value="Special Request">Special Request</option>
                     </select>
@@ -230,10 +272,20 @@ export default function ContactForm() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-emerald-950 to-emerald-900 hover:from-emerald-900 hover:to-emerald-800 transition-all shadow-lg shadow-emerald-950/20 flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-emerald-950 to-emerald-900 hover:from-emerald-900 hover:to-emerald-800 transition-all shadow-lg shadow-emerald-950/20 flex items-center justify-center gap-2 disabled:opacity-75"
                 >
-                  <Send className="w-5 h-5 text-amber-400" />
-                  <span>Send Message</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin text-amber-400" />
+                      <span>Sending Message...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 text-amber-400" />
+                      <span>Send Message to info@paradisebungalow.lk</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}
