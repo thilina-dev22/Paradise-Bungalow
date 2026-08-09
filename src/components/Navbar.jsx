@@ -33,7 +33,7 @@ export default function Navbar({ onOpenBooking }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
 
         {/* Logo — Left */}
-        <a href="#" className="flex-shrink-0">
+        <a href="/" className="flex-shrink-0">
           <Logo variant="dark" />
         </a>
 

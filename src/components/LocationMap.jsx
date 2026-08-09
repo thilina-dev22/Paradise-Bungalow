@@ -88,13 +88,20 @@ export default function LocationMap() {
                     href={PROPERTY_DETAILS.bookingComUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 py-3 rounded-full text-xs font-bold text-center text-white bg-[#003580] hover:bg-[#00255a] transition-colors"
+                    className="flex-1 py-3 rounded-full text-xs font-bold text-center text-white bg-[#003580] hover:bg-[#00255a] transition-colors flex items-center justify-center gap-1.5 shadow-md"
                   >
-                    Booking.com Listing
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>Booking.com Listing</span>
                   </a>
-                  <span className="flex-1 py-3 rounded-full text-xs font-bold text-center text-stone-400 bg-white/10 border border-white/20">
-                    Airbnb (Coming Soon)
-                  </span>
+                  <a
+                    href={PROPERTY_DETAILS.airbnbUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-3 rounded-full text-xs font-bold text-center text-white bg-[#FF5A5F] hover:bg-[#e0484d] transition-colors flex items-center justify-center gap-1.5 shadow-md"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>Airbnb Listing</span>
+                  </a>
                 </div>
               </div>
 
