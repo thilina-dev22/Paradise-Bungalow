@@ -3,10 +3,11 @@ import { Calendar, CheckCircle2, MessageSquare, MapPin, ChevronDown, Star } from
 import { PROPERTY_DETAILS } from '../data/roomsData';
 
 const HERO_IMAGES = [
-  '/images/IMG_8713.jpg',
-  '/images/IMG_8553.jpg',
-  '/images/IMG_8698.jpg',
-  '/images/IMG_8580.jpg'
+  '/images/general/IMG_8653.jpg',
+  '/images/wooden-cabana/IMG_8703.jpg',
+  '/images/general/IMG_8720.jpg',
+  '/images/general/IMG_8685.jpg',
+  '/images/general/IMG_8713_1.jpg'
 ];
 
 export default function Hero({ onOpenBooking }) {

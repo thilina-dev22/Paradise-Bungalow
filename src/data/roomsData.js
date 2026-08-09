@@ -39,10 +39,14 @@ export const ROOMS_DATA = [
       'Dining table', 'Ground floor unit', 'Clothes rack', 'Drying rack for clothing'
     ],
     images: [
-      '/images/IMG_8553.jpg',
-      '/images/IMG_8565.jpg',
-      '/images/IMG_8576.jpg',
-      '/images/IMG_8577.jpg'
+      '/images/wooden-cabana/IMG_8703.jpg',
+      '/images/wooden-cabana/IMG_8704.jpg',
+      '/images/wooden-cabana/IMG_8706.jpg',
+      '/images/wooden-cabana/IMG_8707.jpg',
+      '/images/wooden-cabana/IMG_8708.jpg',
+      '/images/wooden-cabana/IMG_8713_1.jpg',
+      '/images/wooden-cabana/IMG_8718.jpg',
+      '/images/wooden-cabana/IMG_8698.jpg'
     ],
     description: 'Experience authentic Sri Lankan tropical living in our handcrafted Wooden Cabanas. Featuring direct access to flower-filled gardens, private patio dining, and eco-friendly wooden craftsmanship designed for peaceful relaxation.'
   },
@@ -78,10 +82,14 @@ export const ROOMS_DATA = [
       'Wardrobe / closet', 'Dining table', 'Clothes rack', 'Drying rack'
     ],
     images: [
-      '/images/IMG_8580.jpg',
-      '/images/IMG_8588.jpg',
-      '/images/IMG_8592.jpg',
-      '/images/IMG_8596.jpg'
+      '/images/deluxe-balcony/IMG_8661.jpg',
+      '/images/deluxe-balcony/IMG_8662.jpg',
+      '/images/deluxe-balcony/IMG_8663.jpg',
+      '/images/deluxe-balcony/IMG_8665.jpg',
+      '/images/deluxe-balcony/IMG_8667.jpg',
+      '/images/deluxe-balcony/IMG_8668.jpg',
+      '/images/deluxe-balcony/IMG_8669.jpg',
+      '/images/deluxe-balcony/IMG_8657.jpg'
     ],
     description: 'Positioned on the upper levels of Paradise Bungalow, these Deluxe Double Rooms feature airy private balconies with panoramic tropical garden views, high ceilings, polished marble floors, and tranquil surroundings.'
   },
@@ -117,9 +125,14 @@ export const ROOMS_DATA = [
       'Outdoor dining area', 'Wardrobe', 'Dining table', 'Ground floor convenience'
     ],
     images: [
-      '/images/IMG_8592.jpg',
-      '/images/IMG_8580.jpg',
-      '/images/IMG_8596.jpg'
+      '/images/standard-ground-ac/IMG_8662.jpg',
+      '/images/standard-ground-ac/IMG_8670.jpg',
+      '/images/standard-ground-ac/IMG_8663.jpg',
+      '/images/standard-ground-ac/IMG_8661.jpg',
+      '/images/standard-ground-ac/IMG_8665.jpg',
+      '/images/standard-ground-ac/IMG_8668.jpg',
+      '/images/standard-ground-ac/IMG_8669.jpg',
+      '/images/standard-ground-ac/IMG_8657.jpg'
     ],
     description: 'Conveniently situated on the ground floor for easy access, this AC room connects directly to the garden patio. Perfect for guests who prefer seamless indoor-outdoor relaxation without climbing stairs.'
   },
@@ -154,9 +167,14 @@ export const ROOMS_DATA = [
       'Ground floor unit', 'Clothes rack', 'Drying rack'
     ],
     images: [
-      '/images/IMG_8603.jpg',
-      '/images/IMG_8621.jpg',
-      '/images/IMG_8629.jpg'
+      '/images/bungalow-family/IMG_8553.jpg',
+      '/images/bungalow-family/IMG_8673.jpg',
+      '/images/bungalow-family/IMG_8675.jpg',
+      '/images/bungalow-family/IMG_8684.jpg',
+      '/images/bungalow-family/IMG_8690.jpg',
+      '/images/bungalow-family/770005688.jpg',
+      '/images/bungalow-family/770005701.jpg',
+      '/images/bungalow-family/IMG_8681.jpg'
     ],
     description: 'Our Bungalow Type Family Rooms provide 42 m² of peaceful space, featuring both an extra-large double bed and a single bed. Equipped with air conditioning and garden patio seating ideal for family morning tea.'
   },
@@ -190,9 +208,16 @@ export const ROOMS_DATA = [
       'Dining table', 'Wardrobe', 'Family-friendly setup'
     ],
     images: [
-      '/images/IMG_8635.jpg',
-      '/images/IMG_8668.jpg',
-      '/images/IMG_8670.jpg'
+      '/images/spacious-family-4p/IMG_8603.jpg',
+      '/images/spacious-family-4p/IMG_8576.jpg',
+      '/images/spacious-family-4p/IMG_8577.jpg',
+      '/images/spacious-family-4p/IMG_8580.jpg',
+      '/images/spacious-family-4p/IMG_8588.jpg',
+      '/images/spacious-family-4p/IMG_8592.jpg',
+      '/images/spacious-family-4p/IMG_8594.jpg',
+      '/images/spacious-family-4p/IMG_8598.jpg',
+      '/images/spacious-family-4p/IMG_8601.jpg',
+      '/images/spacious-family-4p/770005763.jpg'
     ],
     description: 'Designed specifically for larger families or group travelers, these 4-guest Family Rooms offer generous living area, air conditioning, multiple sleeping options, and immediate access to garden amenities.'
   },
@@ -228,12 +253,17 @@ export const ROOMS_DATA = [
       'Outdoor furniture', 'Outdoor dining area', 'Wardrobe', 'Dining table'
     ],
     images: [
-      '/images/IMG_8698.jpg',
-      '/images/IMG_8713.jpg',
-      '/images/IMG_8716.jpg',
-      '/images/IMG_8720.jpg',
-      '/images/IMG_8728.jpg',
-      '/images/IMG_8729.jpg'
+      '/images/superior-kitchen/IMG_8617.jpg',
+      '/images/superior-kitchen/IMG_8624.jpg',
+      '/images/superior-kitchen/IMG_8626.jpg',
+      '/images/superior-kitchen/IMG_8627.jpg',
+      '/images/superior-kitchen/IMG_8635.jpg',
+      '/images/superior-kitchen/IMG_8642.jpg',
+      '/images/superior-kitchen/IMG_8643.jpg',
+      '/images/superior-kitchen/IMG_8646.jpg',
+      '/images/superior-kitchen/IMG_8648.jpg',
+      '/images/superior-kitchen/IMG_8621.jpg',
+      '/images/superior-kitchen/IMG_8612.jpg'
     ],
     description: 'The pinnacle of Paradise Bungalow! A massive 65 m² apartment suite featuring a full private kitchen (stovetop, fridge, kettle, utensils), plush sofa living area, high-floor balcony with sweeping views, and king-size luxury bed.'
   }

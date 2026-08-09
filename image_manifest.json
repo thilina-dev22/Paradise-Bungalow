@@ -1,0 +1,864 @@
+{
+  "wooden-cabana": [
+    {
+      "url": "/images/wooden-cabana/IMG_8698.jpg",
+      "filename": "IMG_8698.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 617.2744140625,
+      "landscape": false
+    },
+    {
+      "url": "/images/wooden-cabana/IMG_8703.jpg",
+      "filename": "IMG_8703.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 405.2685546875,
+      "landscape": true
+    },
+    {
+      "url": "/images/wooden-cabana/IMG_8704.jpg",
+      "filename": "IMG_8704.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 316.62890625,
+      "landscape": true
+    },
+    {
+      "url": "/images/wooden-cabana/IMG_8706.jpg",
+      "filename": "IMG_8706.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 344.708984375,
+      "landscape": true
+    },
+    {
+      "url": "/images/wooden-cabana/IMG_8707.jpg",
+      "filename": "IMG_8707.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 146.056640625,
+      "landscape": true
+    },
+    {
+      "url": "/images/wooden-cabana/IMG_8708.jpg",
+      "filename": "IMG_8708.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 164.4599609375,
+      "landscape": true
+    },
+    {
+      "url": "/images/wooden-cabana/IMG_8713_1.jpg",
+      "filename": "IMG_8713_1.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 652.943359375,
+      "landscape": true
+    },
+    {
+      "url": "/images/wooden-cabana/IMG_8718.jpg",
+      "filename": "IMG_8718.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 353.3779296875,
+      "landscape": true
+    }
+  ],
+  "deluxe-balcony": [
+    {
+      "url": "/images/deluxe-balcony/761794737.jpg",
+      "filename": "761794737.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 48.0771484375,
+      "landscape": false
+    },
+    {
+      "url": "/images/deluxe-balcony/761819190.jpg",
+      "filename": "761819190.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 58.6689453125,
+      "landscape": false
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8657.jpg",
+      "filename": "IMG_8657.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 158.369140625,
+      "landscape": false
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8661.jpg",
+      "filename": "IMG_8661.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 142.587890625,
+      "landscape": true
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8662.jpg",
+      "filename": "IMG_8662.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 176.453125,
+      "landscape": true
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8663.jpg",
+      "filename": "IMG_8663.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 236.07421875,
+      "landscape": true
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8665.jpg",
+      "filename": "IMG_8665.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 193.703125,
+      "landscape": true
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8667.jpg",
+      "filename": "IMG_8667.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 145.732421875,
+      "landscape": true
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8668.jpg",
+      "filename": "IMG_8668.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 180.826171875,
+      "landscape": true
+    },
+    {
+      "url": "/images/deluxe-balcony/IMG_8669.jpg",
+      "filename": "IMG_8669.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 146.2431640625,
+      "landscape": true
+    }
+  ],
+  "standard-ground-ac": [
+    {
+      "url": "/images/standard-ground-ac/761794737.jpg",
+      "filename": "761794737.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 48.0771484375,
+      "landscape": false
+    },
+    {
+      "url": "/images/standard-ground-ac/761819190.jpg",
+      "filename": "761819190.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 58.6689453125,
+      "landscape": false
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8657.jpg",
+      "filename": "IMG_8657.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 158.369140625,
+      "landscape": false
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8661.jpg",
+      "filename": "IMG_8661.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 142.587890625,
+      "landscape": true
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8662.jpg",
+      "filename": "IMG_8662.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 176.453125,
+      "landscape": true
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8663.jpg",
+      "filename": "IMG_8663.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 236.07421875,
+      "landscape": true
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8665.jpg",
+      "filename": "IMG_8665.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 193.703125,
+      "landscape": true
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8667.jpg",
+      "filename": "IMG_8667.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 145.732421875,
+      "landscape": true
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8668.jpg",
+      "filename": "IMG_8668.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 180.826171875,
+      "landscape": true
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8669.jpg",
+      "filename": "IMG_8669.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 146.2431640625,
+      "landscape": true
+    },
+    {
+      "url": "/images/standard-ground-ac/IMG_8670.jpg",
+      "filename": "IMG_8670.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 382.8662109375,
+      "landscape": true
+    }
+  ],
+  "bungalow-family": [
+    {
+      "url": "/images/bungalow-family/761621678.jpg",
+      "filename": "761621678.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 66.337890625,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/762162364.jpg",
+      "filename": "762162364.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 75.599609375,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/762162367.jpg",
+      "filename": "762162367.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 72.71875,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/762162371.jpg",
+      "filename": "762162371.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 56.9609375,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/762162431.jpg",
+      "filename": "762162431.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 140.46484375,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/764012226.jpg",
+      "filename": "764012226.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 99.9697265625,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/764013075.jpg",
+      "filename": "764013075.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 62.6435546875,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/770005688.jpg",
+      "filename": "770005688.jpg",
+      "width": 960,
+      "height": 626,
+      "size_kb": 76.337890625,
+      "landscape": true
+    },
+    {
+      "url": "/images/bungalow-family/770005701.jpg",
+      "filename": "770005701.jpg",
+      "width": 887,
+      "height": 768,
+      "size_kb": 83.376953125,
+      "landscape": true
+    },
+    {
+      "url": "/images/bungalow-family/770005754.jpg",
+      "filename": "770005754.jpg",
+      "width": 776,
+      "height": 768,
+      "size_kb": 84.68359375,
+      "landscape": true
+    },
+    {
+      "url": "/images/bungalow-family/770005779.jpg",
+      "filename": "770005779.jpg",
+      "width": 740,
+      "height": 768,
+      "size_kb": 84.9833984375,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/IMG_8553.jpg",
+      "filename": "IMG_8553.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 592.513671875,
+      "landscape": true
+    },
+    {
+      "url": "/images/bungalow-family/IMG_8673.jpg",
+      "filename": "IMG_8673.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 288.4765625,
+      "landscape": true
+    },
+    {
+      "url": "/images/bungalow-family/IMG_8675.jpg",
+      "filename": "IMG_8675.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 225.1962890625,
+      "landscape": true
+    },
+    {
+      "url": "/images/bungalow-family/IMG_8681.jpg",
+      "filename": "IMG_8681.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 258.28125,
+      "landscape": false
+    },
+    {
+      "url": "/images/bungalow-family/IMG_8684.jpg",
+      "filename": "IMG_8684.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 569.2744140625,
+      "landscape": true
+    },
+    {
+      "url": "/images/bungalow-family/IMG_8690.jpg",
+      "filename": "IMG_8690.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 466.3310546875,
+      "landscape": true
+    }
+  ],
+  "spacious-family-4p": [
+    {
+      "url": "/images/spacious-family-4p/761766361.jpg",
+      "filename": "761766361.jpg",
+      "width": 575,
+      "height": 768,
+      "size_kb": 78.0126953125,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/761766364.jpg",
+      "filename": "761766364.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 45.376953125,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/761766366.jpg",
+      "filename": "761766366.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 53.2802734375,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/761766368.jpg",
+      "filename": "761766368.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 52.4091796875,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/770005763.jpg",
+      "filename": "770005763.jpg",
+      "width": 934,
+      "height": 768,
+      "size_kb": 90.83984375,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/770611983.jpg",
+      "filename": "770611983.jpg",
+      "width": 978,
+      "height": 754,
+      "size_kb": 76.47265625,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/771568816.jpg",
+      "filename": "771568816.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 46.5869140625,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8576.jpg",
+      "filename": "IMG_8576.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 182.958984375,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8577.jpg",
+      "filename": "IMG_8577.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 207.88671875,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8580.jpg",
+      "filename": "IMG_8580.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 161.1689453125,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8588.jpg",
+      "filename": "IMG_8588.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 171.0048828125,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8592.jpg",
+      "filename": "IMG_8592.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 187.6103515625,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8594.jpg",
+      "filename": "IMG_8594.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 194.8525390625,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8596.jpg",
+      "filename": "IMG_8596.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 129.1357421875,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8597.jpg",
+      "filename": "IMG_8597.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 139.212890625,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8598.jpg",
+      "filename": "IMG_8598.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 131.642578125,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8599.jpg",
+      "filename": "IMG_8599.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 156.904296875,
+      "landscape": false
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8601.jpg",
+      "filename": "IMG_8601.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 157.23046875,
+      "landscape": true
+    },
+    {
+      "url": "/images/spacious-family-4p/IMG_8603.jpg",
+      "filename": "IMG_8603.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 132.4521484375,
+      "landscape": true
+    }
+  ],
+  "superior-kitchen": [
+    {
+      "url": "/images/superior-kitchen/764013791.jpg",
+      "filename": "764013791.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 78.666015625,
+      "landscape": false
+    },
+    {
+      "url": "/images/superior-kitchen/770620065.jpg",
+      "filename": "770620065.jpg",
+      "width": 1024,
+      "height": 523,
+      "size_kb": 56.6962890625,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8612.jpg",
+      "filename": "IMG_8612.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 301.634765625,
+      "landscape": false
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8617.jpg",
+      "filename": "IMG_8617.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 502.2880859375,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8621.jpg",
+      "filename": "IMG_8621.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 177.607421875,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8624_copy.jpg",
+      "filename": "IMG_8624_copy.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 330.625,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8624.jpg",
+      "filename": "IMG_8624.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 329.18359375,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8626.jpg",
+      "filename": "IMG_8626.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 268.171875,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8627.jpg",
+      "filename": "IMG_8627.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 155.033203125,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8629.jpg",
+      "filename": "IMG_8629.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 165.0087890625,
+      "landscape": false
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8635.jpg",
+      "filename": "IMG_8635.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 206.6162109375,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8642.jpg",
+      "filename": "IMG_8642.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 348.8251953125,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8643.jpg",
+      "filename": "IMG_8643.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 300.6953125,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8646.jpg",
+      "filename": "IMG_8646.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 144.048828125,
+      "landscape": true
+    },
+    {
+      "url": "/images/superior-kitchen/IMG_8648.jpg",
+      "filename": "IMG_8648.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 329.8779296875,
+      "landscape": true
+    }
+  ],
+  "general": [
+    {
+      "url": "/images/general/414317788.jpg",
+      "filename": "414317788.jpg",
+      "width": 1024,
+      "height": 768,
+      "size_kb": 190.3935546875,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/414317792.jpg",
+      "filename": "414317792.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 125.9365234375,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/414317793.jpg",
+      "filename": "414317793.jpg",
+      "width": 1024,
+      "height": 768,
+      "size_kb": 212.8359375,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/764014703.jpg",
+      "filename": "764014703.jpg",
+      "width": 576,
+      "height": 768,
+      "size_kb": 152.6318359375,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/IMG_8553.jpg",
+      "filename": "IMG_8553.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 592.513671875,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8559.jpg",
+      "filename": "IMG_8559.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 524.716796875,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/IMG_8565.jpg",
+      "filename": "IMG_8565.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 609.2177734375,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8572-2.jpg",
+      "filename": "IMG_8572-2.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 330.0966796875,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/IMG_8574.jpg",
+      "filename": "IMG_8574.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 183.158203125,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/IMG_8608.jpg",
+      "filename": "IMG_8608.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 373.1787109375,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/IMG_8617-2.jpg",
+      "filename": "IMG_8617-2.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 513.712890625,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8621.jpg",
+      "filename": "IMG_8621.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 177.607421875,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8653.jpg",
+      "filename": "IMG_8653.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 572.2353515625,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8670.jpg",
+      "filename": "IMG_8670.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 382.8662109375,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8685.jpg",
+      "filename": "IMG_8685.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 459.9853515625,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8686.jpg",
+      "filename": "IMG_8686.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 499.21484375,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8687.jpg",
+      "filename": "IMG_8687.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 444.9638671875,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8690.jpg",
+      "filename": "IMG_8690.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 466.3310546875,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8696.jpg",
+      "filename": "IMG_8696.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 617.07421875,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8698.jpg",
+      "filename": "IMG_8698.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 617.2744140625,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/IMG_8713_1.jpg",
+      "filename": "IMG_8713_1.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 652.943359375,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8716.jpg",
+      "filename": "IMG_8716.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 575.7666015625,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8720.jpg",
+      "filename": "IMG_8720.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 745.095703125,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8724.jpg",
+      "filename": "IMG_8724.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 587.6904296875,
+      "landscape": true
+    },
+    {
+      "url": "/images/general/IMG_8728.jpg",
+      "filename": "IMG_8728.jpg",
+      "width": 1067,
+      "height": 1600,
+      "size_kb": 501.04296875,
+      "landscape": false
+    },
+    {
+      "url": "/images/general/IMG_8729.jpg",
+      "filename": "IMG_8729.jpg",
+      "width": 1600,
+      "height": 1067,
+      "size_kb": 503.55078125,
+      "landscape": true
+    }
+  ]
+}
