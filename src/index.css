@@ -4,13 +4,16 @@
 @theme {
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --color-emerald-950: #08221b;
-  --color-emerald-900: #0f382c;
-  --color-emerald-800: #185242;
-  --color-emerald-700: #236e59;
-  --color-gold-500: #d9a04a;
-  --color-gold-400: #f5cf89;
-  --color-gold-600: #b37d2b;
+  --color-emerald-950: #032a1f;
+  --color-emerald-900: #064e3b;
+  --color-emerald-800: #0d6e53;
+  --color-emerald-700: #108e6c;
+  --color-gold-500: #d4af37;
+  --color-gold-400: #e5c158;
+  --color-gold-600: #b89328;
+  --color-amber-400: #e5c158;
+  --color-amber-500: #d4af37;
+  --color-amber-600: #c59b27;
 }
 
 html {
@@ -20,7 +23,7 @@ html {
 body {
   font-family: var(--font-sans);
   background-color: #faf8f5;
-  color: #1c2824;
+  color: #172420;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   font-feature-settings: 'kern', 'liga', 'clig', 'calt';
@@ -33,6 +36,12 @@ h1, h2, h3, h4, .font-serif {
   font-family: var(--font-serif);
 }
 
+/* Selection style */
+::selection {
+  background-color: #064e3b;
+  color: #e5c158;
+}
+
 /* Smooth transitions for all interactive elements */
 button, a {
   transition-property: color, background-color, border-color, box-shadow, transform, opacity;
@@ -42,21 +51,21 @@ button, a {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #f0ebe3;
+  background: #faf8f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #0f382c, #185242);
+  background: linear-gradient(to bottom, #064e3b, #0d6e53);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #08221b, #0f382c);
+  background: linear-gradient(to bottom, #032a1f, #064e3b);
 }
 
 /* Focus ring for accessibility */
 :focus-visible {
-  outline: 2px solid #f5cf89;
+  outline: 2px solid #d4af37;
   outline-offset: 2px;
 }

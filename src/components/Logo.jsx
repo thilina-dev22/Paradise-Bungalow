@@ -5,41 +5,17 @@ export default function Logo({ variant = 'dark', size = 'normal' }) {
 
   return (
     <div className="flex items-center gap-3 group cursor-pointer select-none">
-      {/* SVG Emblem Seal */}
-      <div className={`relative flex items-center justify-center rounded-2xl p-2 transition-transform duration-300 group-hover:scale-105 ${
+      {/* Concept 1 Luxury Circular Emblem */}
+      <div className={`relative flex items-center justify-center rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-105 ${
         isLightText 
-          ? 'bg-emerald-950 border border-amber-400/40 shadow-lg shadow-emerald-950/40' 
-          : 'bg-gradient-to-br from-emerald-900 to-emerald-950 border border-amber-500/30 shadow-md shadow-emerald-900/20'
-      } ${size === 'large' ? 'w-14 h-14' : 'w-11 h-11'}`}>
-        <svg
-          viewBox="0 0 100 100"
-          className="w-full h-full text-amber-400 drop-shadow-sm"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          {/* Outer Crest Ring */}
-          <circle cx="50" cy="50" r="44" stroke="#d9a04a" strokeWidth="2.5" strokeDasharray="6 3" opacity="0.6" />
-          <circle cx="50" cy="50" r="40" stroke="#f5cf89" strokeWidth="1.5" opacity="0.8" />
-          
-          {/* Bungalow Roof Line */}
-          <path d="M 22 52 L 50 24 L 78 52" stroke="#f5cf89" strokeWidth="4.5" fill="none" />
-          <path d="M 32 46 L 50 28 L 68 46" stroke="#d9a04a" strokeWidth="2" fill="none" opacity="0.7" />
-          
-          {/* Sun Rising behind Roof */}
-          <circle cx="50" cy="38" r="7" fill="#f5cf89" opacity="0.9" />
-
-          {/* Tropical Palm Fronds Left & Right */}
-          <path d="M 28 68 Q 40 56 50 64 Q 60 56 72 68" stroke="#f5cf89" strokeWidth="3" fill="none" />
-          <path d="M 34 76 Q 44 68 50 72 Q 56 68 66 76" stroke="#d9a04a" strokeWidth="2.5" fill="none" opacity="0.8" />
-
-          {/* Base Pillars */}
-          <line x1="32" y1="52" x2="32" y2="76" stroke="#f5cf89" strokeWidth="3" />
-          <line x1="68" y1="52" x2="68" y2="76" stroke="#f5cf89" strokeWidth="3" />
-          <line x1="50" y1="58" x2="50" y2="76" stroke="#d9a04a" strokeWidth="2" />
-        </svg>
+          ? 'bg-emerald-950 border border-amber-400/50 shadow-lg shadow-emerald-950/40' 
+          : 'bg-emerald-950 border border-amber-500/40 shadow-md shadow-emerald-950/15'
+      } ${size === 'large' ? 'w-12 h-12 p-0.5' : 'w-10 h-10 p-0.5'}`}>
+        <img
+          src="/images/logo.png"
+          alt="Paradise Bungalow Logo"
+          className="w-full h-full object-cover rounded-xl"
+        />
       </div>
 
       {/* Typography */}
