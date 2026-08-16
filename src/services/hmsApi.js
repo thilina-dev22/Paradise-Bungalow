@@ -55,11 +55,12 @@ export async function createDirectBooking(bookingData) {
   try {
     const payload = {
       hotelId: HMS_CONFIG.HOTEL_ID,
-      roomTypeId: bookingData.roomTypeId,
+      roomTypeId: Number(bookingData.roomTypeId || 1),
+      roomIds: bookingData.roomIds || (bookingData.roomId ? [Number(bookingData.roomId)] : undefined),
       checkInDate: bookingData.checkInDate,
       checkOutDate: bookingData.checkOutDate,
-      adults: bookingData.adults,
-      children: bookingData.children || 0,
+      adults: Number(bookingData.adults || 2),
+      children: Number(bookingData.children || 0),
       firstName: bookingData.firstName,
       lastName: bookingData.lastName,
       email: bookingData.email,

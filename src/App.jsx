@@ -68,7 +68,7 @@ export default function App() {
         </div>
 
         {/* Category Filters */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-10 custom-scrollbar">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 px-2 mb-12">
           {ROOM_CATEGORIES.map((cat) => (
             <button
               key={cat.id}

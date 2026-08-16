@@ -49,22 +49,31 @@ button, a {
   transition-duration: 200ms;
 }
 
-/* Custom scrollbar for main window */
-::-webkit-scrollbar {
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar scoped to root html window only */
+html::-webkit-scrollbar {
   width: 7px;
 }
-::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background: #faf8f5;
 }
-::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #064e3b, #0d6e53);
   border-radius: 999px;
 }
-::-webkit-scrollbar-thumb:hover {
+html::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #032a1f, #064e3b);
 }
 
-/* Custom scrollbar for modals & scrollable cards */
+/* Custom scrollbar for modals */
 .custom-modal-scrollbar::-webkit-scrollbar {
   width: 6px;
 }

@@ -69,7 +69,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
 
     try {
       const payload = {
-        roomTypeId: activeRoom.hmsRoomTypeId || 1,
+        roomTypeId: Number(activeRoom.hmsRoomTypeId || 1),
         checkInDate: checkIn,
         checkOutDate: checkOut,
         adults: guests,
