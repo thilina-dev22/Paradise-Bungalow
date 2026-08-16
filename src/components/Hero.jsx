@@ -44,7 +44,7 @@ export default function Hero({ onOpenBooking }) {
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white/90">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span>9.6 / 10 Exceptional · Booking.com</span>
+            <span>10.0 / 10 Exceptional · HMS Verified Rating</span>
           </div>
           <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-400/30 text-xs font-semibold text-amber-300">
             <MapPin className="w-3.5 h-3.5" />
