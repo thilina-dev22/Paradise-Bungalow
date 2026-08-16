@@ -5,7 +5,7 @@ const AMENITIES_LIST = [
   {
     icon: Wifi,
     title: 'Free High-Speed WiFi',
-    desc: 'Uninterrupted optical fiber WiFi across all 10 rooms, cabanas, balconies, and garden dining areas.'
+    desc: 'Uninterrupted optical fiber WiFi across all 8 rooms, cabanas, balconies, and garden dining areas.'
   },
   {
     icon: Coffee,

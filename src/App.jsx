@@ -44,7 +44,7 @@ export default function App() {
           
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-500/15 text-amber-800 text-xs font-bold uppercase tracking-wider mb-3 border border-amber-500/30">
-              <Sparkles className="w-3.5 h-3.5" /> 10 Rooms • 5 Categories
+              <Sparkles className="w-3.5 h-3.5" /> 8 Rooms • 6 Categories
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-emerald-950 mb-3">
               Rooms & Wooden Cabanas

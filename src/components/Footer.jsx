@@ -34,7 +34,7 @@ export default function Footer({ onOpenBooking }) {
               Quick Navigation
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-stone-300">
-              <li><a href="#rooms" className="hover:text-amber-400 transition-colors">Rooms & Cabanas (10 Units)</a></li>
+              <li><a href="#rooms" className="hover:text-amber-400 transition-colors">Rooms & Cabanas (8 Units)</a></li>
               <li><a href="#amenities" className="hover:text-amber-400 transition-colors">Property Amenities</a></li>
               <li><a href="#gallery" className="hover:text-amber-400 transition-colors">Photo Gallery</a></li>
               <li><a href="#location" className="hover:text-amber-400 transition-colors">Location & Directions</a></li>

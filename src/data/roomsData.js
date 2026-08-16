@@ -54,8 +54,8 @@ export const ROOMS_DATA = [
     id: 'standard-double-upper',
     category: 'standard',
     title: 'Deluxe Double Room with Balcony',
-    count: 2,
-    locationNote: 'Located on 1st Floor & 2nd Floor (2 Rooms)',
+    count: 1,
+    locationNote: 'Located on Upper Floor (1 Room)',
     badge: 'Upper Floor Balcony',
     subtitle: 'Elevated luxury with breezy private balcony & garden vistas',
     size: '32 m²',
@@ -182,7 +182,7 @@ export const ROOMS_DATA = [
     id: 'family-room-4p',
     category: 'family-4p',
     title: 'Spacious Family Room (4 Guests)',
-    count: 2,
+    count: 1,
     badge: '4 Guests Max',
     subtitle: 'Expansive family suite with flexible sleeping arrangements',
     size: '50 m²',
@@ -279,11 +279,11 @@ export const PROPERTY_DETAILS = {
   googleMapUrl: 'https://maps.app.goo.gl/u9SN9kYg3KNBocra6',
   airbnbUrl: 'https://www.airbnb.com/rooms/935408830268379738?guests=1&adults=1&s=67&unique_share_id=d80885b4-a5fc-4d1d-a8cf-39b280047eb7',
   web3formsAccessKey: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'cf00ac11-7636-4c7c-b18a-d50a2c6a477e',
-  totalRooms: 10,
+  totalRooms: 8,
   rating: 9.6,
   reviewCount: 148,
   highlights: [
-    '10 Rooms in Total',
+    '8 Rooms in Total',
     'Free High-Speed WiFi',
     'Exceptional Breakfast Included Option',
     'Free Cancellation & No Credit Card Needed Options',
@@ -363,7 +363,7 @@ export const FAQS_DATA = [
   },
   {
     q: 'What type of room options are available?',
-    a: 'We offer 10 rooms in total across 5 categories: Wooden Cabanas, Deluxe Double Rooms with Balcony, Ground Floor AC Rooms, Bungalow Family Rooms (3 Guests), Family Quad Rooms (4 Guests), and a 65 m² Superior Room with Private Kitchen.'
+    a: 'We offer 8 rooms in total across 6 categories: 2 Wooden Cabanas, 1 Deluxe Double Room with Balcony, 1 Standard Double Room with Garden View & AC, 2 Bungalow Type Family Rooms, 1 Spacious Family Room (4 Guests), and 1 Superior Double Room with Private Kitchen.'
   },
   {
     q: 'What are the check-in and check-out times?',
