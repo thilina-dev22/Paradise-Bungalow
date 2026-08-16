@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, ExternalLink, Navigation, Compass, Utensils, Waves, TreePine, Train, Plane, HelpCircle, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
+import { HMS_CONFIG } from '../services/hmsApi';
 import { PROPERTY_DETAILS, SURROUNDINGS_DATA, HOUSE_RULES, FAQS_DATA } from '../data/roomsData';
 
 export default function LocationMap() {
@@ -83,25 +84,48 @@ export default function LocationMap() {
               </div>
 
               <div className="pt-6 border-t border-emerald-800/60">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={PROPERTY_DETAILS.bookingComUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 rounded-full text-xs font-bold text-center text-white bg-[#003580] hover:bg-[#00255a] transition-colors flex items-center justify-center gap-1.5 shadow-md"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    <span>Booking.com Listing</span>
-                  </a>
-                  <a
-                    href={PROPERTY_DETAILS.airbnbUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 rounded-full text-xs font-bold text-center text-white bg-[#FF5A5F] hover:bg-[#e0484d] transition-colors flex items-center justify-center gap-1.5 shadow-md"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    <span>Airbnb Listing</span>
-                  </a>
+                <div className="flex flex-col gap-2.5">
+                  <div className="flex flex-col sm:flex-row gap-2.5">
+                    <a
+                      href={HMS_CONFIG.BOOKING_ENGINE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-3 px-4 rounded-full text-xs font-bold text-center text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Book Direct Online</span>
+                    </a>
+                    <a
+                      href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi%20Paradise%20Bungalow!%20I%20am%20interested%20in%20reserving%20a%20stay.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-3 px-4 rounded-full text-xs font-bold text-center text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-1.5 shadow-md"
+                    >
+                      <Phone className="w-3.5 h-3.5" />
+                      <span>WhatsApp Direct</span>
+                    </a>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
+                    <a
+                      href={PROPERTY_DETAILS.bookingComUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-2.5 px-3 rounded-full text-[11px] font-bold text-center text-white bg-[#003580]/90 hover:bg-[#003580] transition-colors flex items-center justify-center gap-1 border border-blue-400/30"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      <span>Booking.com Listing</span>
+                    </a>
+                    <a
+                      href={PROPERTY_DETAILS.airbnbUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-2.5 px-3 rounded-full text-[11px] font-bold text-center text-white bg-[#FF5A5F]/90 hover:bg-[#FF5A5F] transition-colors flex items-center justify-center gap-1 border border-rose-400/30"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      <span>Airbnb Listing</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 

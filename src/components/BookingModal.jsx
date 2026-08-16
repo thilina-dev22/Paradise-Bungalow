@@ -16,12 +16,13 @@ import {
   Check,
   Loader2,
   AlertCircle,
+  Globe,
 } from 'lucide-react';
 import { PROPERTY_DETAILS, ROOMS_DATA } from '../data/roomsData';
 import { createDirectBooking, HMS_CONFIG } from '../services/hmsApi';
 
 export default function BookingModal({ room, defaultBreakfast = false, onClose, prefillDates }) {
-  const [activeTab, setActiveTab] = useState('direct'); // 'direct' | 'whatsapp' | 'ota'
+  const [activeTab, setActiveTab] = useState('direct'); // 'direct' | 'whatsapp' | 'otas'
 
   // Form State
   const [selectedRoomId, setSelectedRoomId] = useState(room?.id || ROOMS_DATA[0].id);
@@ -72,7 +73,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
         roomTypeId: Number(activeRoom.hmsRoomTypeId || 1),
         checkInDate: checkIn,
         checkOutDate: checkOut,
-        adults: guests,
+        adults: Number(guests || 2),
         children: 0,
         firstName: firstName.trim(),
         lastName: lastName.trim() || 'Guest',
@@ -132,42 +133,42 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
           </button>
         </div>
 
-        {/* Tabs */}
-        <div className="flex border-b border-stone-200 bg-stone-50">
+        {/* 3 Tabs: Direct (Default), WhatsApp, OTAs & Email */}
+        <div className="flex border-b border-stone-200 bg-stone-50 text-xs sm:text-sm">
           <button
             onClick={() => setActiveTab('direct')}
-            className={`flex-1 py-3 px-4 text-xs font-bold flex items-center justify-center gap-1.5 border-b-2 transition-all ${
+            className={`flex-1 py-3 px-2 sm:px-4 font-bold flex items-center justify-center gap-1.5 sm:gap-2 border-b-2 transition-all ${
               activeTab === 'direct'
-                ? 'border-emerald-900 text-emerald-950 bg-white'
+                ? 'border-emerald-900 text-emerald-950 bg-white shadow-xs'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span>Instant Direct Booking (HMS)</span>
+            <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
+            <span className="whitespace-nowrap">Instant Direct Booking (HMS)</span>
           </button>
 
           <button
             onClick={() => setActiveTab('whatsapp')}
-            className={`flex-1 py-3 px-4 text-xs font-bold flex items-center justify-center gap-1.5 border-b-2 transition-all ${
+            className={`flex-1 py-3 px-2 sm:px-4 font-bold flex items-center justify-center gap-1.5 sm:gap-2 border-b-2 transition-all ${
               activeTab === 'whatsapp'
-                ? 'border-emerald-900 text-emerald-950 bg-white'
+                ? 'border-emerald-900 text-emerald-950 bg-white shadow-xs'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
             }`}
           >
-            <PhoneCall className="w-3.5 h-3.5 text-[#25D366]" />
-            <span>WhatsApp Direct</span>
+            <PhoneCall className="w-4 h-4 text-[#25D366] shrink-0" />
+            <span className="whitespace-nowrap">WhatsApp Direct</span>
           </button>
 
           <button
-            onClick={() => setActiveTab('ota')}
-            className={`flex-1 py-3 px-4 text-xs font-bold flex items-center justify-center gap-1.5 border-b-2 transition-all ${
-              activeTab === 'ota'
-                ? 'border-emerald-900 text-emerald-950 bg-white'
+            onClick={() => setActiveTab('otas')}
+            className={`flex-1 py-3 px-2 sm:px-4 font-bold flex items-center justify-center gap-1.5 sm:gap-2 border-b-2 transition-all ${
+              activeTab === 'otas'
+                ? 'border-emerald-900 text-emerald-950 bg-white shadow-xs'
                 : 'border-transparent text-stone-500 hover:text-stone-800'
             }`}
           >
-            <ExternalLink className="w-3.5 h-3.5 text-sky-600" />
-            <span>OTAs & Email</span>
+            <Globe className="w-4 h-4 text-blue-600 shrink-0" />
+            <span className="whitespace-nowrap">OTAs &amp; Email</span>
           </button>
         </div>
 
@@ -409,7 +410,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
                         Total for {nights} Night{nights > 1 ? 's' : ''}
                       </div>
                       <div className="text-xs text-amber-400 font-semibold">
-                        {includeBreakfast ? '✓ Breakfast Included' : 'Room Only'} · 12% Genius Discount Applied
+                        {includeBreakfast ? '✓ Breakfast Included' : 'Room Only'} · Direct Rate Guarantee
                       </div>
                     </div>
                     <div className="text-right">
@@ -424,7 +425,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-full text-sm font-bold text-white bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 hover:from-emerald-800 hover:to-emerald-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/20 disabled:opacity-50"
+                    className="w-full py-3.5 rounded-full text-sm font-bold text-white bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 hover:from-emerald-800 hover:to-emerald-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/20 disabled:opacity-50 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
@@ -438,6 +439,18 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
                       </>
                     )}
                   </button>
+
+                  <div className="text-center pt-1">
+                    <a
+                      href={HMS_CONFIG.BOOKING_ENGINE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-stone-500 hover:text-emerald-900 underline underline-offset-2 transition-colors"
+                    >
+                      <span>Prefer booking on our standalone HMS engine? Click here</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                 </form>
               )}
             </div>
@@ -498,7 +511,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
 
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-full text-sm font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-green-900/20"
+                className="w-full py-3.5 rounded-full text-sm font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-green-900/20 cursor-pointer"
               >
                 <PhoneCall className="w-4 h-4" />
                 <span>Open WhatsApp & Send Reservation</span>
@@ -509,59 +522,57 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
           {/* ================================================================= */}
           {/* TAB 3: OTAs & Email                                              */}
           {/* ================================================================= */}
-          {activeTab === 'ota' && (
-            <div className="space-y-3 pt-2">
-              <p className="text-xs text-stone-600">
-                Prefer booking via an official travel partner? Choose your favorite platform below:
-              </p>
+          {activeTab === 'otas' && (
+            <div className="space-y-4">
+              <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-950">
+                <strong>Direct Rate Guarantee:</strong> Booking directly through our HMS engine guarantees the lowest price with 0% middleman fees. If you prefer using your existing OTA accounts or sending an email inquiry, choose below:
+              </div>
 
-              <div className="grid grid-cols-1 gap-2.5">
-                <a
-                  href={HMS_CONFIG.BOOKING_ENGINE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-3 px-4 rounded-2xl text-xs font-bold text-white bg-emerald-900 hover:bg-emerald-800 transition-colors flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-amber-400" />
-                    <span>HMS Direct Booking Engine (Best Price Guaranteed)</span>
-                  </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
-                </a>
-
+              <div className="space-y-3">
                 <a
                   href={PROPERTY_DETAILS.bookingComUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-4 rounded-2xl text-xs font-bold text-white bg-[#003580] hover:bg-[#00255a] transition-colors flex items-center justify-between"
+                  className="w-full p-4 rounded-2xl bg-[#003580] hover:bg-[#00255a] text-white flex items-center justify-between transition-all shadow-md group"
                 >
-                  <div className="flex items-center gap-2">
-                    <span>Booking.com Official Listing (9.6 Rated)</span>
+                  <div className="flex items-center gap-3">
+                    <Building2 className="w-5 h-5" />
+                    <div className="text-left">
+                      <div className="font-bold text-sm">Booking.com</div>
+                      <div className="text-[11px] text-blue-200">View listing, official photos & verified guest reviews</div>
+                    </div>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-4 h-4 text-blue-200 group-hover:text-white" />
                 </a>
 
                 <a
                   href={PROPERTY_DETAILS.airbnbUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-4 rounded-2xl text-xs font-bold text-white bg-[#FF5A5F] hover:bg-[#e0484d] transition-colors flex items-center justify-between"
+                  className="w-full p-4 rounded-2xl bg-[#FF5A5F] hover:bg-[#e0484d] text-white flex items-center justify-between transition-all shadow-md group"
                 >
-                  <div className="flex items-center gap-2">
-                    <span>Airbnb Superhost Listing</span>
+                  <div className="flex items-center gap-3">
+                    <Globe className="w-5 h-5" />
+                    <div className="text-left">
+                      <div className="font-bold text-sm">Airbnb Listing</div>
+                      <div className="text-[11px] text-rose-100">Superhost profile & long-term accommodation bookings</div>
+                    </div>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-4 h-4 text-rose-100 group-hover:text-white" />
                 </a>
 
                 <a
-                  href={`mailto:${PROPERTY_DETAILS.email}?subject=Reservation Inquiry - Paradise Bungalow`}
-                  className="py-3 px-4 rounded-2xl text-xs font-bold text-emerald-950 border border-emerald-900/30 hover:bg-emerald-950 hover:text-white transition-colors flex items-center justify-between"
+                  href={`mailto:${PROPERTY_DETAILS.email}?subject=Reservation%20Inquiry%20-%20${encodeURIComponent(activeRoom.title)}`}
+                  className="w-full p-4 rounded-2xl bg-stone-100 hover:bg-stone-200 text-stone-800 flex items-center justify-between transition-all border border-stone-300 group"
                 >
-                  <div className="flex items-center gap-2">
-                    <Mail className="w-4 h-4" />
-                    <span>Email Direct Inquiry ({PROPERTY_DETAILS.email})</span>
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-emerald-800" />
+                    <div className="text-left">
+                      <div className="font-bold text-sm">Email Property Desk</div>
+                      <div className="text-[11px] text-stone-500">{PROPERTY_DETAILS.email}</div>
+                    </div>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-4 h-4 text-stone-400 group-hover:text-stone-800" />
                 </a>
               </div>
             </div>
@@ -583,7 +594,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose, 
               </span>
               <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                0% Commission
+                0% Extra Commission
               </span>
             </div>
           </div>

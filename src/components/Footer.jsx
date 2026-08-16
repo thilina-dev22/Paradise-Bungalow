@@ -88,10 +88,10 @@ export default function Footer({ onOpenBooking }) {
             </ul>
           </div>
 
-          {/* Contact Details */}
+          {/* Contact Details (Prioritize Direct Booking) */}
           <div>
             <h4 className="font-serif text-lg font-bold text-amber-300 mb-4">
-              Contact & Booking
+              Direct Contact & Booking
             </h4>
             <div className="space-y-3 text-xs sm:text-sm text-stone-300">
               <a href={`tel:${PROPERTY_DETAILS.phoneClean}`} className="flex items-center gap-2 hover:text-amber-400 transition-colors">
@@ -104,16 +104,26 @@ export default function Footer({ onOpenBooking }) {
               </a>
               <a href={HMS_CONFIG.BOOKING_ENGINE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-amber-300 hover:text-amber-200 transition-colors">
                 <ExternalLink className="w-4 h-4 shrink-0" />
-                <span>Official HMS Booking Engine</span>
+                <span>Official Direct Booking Engine</span>
               </a>
-              <a href={PROPERTY_DETAILS.bookingComUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-stone-300 hover:text-white transition-colors">
-                <ExternalLink className="w-4 h-4 shrink-0" />
-                <span>Booking.com Listing</span>
+              <a
+                href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi%20Paradise%20Bungalow!%20I%20would%20like%20to%20inquire%20about%20a%20reservation.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-emerald-300 hover:text-emerald-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 shrink-0 text-[#25D366]" />
+                <span>WhatsApp Direct Host Chat</span>
               </a>
-              <a href={PROPERTY_DETAILS.airbnbUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-stone-300 hover:text-white transition-colors">
-                <ExternalLink className="w-4 h-4 shrink-0" />
-                <span>Airbnb Listing</span>
-              </a>
+              <div className="pt-2 flex flex-wrap gap-2 text-xs">
+                <a href={PROPERTY_DETAILS.bookingComUrl} target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">
+                  Booking.com Listing
+                </a>
+                <span className="text-stone-500">·</span>
+                <a href={PROPERTY_DETAILS.airbnbUrl} target="_blank" rel="noopener noreferrer" className="text-rose-300 hover:text-rose-200 underline underline-offset-2">
+                  Airbnb Listing
+                </a>
+              </div>
             </div>
           </div>
 
