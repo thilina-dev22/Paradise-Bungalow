@@ -1,131 +1,123 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Menu, X, Star, MessageSquare, Phone } from 'lucide-react';
+import { Menu, X, Phone, Calendar, Sparkles, Star } from 'lucide-react';
 import Logo from './Logo';
 import { PROPERTY_DETAILS } from '../data/roomsData';
-
-const NAV_LINKS = [
-  { href: '#rooms', label: 'Rooms & Cabanas' },
-  { href: '#amenities', label: 'Amenities' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#location', label: 'Location' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#contact', label: 'Contact' },
-];
+import { HMS_CONFIG } from '../services/hmsApi';
 
 export default function Navbar({ onOpenBooking }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { name: 'Rooms & Cabanas', href: '#rooms' },
+    { name: 'Amenities', href: '#amenities' },
+    { name: 'Gallery', href: '#gallery' },
+    { name: 'Reviews', href: '#reviews' },
+    { name: 'Location', href: '#location' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-emerald-950/5 border-b border-stone-200/80 py-3'
-          : 'bg-white border-b border-stone-200/60 py-4'
+    <nav
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled
+          ? 'bg-emerald-950/95 backdrop-blur-md py-3 shadow-lg shadow-emerald-950/20 border-b border-emerald-900/60'
+          : 'bg-gradient-to-b from-emerald-950/90 via-emerald-950/50 to-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        
+        {/* Logo */}
+        <Logo variant="light" />
 
-        {/* Logo — Left */}
-        <a href="/" className="flex-shrink-0">
-          <Logo variant="dark" />
-        </a>
-
-        {/* Desktop Nav — Center */}
-        <nav className="hidden lg:flex items-center gap-7">
-          {NAV_LINKS.map(({ href, label }) => (
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-7 text-xs font-semibold tracking-wide text-white/90">
+          {navLinks.map((link) => (
             <a
-              key={href}
-              href={href}
-              className="whitespace-nowrap text-sm font-semibold text-stone-700 hover:text-emerald-900 transition-colors relative py-1 group"
+              key={link.name}
+              href={link.href}
+              className="hover:text-amber-400 transition-colors uppercase tracking-wider"
             >
-              {label}
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-250 origin-left rounded-full" />
+              {link.name}
             </a>
           ))}
-        </nav>
+        </div>
 
-        {/* Desktop CTAs — Right */}
-        <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-          
-          {/* Quick WhatsApp Contact Pill */}
+        {/* Action Buttons */}
+        <div className="hidden sm:flex items-center gap-3">
           <a
-            href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20want%20to%20inquire%20about%20rooms.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center w-9 h-9 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:text-emerald-900 transition-all border border-emerald-200/80"
-            title="Chat on WhatsApp"
+            href={`tel:${PROPERTY_DETAILS.phoneClean}`}
+            className="flex items-center gap-1.5 text-xs text-stone-200 hover:text-amber-400 transition-colors px-3 py-2"
           >
-            <MessageSquare className="w-4 h-4 text-emerald-600" />
+            <Phone className="w-3.5 h-3.5 text-amber-400" />
+            <span className="font-semibold">{PROPERTY_DETAILS.phone}</span>
           </a>
 
-          {/* Primary Book Direct CTA */}
           <button
-            onClick={onOpenBooking}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold text-white bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 hover:from-emerald-900 hover:to-emerald-800 transition-all shadow-md shadow-emerald-950/20 border border-amber-400/30 hover:border-amber-400 active:scale-95 whitespace-nowrap"
+            onClick={() => onOpenBooking()}
+            className="px-5 py-2.5 rounded-full text-xs font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-md shadow-amber-500/20 flex items-center gap-1.5 active:scale-95"
           >
-            <Calendar className="w-3.5 h-3.5 text-amber-400" />
-            Book Direct &amp; Save
+            <Sparkles className="w-3.5 h-3.5 fill-emerald-950" />
+            <span>Book Direct</span>
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile menu toggle */}
         <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 rounded-xl text-emerald-950 hover:bg-stone-100 transition-colors"
-          aria-label="Toggle Navigation"
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden text-white p-2 focus:outline-none"
+          aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
+
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-stone-200/80 px-5 py-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
-
-          <nav className="flex flex-col gap-1 mb-5">
-            {NAV_LINKS.map(({ href, label }) => (
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="lg:hidden bg-emerald-950 border-b border-emerald-900 px-6 py-6 space-y-4 animate-fade-in text-center">
+          <div className="space-y-3">
+            {navLinks.map((link) => (
               <a
-                key={href}
-                href={href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-xl text-sm font-semibold text-emerald-950 hover:bg-stone-50 hover:text-emerald-800 transition-colors"
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-sm font-semibold text-white/90 hover:text-amber-400 transition-colors py-1.5"
               >
-                {label}
+                {link.name}
               </a>
             ))}
-          </nav>
+          </div>
 
-          <div className="flex flex-col gap-3 pt-4 border-t border-stone-200/80">
+          <div className="pt-4 border-t border-emerald-900 space-y-3">
             <button
               onClick={() => {
-                setMobileMenuOpen(false);
+                setIsOpen(false);
                 onOpenBooking();
               }}
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 shadow-lg shadow-amber-500/20 active:scale-95"
+              className="w-full py-3 rounded-full text-xs font-bold text-emerald-950 bg-amber-400 hover:bg-amber-300 transition-colors flex items-center justify-center gap-2"
             >
               <Calendar className="w-4 h-4" />
-              Book Direct / Inquire
+              <span>Book Direct (0% Fees)</span>
             </button>
-
             <a
-              href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20want%20to%20inquire%20about%20rooms.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-stone-700 bg-stone-100 border border-stone-200 hover:bg-stone-200"
+              href={`tel:${PROPERTY_DETAILS.phoneClean}`}
+              className="inline-flex items-center gap-2 text-xs text-stone-300 hover:text-amber-400"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-600" />
-              Chat on WhatsApp
+              <Phone className="w-3.5 h-3.5 text-amber-400" />
+              <span>{PROPERTY_DETAILS.phone}</span>
             </a>
           </div>
         </div>
       )}
-    </header>
+    </nav>
   );
 }

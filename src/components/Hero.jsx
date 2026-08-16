@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, CheckCircle2, MessageSquare, MapPin, ChevronDown, Star } from 'lucide-react';
+import { Calendar, CheckCircle2, MapPin, ChevronDown, Star, Sparkles } from 'lucide-react';
 import { PROPERTY_DETAILS } from '../data/roomsData';
 
 const HERO_IMAGES = [
@@ -72,7 +72,7 @@ export default function Hero({ onOpenBooking }) {
         {/* Subtitle */}
         <p className="text-base sm:text-lg text-stone-300/90 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
           A garden sanctuary in Midigama with{' '}
-          <strong className="text-white font-semibold">10 unique rooms &amp; cabanas</strong> — 
+          <strong className="text-white font-semibold">8 unique rooms &amp; cabanas</strong> — 
           from rustic eco wooden stays to a 65 m² suite with private kitchen, steps from the surf.
         </p>
 
@@ -82,6 +82,7 @@ export default function Hero({ onOpenBooking }) {
             { icon: CheckCircle2, text: 'Free Cancellation' },
             { icon: CheckCircle2, text: 'No Prepayment Needed' },
             { icon: CheckCircle2, text: '12% Genius Discount' },
+            { icon: Sparkles, text: 'Direct Booking Guarantee' },
           ].map(({ icon: Icon, text }, i) => (
             <div key={i} className="flex items-center gap-1.5">
               <Icon className="w-3.5 h-3.5 text-emerald-400" />
@@ -93,11 +94,11 @@ export default function Hero({ onOpenBooking }) {
         {/* Action CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
           <button
-            onClick={onOpenBooking}
+            onClick={() => onOpenBooking()}
             className="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-2xl shadow-amber-500/25 active:scale-95 flex items-center justify-center gap-2.5 tracking-wide"
           >
             <Calendar className="w-4.5 h-4.5" />
-            Check Rates &amp; Availability
+            Check Rates &amp; Book Direct
           </button>
 
           <a
@@ -122,12 +123,6 @@ export default function Hero({ onOpenBooking }) {
             aria-label={`Slide ${idx + 1}`}
           />
         ))}
-      </div>
-
-      {/* Scroll hint */}
-      <div className="absolute bottom-7 right-6 z-10 hidden sm:flex flex-col items-center gap-1 text-white/40 text-[10px] font-medium tracking-widest uppercase">
-        <span>Scroll</span>
-        <ChevronDown className="w-4 h-4 animate-bounce" />
       </div>
     </section>
   );

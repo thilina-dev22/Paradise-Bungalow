@@ -1,15 +1,16 @@
 export const ROOM_CATEGORIES = [
   { id: 'all', name: 'All Accommodations' },
-  { id: 'cabana', name: 'Wooden Cabanas' },
-  { id: 'standard', name: 'Standard Double Rooms' },
-  { id: 'family-bungalow', name: 'Bungalow Family Rooms (3 Guests)' },
-  { id: 'family-4p', name: 'Family Rooms (4 Guests)' },
-  { id: 'superior-kitchen', name: 'Superior Room with Kitchen' },
+  { id: 'cabana', name: 'Wooden Cabanas (2 Units)' },
+  { id: 'standard', name: 'Deluxe & Standard Rooms (2 Units)' },
+  { id: 'family-bungalow', name: 'Bungalow Family Rooms (2 Units)' },
+  { id: 'family-4p', name: 'Spacious Family Room (1 Unit)' },
+  { id: 'superior-kitchen', name: 'Superior Room with Kitchen (1 Unit)' },
 ];
 
 export const ROOMS_DATA = [
   {
     id: 'wooden-cabana',
+    hmsRoomTypeId: 1,
     category: 'cabana',
     title: 'Wooden Cabana',
     count: 2,
@@ -52,6 +53,7 @@ export const ROOMS_DATA = [
   },
   {
     id: 'standard-double-upper',
+    hmsRoomTypeId: 2,
     category: 'standard',
     title: 'Deluxe Double Room with Balcony',
     count: 1,
@@ -91,10 +93,11 @@ export const ROOMS_DATA = [
       '/images/deluxe-balcony/IMG_8669.jpg',
       '/images/deluxe-balcony/IMG_8657.jpg'
     ],
-    description: 'Positioned on the upper levels of Paradise Bungalow, these Deluxe Double Rooms feature airy private balconies with panoramic tropical garden views, high ceilings, polished marble floors, and tranquil surroundings.'
+    description: 'Positioned on the upper level of Paradise Bungalow, this Deluxe Double Room features an airy private balcony with panoramic tropical garden views, high ceilings, polished marble floors, and tranquil surroundings.'
   },
   {
     id: 'standard-double-ground',
+    hmsRoomTypeId: 3,
     category: 'standard',
     title: 'Standard Double Room with Garden View & AC',
     count: 1,
@@ -138,6 +141,7 @@ export const ROOMS_DATA = [
   },
   {
     id: 'bungalow-family-3p',
+    hmsRoomTypeId: 4,
     category: 'family-bungalow',
     title: 'Bungalow Type Family Room',
     count: 2,
@@ -180,6 +184,7 @@ export const ROOMS_DATA = [
   },
   {
     id: 'family-room-4p',
+    hmsRoomTypeId: 5,
     category: 'family-4p',
     title: 'Spacious Family Room (4 Guests)',
     count: 1,
@@ -219,10 +224,11 @@ export const ROOMS_DATA = [
       '/images/spacious-family-4p/IMG_8601.jpg',
       '/images/spacious-family-4p/770005763.jpg'
     ],
-    description: 'Designed specifically for larger families or group travelers, these 4-guest Family Rooms offer generous living area, air conditioning, multiple sleeping options, and immediate access to garden amenities.'
+    description: 'Designed specifically for larger families or group travelers, this 4-guest Family Room offers generous living area, air conditioning, multiple sleeping options, and immediate access to garden amenities.'
   },
   {
     id: 'superior-double-kitchen',
+    hmsRoomTypeId: 6,
     category: 'superior-kitchen',
     title: 'Superior Double Room with Private Kitchen',
     count: 1,
@@ -283,9 +289,10 @@ export const PROPERTY_DETAILS = {
   rating: 9.6,
   reviewCount: 148,
   highlights: [
-    '8 Rooms in Total',
+    '8 Rooms in Total (Boutique)',
     'Free High-Speed WiFi',
     'Exceptional Breakfast Included Option',
+    'Direct Booking Best Rate Guarantee (0% Commission)',
     'Free Cancellation & No Credit Card Needed Options',
     '12% Genius Discount Compatible'
   ]
@@ -310,7 +317,7 @@ export const REVIEWS_DATA = [
     name: 'Lukas K.',
     country: 'Germany',
     rating: 9.6,
-    comment: 'Super fast WiFi, clean rooms, quiet atmosphere, and very close to nature. Booking was super simple via Booking.com. Highly recommended!',
+    comment: 'Super fast WiFi, clean rooms, quiet atmosphere, and very close to nature. Booking was super simple via HMS direct booking engine. Highly recommended!',
     date: 'May 2026'
   }
 ];
@@ -363,7 +370,11 @@ export const FAQS_DATA = [
   },
   {
     q: 'What type of room options are available?',
-    a: 'We offer 8 rooms in total across 6 categories: 2 Wooden Cabanas, 1 Deluxe Double Room with Balcony, 1 Standard Double Room with Garden View & AC, 2 Bungalow Type Family Rooms, 1 Spacious Family Room (4 Guests), and 1 Superior Double Room with Private Kitchen.'
+    a: 'We offer 8 rooms in total across 6 categories: 2 Wooden Cabanas, 1 Deluxe Double Room with Balcony, 1 Standard Double Room with Garden View & AC, 2 Bungalow Type Family Rooms, 1 Spacious Family Room (4 Guests), and 1 Superior Double Room with Private Kitchen (65 m²).'
+  },
+  {
+    q: 'How does the direct booking engine work?',
+    a: 'Booking directly through our website or HMS engine gives you the guaranteed lowest rate with 0% extra commissions, instant email confirmation, and flexible payment at the property.'
   },
   {
     q: 'What are the check-in and check-out times?',
@@ -371,11 +382,10 @@ export const FAQS_DATA = [
   },
   {
     q: 'What activities and services are available on site?',
-    a: 'Paradise Bungalow offers bicycle rentals, a children’s playground, kids’ club, barbecue facilities, tour desk assistance, airport shuttles, and daily housekeeping.'
+    a: 'Paradise Bungalow offers bicycle rentals, a children playground, barbecue facilities, tour desk assistance, airport shuttles, and daily housekeeping.'
   },
   {
     q: 'How far is the property from Weligama town centre?',
     a: 'Paradise Bungalow is located just 4.5 km from the centre of Weligama.'
   }
 ];
-

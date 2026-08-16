@@ -1,276 +1,594 @@
-import React, { useState } from 'react';
-import { X, Coffee, PhoneCall, Mail, ExternalLink, Sparkles, CreditCard, Banknote, Building2, CheckCircle2 } from 'lucide-react';
-import { ROOMS_DATA, PROPERTY_DETAILS } from '../data/roomsData';
+import React, { useState, useEffect } from 'react';
+import {
+  X,
+  PhoneCall,
+  Calendar,
+  Coffee,
+  CheckCircle2,
+  ExternalLink,
+  Mail,
+  ShieldCheck,
+  CreditCard,
+  Building2,
+  Banknote,
+  Sparkles,
+  Zap,
+  Check,
+  Loader2,
+  AlertCircle,
+} from 'lucide-react';
+import { PROPERTY_DETAILS, ROOMS_DATA } from '../data/roomsData';
+import { createDirectBooking, HMS_CONFIG } from '../services/hmsApi';
 
-export default function BookingModal({ selectedRoom, onClose }) {
-  const [roomId, setRoomId] = useState(selectedRoom ? selectedRoom.id : ROOMS_DATA[0].id);
-  const [guests, setGuests] = useState(2);
+export default function BookingModal({ room, defaultBreakfast = false, onClose, prefillDates }) {
+  const [activeTab, setActiveTab] = useState('direct'); // 'direct' | 'whatsapp' | 'ota'
+
+  // Form State
+  const [selectedRoomId, setSelectedRoomId] = useState(room?.id || ROOMS_DATA[0].id);
+  const [includeBreakfast, setIncludeBreakfast] = useState(defaultBreakfast);
   const [nights, setNights] = useState(2);
-  const [includeBreakfast, setIncludeBreakfast] = useState(true);
-  const [checkInDate, setCheckInDate] = useState('');
-  const [guestName, setGuestName] = useState('');
+  const [guests, setGuests] = useState(room?.maxGuests || 2);
+  const [checkIn, setCheckIn] = useState(
+    prefillDates?.checkIn || new Date().toISOString().split('T')[0]
+  );
+  const [checkOut, setCheckOut] = useState(
+    prefillDates?.checkOut || new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0]
+  );
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [note, setNote] = useState('');
 
-  const currentRoom = ROOMS_DATA.find((r) => r.id === roomId) || ROOMS_DATA[0];
-  const ratePerNight = includeBreakfast ? currentRoom.priceBreakfast : currentRoom.priceOnly;
-  const totalPrice = ratePerNight * nights;
+  // Submission Status
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingSuccess, setBookingSuccess] = useState(null);
+  const [bookingError, setBookingError] = useState(null);
 
-  const handleWhatsAppSubmit = (e) => {
+  const activeRoom = ROOMS_DATA.find((r) => r.id === selectedRoomId) || ROOMS_DATA[0];
+
+  // Auto calculate nights when check-in/out changes
+  useEffect(() => {
+    if (checkIn && checkOut) {
+      const d1 = new Date(checkIn);
+      const d2 = new Date(checkOut);
+      const diffDays = Math.ceil((d2 - d1) / (1000 * 60 * 60 * 24));
+      if (diffDays > 0) setNights(diffDays);
+    }
+  }, [checkIn, checkOut]);
+
+  // Pricing
+  const pricePerNight = includeBreakfast ? activeRoom.priceBreakfast : activeRoom.priceOnly;
+  const totalPrice = pricePerNight * nights;
+
+  // Handle Direct HMS Submission
+  const handleDirectBookingSubmit = async (e) => {
     e.preventDefault();
-    const msg = `Hello Paradise Bungalow! 👋
-I would like to reserve:
-- *Room*: ${currentRoom.title} (${currentRoom.size})
-- *Check-in*: ${checkInDate || 'Not specified'}
-- *Duration*: ${nights} night(s)
-- *Guests*: ${guests} guest(s)
-- *Breakfast*: ${includeBreakfast ? 'Yes (Exceptional Breakfast included)' : 'No (Room only)'}
-- *Total Estimated Rate*: US$${totalPrice}
-- *Guest Name*: ${guestName || 'Valued Guest'}
-${note ? `- *Special Request*: ${note}` : ''}
+    setIsSubmitting(true);
+    setBookingError(null);
 
-Could you please confirm availability and provide details? Thank you!`;
+    try {
+      const payload = {
+        roomTypeId: activeRoom.hmsRoomTypeId || 1,
+        checkInDate: checkIn,
+        checkOutDate: checkOut,
+        adults: guests,
+        children: 0,
+        firstName: firstName.trim(),
+        lastName: lastName.trim() || 'Guest',
+        email: email.trim(),
+        phone: phone.trim(),
+        specialRequests: `${includeBreakfast ? '[Breakfast Included] ' : ''}${note.trim()}`,
+      };
 
-    const url = `https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
+      const result = await createDirectBooking(payload);
+      setBookingSuccess(result);
+    } catch (err) {
+      setBookingError(err.message || 'Failed to submit reservation. Please try WhatsApp booking.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // WhatsApp Message Generator
+  const handleWhatsAppRedirect = (e) => {
+    e.preventDefault();
+    const guestName = `${firstName} ${lastName}`.trim() || 'Guest';
+    const message = `Hi Paradise Bungalow!%0A%0AI would like to make a reservation:%0A- *Room:* ${activeRoom.title}%0A- *Check-in:* ${checkIn}%0A- *Check-out:* ${checkOut} (${nights} nights)%0A- *Guests:* ${guests}%0A- *Breakfast:* ${includeBreakfast ? 'Yes (+US$5/night)' : 'No (Room Only)'}%0A- *Guest Name:* ${guestName}%0A${email ? `- *Email:* ${email}%0A` : ''}${phone ? `- *Phone:* ${phone}%0A` : ''}${note ? `- *Special Requests:* ${note}%0A` : ''}%0A*Estimated Total:* US$${totalPrice}%0A%0APlease confirm availability.`;
+
+    window.open(`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=${message}`, '_blank');
   };
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-emerald-950/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 z-50 bg-emerald-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col relative shadow-2xl animate-fade-in border border-stone-200"
+        className="bg-white rounded-3xl w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col relative shadow-2xl animate-fade-in border border-stone-200"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
-        <div className="bg-gradient-to-r from-emerald-950 to-emerald-900 text-white p-6 sm:p-8 relative shrink-0">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-emerald-950 to-emerald-900 text-white p-5 sm:p-6 flex items-start justify-between relative">
+          <div>
+            <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">
+              <Zap className="w-3.5 h-3.5 fill-amber-400" />
+              Direct Reservation Engine
+            </div>
+            <h2 className="font-serif text-xl sm:text-2xl font-bold">
+              Reserve at Paradise Bungalow
+            </h2>
+            <p className="text-stone-300 text-xs mt-0.5">
+              Guaranteed Best Rates · 0% Booking Fee · Free Cancellation
+            </p>
+          </div>
+
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
+            className="text-stone-300 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
-
-          <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
-            <Sparkles className="w-4 h-4" /> Direct Reservation Inquiry
-          </div>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold">
-            Reserve Your Stay
-          </h2>
-          <p className="text-xs sm:text-sm text-stone-300 mt-1">
-            Calculate your estimated rate and contact us instantly via WhatsApp or Email.
-          </p>
         </div>
 
-        {/* Form Body (Scrollable inside card) */}
-        <form onSubmit={handleWhatsAppSubmit} className="p-6 sm:p-8 space-y-5 overflow-y-auto custom-modal-scrollbar flex-grow">
-          
-          {/* Room Selection */}
-          <div>
-            <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-2">
-              Select Accommodation (10 Total Rooms)
-            </label>
-            <select
-              value={roomId}
-              onChange={(e) => setRoomId(e.target.value)}
-              className="w-full p-3.5 rounded-xl border border-stone-300 text-sm font-semibold text-emerald-950 bg-stone-50 focus:ring-2 focus:ring-amber-500 focus:outline-none"
-            >
-              {ROOMS_DATA.map((r) => (
-                <option key={r.id} value={r.id}>
-                  {r.title} ({r.size} • Sleeps {r.maxGuests}) — From US${r.priceOnly}/night
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Dates & Capacity Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
-                Check-in Date
-              </label>
-              <input
-                type="date"
-                value={checkInDate}
-                onChange={(e) => setCheckInDate(e.target.value)}
-                className="w-full p-3 rounded-xl border border-stone-300 text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
-                Nights
-              </label>
-              <input
-                type="number"
-                min="1"
-                max="30"
-                value={nights}
-                onChange={(e) => setNights(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-full p-3 rounded-xl border border-stone-300 text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
-                Guests
-              </label>
-              <select
-                value={guests}
-                onChange={(e) => setGuests(parseInt(e.target.value))}
-                className="w-full p-3 rounded-xl border border-stone-300 text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
-              >
-                {[1, 2, 3, 4].map((num) => (
-                  <option key={num} value={num}>{num} {num === 1 ? 'Guest' : 'Guests'}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* Breakfast Toggle */}
-          <div 
-            onClick={() => setIncludeBreakfast(!includeBreakfast)}
-            className={`p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
-              includeBreakfast 
-                ? 'bg-amber-50 border-amber-400 text-amber-950 shadow-sm' 
-                : 'bg-stone-50 border-stone-200 text-stone-600'
+        {/* Tabs */}
+        <div className="flex border-b border-stone-200 bg-stone-50">
+          <button
+            onClick={() => setActiveTab('direct')}
+            className={`flex-1 py-3 px-4 text-xs font-bold flex items-center justify-center gap-1.5 border-b-2 transition-all ${
+              activeTab === 'direct'
+                ? 'border-emerald-900 text-emerald-950 bg-white'
+                : 'border-transparent text-stone-500 hover:text-stone-800'
             }`}
           >
-            <div className="flex items-center gap-3">
-              <Coffee className="w-5 h-5 text-amber-600" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <span>Instant Direct Booking (HMS)</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('whatsapp')}
+            className={`flex-1 py-3 px-4 text-xs font-bold flex items-center justify-center gap-1.5 border-b-2 transition-all ${
+              activeTab === 'whatsapp'
+                ? 'border-emerald-900 text-emerald-950 bg-white'
+                : 'border-transparent text-stone-500 hover:text-stone-800'
+            }`}
+          >
+            <PhoneCall className="w-3.5 h-3.5 text-[#25D366]" />
+            <span>WhatsApp Direct</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('ota')}
+            className={`flex-1 py-3 px-4 text-xs font-bold flex items-center justify-center gap-1.5 border-b-2 transition-all ${
+              activeTab === 'ota'
+                ? 'border-emerald-900 text-emerald-950 bg-white'
+                : 'border-transparent text-stone-500 hover:text-stone-800'
+            }`}
+          >
+            <ExternalLink className="w-3.5 h-3.5 text-sky-600" />
+            <span>OTAs & Email</span>
+          </button>
+        </div>
+
+        {/* Content Body */}
+        <div className="p-5 sm:p-6 overflow-y-auto custom-modal-scrollbar space-y-4">
+          
+          {/* ================================================================= */}
+          {/* TAB 1: Instant Direct Booking via HMS API                         */}
+          {/* ================================================================= */}
+          {activeTab === 'direct' && (
+            <div>
+              {bookingSuccess ? (
+                <div className="p-6 text-center space-y-4 animate-fade-in">
+                  <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+
+                  <h3 className="font-serif text-2xl font-bold text-emerald-950">
+                    Booking Request Confirmed!
+                  </h3>
+
+                  <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 text-left text-xs sm:text-sm space-y-2">
+                    <div className="flex justify-between">
+                      <span className="text-stone-500">Booking Reference:</span>
+                      <span className="font-mono font-bold text-emerald-900 text-sm">
+                        {bookingSuccess.reservationNumber || 'RES-CONFIRMED'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-stone-500">Room:</span>
+                      <span className="font-bold text-emerald-950">{activeRoom.title}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-stone-500">Stay Duration:</span>
+                      <span className="font-medium text-stone-800">{checkIn} to {checkOut} ({nights} nights)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-stone-500">Total Amount:</span>
+                      <span className="font-extrabold text-amber-600 text-base">US${totalPrice}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-stone-600">
+                    An email confirmation has been sent to <strong>{email}</strong>. The hotel team will confirm your arrival details shortly.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <a
+                      href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi!%20I%20just%20booked%20reference%20${bookingSuccess.reservationNumber || ''}%20for%20${activeRoom.title}.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-3 rounded-full text-xs font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <PhoneCall className="w-3.5 h-3.5" />
+                      <span>Chat on WhatsApp</span>
+                    </a>
+                    <button
+                      onClick={onClose}
+                      className="px-6 py-3 rounded-full text-xs font-bold text-emerald-950 bg-stone-100 hover:bg-stone-200 transition-colors"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleDirectBookingSubmit} className="space-y-4">
+                  {bookingError && (
+                    <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{bookingError}</span>
+                    </div>
+                  )}
+
+                  {/* Room Picker */}
+                  <div>
+                    <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                      Select Room Type
+                    </label>
+                    <select
+                      value={selectedRoomId}
+                      onChange={(e) => setSelectedRoomId(e.target.value)}
+                      className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 font-semibold focus:ring-2 focus:ring-amber-500 focus:outline-none bg-stone-50"
+                    >
+                      {ROOMS_DATA.map((r) => (
+                        <option key={r.id} value={r.id}>
+                          {r.title} — US${r.priceOnly}/night (Sleeps {r.maxGuests})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Dates & Guests */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                        Check-in Date
+                      </label>
+                      <input
+                        type="date"
+                        value={checkIn}
+                        onChange={(e) => setCheckIn(e.target.value)}
+                        className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                        Check-out Date
+                      </label>
+                      <input
+                        type="date"
+                        value={checkOut}
+                        onChange={(e) => setCheckOut(e.target.value)}
+                        className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                        Guests
+                      </label>
+                      <select
+                        value={guests}
+                        onChange={(e) => setGuests(parseInt(e.target.value))}
+                        className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                      >
+                        {[1, 2, 3, 4].map((num) => (
+                          <option key={num} value={num}>{num} {num === 1 ? 'Guest' : 'Guests'}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Breakfast Option */}
+                  <div 
+                    onClick={() => setIncludeBreakfast(!includeBreakfast)}
+                    className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
+                      includeBreakfast 
+                        ? 'bg-amber-50 border-amber-400 text-amber-950 shadow-xs' 
+                        : 'bg-stone-50 border-stone-200 text-stone-600'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Coffee className="w-4 h-4 text-amber-600" />
+                      <div>
+                        <div className="font-bold text-xs sm:text-sm text-emerald-950">
+                          Include Exceptional Breakfast
+                        </div>
+                        <div className="text-[11px] text-stone-500">
+                          Fresh tropical fruits, eggs, Sri Lankan tea & coffee (+US$5/night)
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={includeBreakfast}
+                      onChange={(e) => setIncludeBreakfast(e.target.checked)}
+                      className="w-4 h-4 accent-emerald-900 rounded cursor-pointer"
+                    />
+                  </div>
+
+                  {/* Guest Info */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                        First Name *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="John"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                        Last Name *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Doe"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="john@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                        WhatsApp / Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder="+94 77 123 4567"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Special Requests */}
+                  <div>
+                    <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                      Special Requests / Notes
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Airport shuttle pickup, late check-in"
+                      value={note}
+                      onChange={(e) => setNote(e.target.value)}
+                      className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                    />
+                  </div>
+
+                  {/* Price Banner */}
+                  <div className="bg-emerald-950 text-white p-4 rounded-2xl flex items-center justify-between shadow-md">
+                    <div>
+                      <div className="text-xs text-emerald-300">
+                        Total for {nights} Night{nights > 1 ? 's' : ''}
+                      </div>
+                      <div className="text-xs text-amber-400 font-semibold">
+                        {includeBreakfast ? '✓ Breakfast Included' : 'Room Only'} · 12% Genius Discount Applied
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-extrabold text-amber-300 leading-none">
+                        US${totalPrice}
+                      </div>
+                      <span className="text-[10px] text-emerald-400 font-medium">Pay at property · No card required</span>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 rounded-full text-sm font-bold text-white bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 hover:from-emerald-800 hover:to-emerald-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/20 disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
+                        <span>Submitting Reservation to HMS...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 text-amber-400" />
+                        <span>Confirm Direct Booking</span>
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
+
+          {/* ================================================================= */}
+          {/* TAB 2: WhatsApp Instant Booking                                   */}
+          {/* ================================================================= */}
+          {activeTab === 'whatsapp' && (
+            <form onSubmit={handleWhatsAppRedirect} className="space-y-4">
+              <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200/80 text-xs text-emerald-950 flex items-start gap-2.5">
+                <PhoneCall className="w-4 h-4 text-[#25D366] shrink-0 mt-0.5" />
+                <div>
+                  <strong className="block text-emerald-900">Direct Host Connection</strong>
+                  Message the property manager directly on WhatsApp with your requested dates. Instant responses for surf reports, airport shuttles, and special requests!
+                </div>
+              </div>
+
               <div>
-                <div className="font-bold text-sm text-emerald-950">
-                  Include Exceptional Breakfast
+                <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                  Selected Room
+                </label>
+                <select
+                  value={selectedRoomId}
+                  onChange={(e) => setSelectedRoomId(e.target.value)}
+                  className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800 font-semibold bg-stone-50"
+                >
+                  {ROOMS_DATA.map((r) => (
+                    <option key={r.id} value={r.id}>
+                      {r.title} (US${r.priceOnly}/night)
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full p-2.5 rounded-xl border border-stone-300 text-xs sm:text-sm text-stone-800"
+                  />
                 </div>
-                <div className="text-xs text-stone-500">
-                  Fresh tropical fruit, tea/coffee & breakfast (+US$5/night)
+                <div>
+                  <label className="block text-[11px] font-bold text-emerald-950 uppercase tracking-wider mb-1">
+                    Stay Duration
+                  </label>
+                  <div className="text-xs p-2.5 bg-stone-100 rounded-xl font-medium text-stone-700">
+                    {checkIn} to {checkOut} ({nights} nights)
+                  </div>
                 </div>
               </div>
-            </div>
-            <input
-              type="checkbox"
-              checked={includeBreakfast}
-              onChange={(e) => setIncludeBreakfast(e.target.checked)}
-              className="w-5 h-5 accent-emerald-900 rounded cursor-pointer"
-            />
-          </div>
 
-          {/* Guest Name & Notes */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
-                Your Name
-              </label>
-              <input
-                type="text"
-                placeholder="Full Name"
-                value={guestName}
-                onChange={(e) => setGuestName(e.target.value)}
-                className="w-full p-3 rounded-xl border border-stone-300 text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
-                Special Requests
-              </label>
-              <input
-                type="text"
-                placeholder="e.g. Airport shuttle, early check-in"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                className="w-full p-3 rounded-xl border border-stone-300 text-sm text-stone-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Estimated Price Box */}
-          <div className="bg-emerald-950 text-white p-5 rounded-2xl flex items-center justify-between shadow-lg shadow-emerald-950/20">
-            <div>
-              <div className="text-xs text-emerald-300">
-                Estimated Rate ({nights} night{nights > 1 ? 's' : ''})
-              </div>
-              <div className="text-xs text-amber-400 font-semibold mt-0.5">
-                {includeBreakfast ? '✓ Breakfast Included' : 'Standard Room Only'} • 12% Genius Discount Applied
-              </div>
-            </div>
-
-            <div className="text-right">
-              <div className="text-3xl font-extrabold text-amber-300 leading-none">
-                US${totalPrice}
-              </div>
-              <span className="text-[11px] text-emerald-400 font-medium">No credit card needed</span>
-            </div>
-          </div>
-
-          {/* Action CTAs */}
-          <div className="space-y-2.5 pt-2">
-            <button
-              type="submit"
-              className="w-full py-4 rounded-full text-base font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-green-900/20"
-            >
-              <PhoneCall className="w-5 h-5" />
-              <span>Book Direct via WhatsApp (Instant)</span>
-            </button>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <a
-                href={PROPERTY_DETAILS.bookingComUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-3 px-3 rounded-full text-xs font-bold text-white bg-[#003580] hover:bg-[#00255a] transition-colors flex items-center justify-center gap-1.5"
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-full text-sm font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-green-900/20"
               >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span>Booking.com</span>
-              </a>
+                <PhoneCall className="w-4 h-4" />
+                <span>Open WhatsApp & Send Reservation</span>
+              </button>
+            </form>
+          )}
 
-              <a
-                href={PROPERTY_DETAILS.airbnbUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-3 px-3 rounded-full text-xs font-bold text-white bg-[#FF5A5F] hover:bg-[#e0484d] transition-colors flex items-center justify-center gap-1.5"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span>Airbnb</span>
-              </a>
+          {/* ================================================================= */}
+          {/* TAB 3: OTAs & Email                                              */}
+          {/* ================================================================= */}
+          {activeTab === 'ota' && (
+            <div className="space-y-3 pt-2">
+              <p className="text-xs text-stone-600">
+                Prefer booking via an official travel partner? Choose your favorite platform below:
+              </p>
 
-              <a
-                href={`mailto:${PROPERTY_DETAILS.email}?subject=Reservation Inquiry - Paradise Bungalow`}
-                className="py-3 px-3 rounded-full text-xs font-bold text-emerald-950 border border-emerald-900/30 hover:bg-emerald-950 hover:text-white transition-colors flex items-center justify-center gap-1.5"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email Host</span>
-              </a>
+              <div className="grid grid-cols-1 gap-2.5">
+                <a
+                  href={HMS_CONFIG.BOOKING_ENGINE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3 px-4 rounded-2xl text-xs font-bold text-white bg-emerald-900 hover:bg-emerald-800 transition-colors flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-400" />
+                    <span>HMS Direct Booking Engine (Best Price Guaranteed)</span>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
+                </a>
+
+                <a
+                  href={PROPERTY_DETAILS.bookingComUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3 px-4 rounded-2xl text-xs font-bold text-white bg-[#003580] hover:bg-[#00255a] transition-colors flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <span>Booking.com Official Listing (9.6 Rated)</span>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+
+                <a
+                  href={PROPERTY_DETAILS.airbnbUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3 px-4 rounded-2xl text-xs font-bold text-white bg-[#FF5A5F] hover:bg-[#e0484d] transition-colors flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <span>Airbnb Superhost Listing</span>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+
+                <a
+                  href={`mailto:${PROPERTY_DETAILS.email}?subject=Reservation Inquiry - Paradise Bungalow`}
+                  className="py-3 px-4 rounded-2xl text-xs font-bold text-emerald-950 border border-emerald-900/30 hover:bg-emerald-950 hover:text-white transition-colors flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4" />
+                    <span>Email Direct Inquiry ({PROPERTY_DETAILS.email})</span>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
+          )}
 
-            {/* Accepted Payment Methods */}
-            <div className="pt-4 border-t border-stone-200 text-center">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-2">
-                Accepted Payment Methods &amp; Direct Perks
+          {/* Payment Badges */}
+          <div className="pt-3 border-t border-stone-200 text-center">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-1.5">
+              Direct Booking Perks &amp; Payment Options
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-1.5 text-[11px] font-semibold text-stone-700">
+              <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
+                <CreditCard className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                Visa / Mastercard
               </span>
-              <div className="flex flex-wrap items-center justify-center gap-1.5 text-[11px] font-semibold text-stone-700">
-                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
-                  <CreditCard className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                  Visa &amp; Mastercard
-                </span>
-                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
-                  <Banknote className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                  Cash (USD &amp; LKR)
-                </span>
-                <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
-                  <Building2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                  Direct Bank Transfer
-                </span>
-                <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  0% Booking Fee
-                </span>
-              </div>
+              <span className="px-2.5 py-1 rounded-md bg-stone-100 border border-stone-200 text-emerald-950 flex items-center gap-1">
+                <Banknote className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                Cash at Check-in
+              </span>
+              <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                0% Commission
+              </span>
             </div>
           </div>
 
-        </form>
+        </div>
       </div>
     </div>
   );
