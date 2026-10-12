@@ -1,31 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Star, Quote, Award, Sparkles, ExternalLink, MessageSquarePlus, CheckCircle2 } from 'lucide-react';
+import React from 'react';
+import { Star, Quote, Award } from 'lucide-react';
 import { REVIEWS_DATA, PROPERTY_DETAILS } from '../data/roomsData';
-import { fetchLiveReviews, HMS_CONFIG } from '../services/hmsApi';
 
 export default function Reviews() {
-  const [liveReviews, setLiveReviews] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function load() {
-      try {
-        const data = await fetchLiveReviews();
-        if (data && data.reviews && data.reviews.length > 0) {
-          setLiveReviews(data);
-        }
-      } catch (err) {
-        console.warn('Live reviews unavailable, using cached.');
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
-  }, []);
-
-  const displayedReviews = liveReviews?.reviews?.length
-    ? liveReviews.reviews
-    : REVIEWS_DATA.map((r, i) => ({
+  const displayedReviews = REVIEWS_DATA.map((r, i) => ({
         id: i,
         guestName: r.name,
         country: r.country,
@@ -36,11 +14,8 @@ export default function Reviews() {
         createdAt: r.date,
       }));
 
-  const ratingScore = liveReviews?.scoreOutOf10 !== undefined
-    ? Number(liveReviews.scoreOutOf10).toFixed(1)
-    : (liveReviews?.averageRating ? (Number(liveReviews.averageRating) * 2).toFixed(1) : '10.0');
-
-  const reviewCount = liveReviews?.totalReviews || displayedReviews.length;
+  const ratingScore = PROPERTY_DETAILS.rating.toFixed(1);
+  const reviewCount = PROPERTY_DETAILS.reviewCount;
 
   return (
     <section id="reviews" className="py-20 bg-white">
@@ -50,13 +25,13 @@ export default function Reviews() {
         <div className="bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 rounded-3xl p-8 sm:p-12 text-white mb-12 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl shadow-emerald-950/10">
           <div>
             <div className="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
-              <Award className="w-4 h-4" /> HMS Verified Guest Reviews
+              <Award className="w-4 h-4" /> Guest Reviews
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold">
               Exceptional Guest Experiences
             </h2>
             <p className="text-stone-300 text-sm sm:text-base mt-1">
-              Verified reviews submitted directly by guests staying at Paradise Bungalow.
+              What guests say about their stay at Paradise Bungalow.
             </p>
           </div>
 
@@ -70,20 +45,10 @@ export default function Reviews() {
                   Exceptional
                 </div>
                 <div className="text-xs text-stone-300">
-                  {reviewCount}+ Verified Guest Reviews
+                  {reviewCount} Guest Reviews
                 </div>
               </div>
             </div>
-
-            <a
-              href={HMS_CONFIG.REVIEW_ENGINE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-3 rounded-full text-xs font-bold text-emerald-950 bg-amber-400 hover:bg-amber-300 transition-colors flex items-center gap-2 shadow-lg shadow-amber-500/20 whitespace-nowrap"
-            >
-              <MessageSquarePlus className="w-4 h-4" />
-              <span>Leave a Review</span>
-            </a>
           </div>
         </div>
 
@@ -161,21 +126,6 @@ export default function Reviews() {
           })}
         </div>
 
-        {/* Integration Footer */}
-        <div className="mt-10 text-center flex flex-wrap items-center justify-center gap-4">
-          <span className="text-xs text-stone-500">
-            Have you stayed with us recently?
-          </span>
-          <a
-            href={HMS_CONFIG.REVIEW_ENGINE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-900 hover:text-amber-600 underline underline-offset-4 transition-colors"
-          >
-            <span>Submit your feedback on our official HMS review portal</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-        </div>
 
       </div>
     </section>

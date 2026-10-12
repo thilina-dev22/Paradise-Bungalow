@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Calendar, Sparkles, Star } from 'lucide-react';
 import Logo from './Logo';
 import { PROPERTY_DETAILS } from '../data/roomsData';
-import { HMS_CONFIG } from '../services/hmsApi';
 
 export default function Navbar({ onOpenBooking }) {
   const [isOpen, setIsOpen] = useState(false);

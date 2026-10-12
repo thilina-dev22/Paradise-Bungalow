@@ -3,11 +3,11 @@ import { Calendar, CheckCircle2, MapPin, ChevronDown, Star, Sparkles } from 'luc
 import { PROPERTY_DETAILS } from '../data/roomsData';
 
 const HERO_IMAGES = [
-  '/images/general/IMG_8653.jpg',
-  '/images/wooden-cabana/IMG_8703.jpg',
-  '/images/general/IMG_8720.jpg',
-  '/images/general/IMG_8685.jpg',
-  '/images/general/IMG_8713_1.jpg'
+  '/images/general/1.jpg',
+  '/images/wooden-cabana/5.jpg',
+  '/images/general/2.jpg',
+  '/images/general/4.jpg',
+  '/images/general/8.jpg'
 ];
 
 export default function Hero({ onOpenBooking }) {
@@ -44,7 +44,7 @@ export default function Hero({ onOpenBooking }) {
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white/90">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span>10.0 / 10 Exceptional · HMS Verified Rating</span>
+            <span>10.0 / 10 Exceptional Guest Rating</span>
           </div>
           <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-400/30 text-xs font-semibold text-amber-300">
             <MapPin className="w-3.5 h-3.5" />

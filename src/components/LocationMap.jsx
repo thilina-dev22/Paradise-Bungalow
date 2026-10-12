@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, ExternalLink, Navigation, Compass, Utensils, Waves, TreePine, Train, Plane, HelpCircle, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
-import { HMS_CONFIG } from '../services/hmsApi';
 import { PROPERTY_DETAILS, SURROUNDINGS_DATA, HOUSE_RULES, FAQS_DATA } from '../data/roomsData';
 
 export default function LocationMap() {
@@ -86,15 +85,6 @@ export default function LocationMap() {
               <div className="pt-6 border-t border-emerald-800/60">
                 <div className="flex flex-col gap-2.5">
                   <div className="flex flex-col sm:flex-row gap-2.5">
-                    <a
-                      href={HMS_CONFIG.BOOKING_ENGINE_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 py-3 px-4 rounded-full text-xs font-bold text-center text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      <span>Book Direct Online</span>
-                    </a>
                     <a
                       href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi%20Paradise%20Bungalow!%20I%20am%20interested%20in%20reserving%20a%20stay.`}
                       target="_blank"

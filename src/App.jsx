@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import AvailabilityBar from './components/AvailabilityBar';
 import RoomCard from './components/RoomCard';
 import RoomModal from './components/RoomModal';
 import BookingModal from './components/BookingModal';
@@ -20,25 +19,15 @@ export default function App() {
   const [bookingRoom, setBookingRoom] = useState(null);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [defaultBreakfast, setDefaultBreakfast] = useState(false);
-  const [prefillDates, setPrefillDates] = useState(null);
 
   const filteredRooms = selectedCategory === 'all'
     ? ROOMS_DATA
     : ROOMS_DATA.filter((r) => r.category === selectedCategory);
 
-  const handleOpenBooking = (room = null, breakfast = false, dates = null) => {
+  const handleOpenBooking = (room = null, breakfast = false) => {
     setBookingRoom(room);
     setDefaultBreakfast(breakfast);
-    setPrefillDates(dates);
     setIsBookingOpen(true);
-  };
-
-  const handleSelectAvailableRoom = (availableRoomData) => {
-    const matchedRoom = ROOMS_DATA.find((r) => r.hmsRoomTypeId === availableRoomData.roomTypeId) || null;
-    handleOpenBooking(matchedRoom, false, {
-      checkIn: availableRoomData.checkIn,
-      checkOut: availableRoomData.checkOut,
-    });
   };
 
   return (
@@ -50,20 +39,17 @@ export default function App() {
       {/* Hero Section */}
       <Hero onOpenBooking={() => handleOpenBooking()} />
 
-      {/* Real-time HMS Availability Bar */}
-      <AvailabilityBar onSelectAvailableRoom={handleSelectAvailableRoom} />
-
       {/* Main Accommodations Section */}
       <section id="rooms" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-900/10 text-emerald-900 text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5" /> 8 Rooms • 6 Categories
+            <Sparkles className="w-3.5 h-3.5" /> 7 Rooms
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-emerald-950 tracking-tight">
             Handcrafted Accommodations
           </h2>
           <p className="text-stone-600 text-sm sm:text-base mt-3 font-light leading-relaxed">
-            From authentic eco wooden cabanas in lush garden glades to expansive upper-floor suites with private kitchens. Experience pure serenity just 50 meters from Midigama beach.
+            From an authentic wooden cabana in lush garden glades to king rooms and family rooms with balconies. Experience pure serenity just 50 meters from Midigama beach.
           </p>
         </div>
 
@@ -128,7 +114,7 @@ export default function App() {
       {/* Surroundings & Location Map */}
       <LocationMap />
 
-      {/* Verified Reviews (Powered by HMS API) */}
+      {/* Guest Reviews */}
       <Reviews />
 
       {/* Contact & Inquiry Form */}
@@ -151,11 +137,9 @@ export default function App() {
         <BookingModal
           room={bookingRoom}
           defaultBreakfast={defaultBreakfast}
-          prefillDates={prefillDates}
           onClose={() => {
             setIsBookingOpen(false);
             setBookingRoom(null);
-            setPrefillDates(null);
           }}
         />
       )}

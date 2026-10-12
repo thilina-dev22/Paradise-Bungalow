@@ -1,8 +1,7 @@
 import React from 'react';
-import { Phone, Mail, MapPin, ExternalLink, Heart, Home, BedDouble, Users, UtensilsCrossed, Sparkles, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MapPin, Heart, BedDouble, Sparkles } from 'lucide-react';
 import Logo from './Logo';
-import { PROPERTY_DETAILS } from '../data/roomsData';
-import { HMS_CONFIG } from '../services/hmsApi';
+import { PROPERTY_DETAILS, ROOMS_DATA } from '../data/roomsData';
 
 export default function Footer({ onOpenBooking }) {
   return (
@@ -18,7 +17,7 @@ export default function Footer({ onOpenBooking }) {
             </div>
 
             <p className="text-xs sm:text-sm text-stone-300 leading-relaxed mb-6">
-              Your serene garden sanctuary in Midigama, Sri Lanka. Offering 8 boutique rooms including eco wooden cabanas, upper floor balcony rooms, family suites, and a private kitchen apartment suite.
+              Your serene garden sanctuary in Midigama, Sri Lanka. Offering 7 boutique rooms including a wooden cabana, king rooms, garden view and balcony rooms, and family rooms.
             </p>
 
             <button
@@ -36,55 +35,26 @@ export default function Footer({ onOpenBooking }) {
               Quick Navigation
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-stone-300">
-              <li><a href="#rooms" className="hover:text-amber-400 transition-colors">Rooms & Cabanas (8 Units)</a></li>
+              <li><a href="#rooms" className="hover:text-amber-400 transition-colors">Rooms & Cabanas (7 Rooms)</a></li>
               <li><a href="#amenities" className="hover:text-amber-400 transition-colors">Property Amenities</a></li>
               <li><a href="#gallery" className="hover:text-amber-400 transition-colors">Photo Gallery</a></li>
               <li><a href="#location" className="hover:text-amber-400 transition-colors">Location & Directions</a></li>
               <li><a href="#reviews" className="hover:text-amber-400 transition-colors">Guest Reviews</a></li>
-              <li>
-                <a
-                  href={HMS_CONFIG.REVIEW_ENGINE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-1"
-                >
-                  <MessageSquare className="w-3 h-3" />
-                  <span>Write a Review (HMS)</span>
-                </a>
-              </li>
             </ul>
           </div>
 
-          {/* Room Summary (8 Units) */}
+          {/* Room Summary (7 Rooms) */}
           <div>
             <h4 className="font-serif text-lg font-bold text-amber-300 mb-4">
-              Room Inventory (8 Units)
+              Room Inventory (7 Rooms)
             </h4>
             <ul className="space-y-2.5 text-xs text-stone-300">
-              <li className="flex items-center gap-2">
-                <Home className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>2 Wooden Cabanas ($21)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <BedDouble className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>1 Deluxe Double with Balcony ($25)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <BedDouble className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>1 Standard Double Ground AC ($25)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Users className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>2 Bungalow Family Rooms ($32)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Users className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>1 Spacious Family Room 4P ($38)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <UtensilsCrossed className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>1 Superior Suite with Kitchen ($36)</span>
-              </li>
+              {ROOMS_DATA.map((room) => (
+                <li key={room.id} className="flex items-center gap-2">
+                  <BedDouble className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>{room.title} (${room.priceOnly})</span>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -101,10 +71,6 @@ export default function Footer({ onOpenBooking }) {
               <a href={`mailto:${PROPERTY_DETAILS.email}`} className="flex items-center gap-2 hover:text-amber-400 transition-colors">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>{PROPERTY_DETAILS.email}</span>
-              </a>
-              <a href={HMS_CONFIG.BOOKING_ENGINE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-amber-300 hover:text-amber-200 transition-colors">
-                <ExternalLink className="w-4 h-4 shrink-0" />
-                <span>Official Direct Booking Engine</span>
               </a>
               <a
                 href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi%20Paradise%20Bungalow!%20I%20would%20like%20to%20inquire%20about%20a%20reservation.`}
@@ -133,7 +99,7 @@ export default function Footer({ onOpenBooking }) {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-400">
           <div>
-            © {new Date().getFullYear()} Paradise Bungalow Midigama. All rights reserved. Powered by HMS.
+            © {new Date().getFullYear()} Paradise Bungalow Midigama. All rights reserved.
           </div>
           <div className="flex items-center gap-1.5">
             <span>Crafted with</span>
