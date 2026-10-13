@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, CheckCircle2, MapPin, ChevronDown, Star, Sparkles } from 'lucide-react';
-import { PROPERTY_DETAILS } from '../data/roomsData';
+import { Calendar, CheckCircle2, ChevronDown, Star, Waves } from 'lucide-react';
 
 const HERO_IMAGES = [
-  '/images/general/1.jpg',
-  '/images/wooden-cabana/5.jpg',
-  '/images/general/2.jpg',
-  '/images/general/4.jpg',
-  '/images/general/8.jpg'
+  '/images/general/8.jpg',
+  '/images/general/11.jpg',
+  '/images/general/15.jpg',
+  '/images/general/9.jpg',
+  '/images/general/14.jpg'
 ];
+
+const HIGHLIGHTS = ['Free cancellation', 'No prepayment needed', 'Best rate when you book direct'];
 
 export default function Hero({ onOpenBooking }) {
   const [currentBg, setCurrentBg] = useState(0);
@@ -16,112 +17,104 @@ export default function Hero({ onOpenBooking }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentBg((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 7000);
+    }, 6500);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
-      {/* Background Image Slider */}
+    <section
+      id="top"
+      className="relative min-h-[100svh] flex items-center justify-center text-white overflow-hidden"
+    >
+      {/* Background slideshow */}
       {HERO_IMAGES.map((img, idx) => (
-        <div
+        <img
           key={img}
-          className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
-            idx === currentBg ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.03]'
+          src={img}
+          alt=""
+          aria-hidden="true"
+          loading={idx === 0 ? 'eager' : 'lazy'}
+          fetchPriority={idx === 0 ? 'high' : 'auto'}
+          className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-in-out ${
+            idx === currentBg ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
           }`}
-          style={{ backgroundImage: `url(${img})` }}
         />
       ))}
 
-      {/* Layered Overlays for cinematic depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/75 to-emerald-950/30" />
-      <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/50 via-transparent to-emerald-950/20" />
+      {/* Neutral dark overlay (no green tint): darker at the bottom for legible text, light at the top so the photo shows */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30" />
+      {/* Soft dark pool behind the text so it stays readable on bright or busy photos */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,rgba(0,0,0,0.5),transparent)]" />
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto text-center px-4 sm:px-6 pt-20 pb-24 sm:pt-24 sm:pb-36">
-
-        {/* Rating + Location Badge Row */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-semibold text-white/90">
-            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span>10.0 / 10 Exceptional Guest Rating</span>
-          </div>
-          <div className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-400/30 text-xs font-semibold text-amber-300">
-            <MapPin className="w-3.5 h-3.5" />
-            <span>Midigama, Sri Lanka · 50 m to Beach &amp; Famous Lazy Right</span>
-          </div>
+      <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-5 sm:px-6 pt-28 pb-28 sm:pt-32 sm:pb-36 [text-shadow:0_2px_14px_rgba(0,0,0,0.6)]">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 sm:mb-8">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/25 text-[11px] sm:text-xs font-semibold">
+            <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
+            Rated 9.6 / 10 by guests
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-amber-300/40 text-[11px] sm:text-xs font-semibold text-amber-200">
+            <Waves className="w-3.5 h-3.5" />
+            50 m from Midigama beach
+          </span>
         </div>
 
-        {/* Hero Heading */}
-        <h1 className="font-serif font-extrabold tracking-tight leading-none mb-6">
-          <span className="block text-2xl sm:text-5xl lg:text-6xl text-white/80 font-light italic mb-2 sm:mb-3">
-            Experience Tranquility at
+        <h1 className="font-serif leading-[1.02] mb-5 sm:mb-6">
+          <span className="block text-lg sm:text-2xl italic font-normal text-white/90 mb-2 sm:mb-3">
+            Experience tranquility at
           </span>
-          <span className="block text-4xl sm:text-7xl lg:text-8xl bg-gradient-to-r from-amber-200 via-amber-400 to-amber-300 bg-clip-text text-transparent drop-shadow-2xl">
-            Paradise Bungalow
+          <span className="block text-[2.6rem] sm:text-7xl lg:text-8xl font-semibold text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]">
+            Paradise <span className="text-amber-300">Bungalow</span>
           </span>
         </h1>
 
-        {/* Divider */}
-        <div className="flex items-center justify-center gap-4 mb-6">
-          <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-400/60" />
-          <div className="w-1.5 h-1.5 rounded-full bg-amber-400/80" />
-          <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-400/60" />
-        </div>
-
-        {/* Subtitle */}
-        <p className="text-base sm:text-lg text-stone-300/90 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-          A garden sanctuary in Midigama with{' '}
-          <strong className="text-white font-semibold">8 unique rooms &amp; cabanas</strong> — 
-          from rustic eco wooden stays to a 65 m² suite with private kitchen, steps from the surf.
+        <p className="text-[15px] sm:text-lg text-white font-normal max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+          A quiet garden sanctuary in Midigama with{' '}
+          <strong className="text-white font-semibold">7 rooms &amp; a wooden cabana</strong>, steps from
+          the famous Lazy Right surf break.
         </p>
 
-        {/* Feature Highlights */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-white/60 mb-12">
-          {[
-            { icon: CheckCircle2, text: 'Free Cancellation' },
-            { icon: CheckCircle2, text: 'No Prepayment Needed' },
-            { icon: CheckCircle2, text: '12% Genius Discount' },
-            { icon: Sparkles, text: 'Direct Booking Guarantee' },
-          ].map(({ icon: Icon, text }, i) => (
-            <div key={i} className="flex items-center gap-1.5">
-              <Icon className="w-3.5 h-3.5 text-emerald-400" />
-              <span>{text}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Action CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
           <button
             onClick={() => onOpenBooking()}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all shadow-2xl shadow-amber-500/25 active:scale-95 flex items-center justify-center gap-2.5 tracking-wide"
+            className="px-8 py-4 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-200 hover:to-amber-300 shadow-2xl shadow-amber-500/25 active:scale-95 flex items-center justify-center gap-2.5"
           >
-            <Calendar className="w-4.5 h-4.5" />
+            <Calendar className="w-4 h-4" />
             Check Rates &amp; Book Direct
           </button>
-
           <a
             href="#rooms"
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-semibold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 transition-all shadow-lg flex items-center justify-center gap-2"
+            className="px-8 py-4 rounded-full text-sm font-semibold text-white bg-black/35 hover:bg-black/50 backdrop-blur-md border border-white/40 flex items-center justify-center gap-2"
           >
-            <span>Explore Rooms &amp; Cabanas</span>
+            Explore Rooms
             <ChevronDown className="w-4 h-4 text-amber-300" />
           </a>
         </div>
+
+        <ul className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] sm:text-xs font-medium text-white/90">
+          {HIGHLIGHTS.map((text) => (
+            <li key={text} className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-300" />
+              {text}
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-10">
+      {/* Slide indicators */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-10">
         {HERO_IMAGES.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentBg(idx)}
-            className={`rounded-full transition-all duration-300 ${
-              idx === currentBg ? 'w-8 h-1.5 bg-amber-400' : 'w-2 h-1.5 bg-white/30 hover:bg-white/60'
-            }`}
-            aria-label={`Slide ${idx + 1}`}
-          />
+            className="p-3"
+            aria-label={`Show photo ${idx + 1}`}
+          >
+            <span
+              className={`block rounded-full transition-all duration-300 h-1.5 ${
+                idx === currentBg ? 'w-8 bg-amber-300' : 'w-2 bg-white/40'
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>

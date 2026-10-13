@@ -1,9 +1,12 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Heart, BedDouble, Sparkles } from 'lucide-react';
+import { Phone, Mail, Heart, BedDouble, Sparkles } from 'lucide-react';
 import Logo from './Logo';
 import { PROPERTY_DETAILS, ROOMS_DATA } from '../data/roomsData';
+import { displayRate } from '../data/pricing';
+import { useCurrency } from '../context/currency';
 
 export default function Footer({ onOpenBooking }) {
+  const { format } = useCurrency();
   return (
     <footer className="bg-emerald-950 text-white pt-16 pb-24 md:pb-12 border-t border-emerald-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -52,7 +55,7 @@ export default function Footer({ onOpenBooking }) {
               {ROOMS_DATA.map((room) => (
                 <li key={room.id} className="flex items-center gap-2">
                   <BedDouble className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>{room.title} (${room.priceOnly})</span>
+                  <span>{room.title} (from {format(displayRate(room).amount)})</span>
                 </li>
               ))}
             </ul>
@@ -64,11 +67,11 @@ export default function Footer({ onOpenBooking }) {
               Direct Contact & Booking
             </h4>
             <div className="space-y-3 text-xs sm:text-sm text-stone-300">
-              <a href={`tel:${PROPERTY_DETAILS.phoneClean}`} className="flex items-center gap-2 hover:text-amber-400 transition-colors">
+              <a href={`tel:${PROPERTY_DETAILS.phoneClean}`} className="flex items-center gap-2 py-1.5 hover:text-amber-400 transition-colors">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>{PROPERTY_DETAILS.phone}</span>
               </a>
-              <a href={`mailto:${PROPERTY_DETAILS.email}`} className="flex items-center gap-2 hover:text-amber-400 transition-colors">
+              <a href={`mailto:${PROPERTY_DETAILS.email}`} className="flex items-center gap-2 py-1.5 hover:text-amber-400 transition-colors">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>{PROPERTY_DETAILS.email}</span>
               </a>
@@ -76,18 +79,14 @@ export default function Footer({ onOpenBooking }) {
                 href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi%20Paradise%20Bungalow!%20I%20would%20like%20to%20inquire%20about%20a%20reservation.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-emerald-300 hover:text-emerald-200 transition-colors"
+                className="flex items-center gap-2 py-1.5 text-emerald-300 hover:text-emerald-200 transition-colors"
               >
                 <Phone className="w-4 h-4 shrink-0 text-[#25D366]" />
                 <span>WhatsApp Direct Host Chat</span>
               </a>
               <div className="pt-2 flex flex-wrap gap-2 text-xs">
-                <a href={PROPERTY_DETAILS.bookingComUrl} target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-2">
+                <a href={PROPERTY_DETAILS.bookingComUrl} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-blue-300 hover:text-blue-200 underline underline-offset-2">
                   Booking.com Listing
-                </a>
-                <span className="text-stone-500">·</span>
-                <a href={PROPERTY_DETAILS.airbnbUrl} target="_blank" rel="noopener noreferrer" className="text-rose-300 hover:text-rose-200 underline underline-offset-2">
-                  Airbnb Listing
                 </a>
               </div>
             </div>

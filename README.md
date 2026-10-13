@@ -1,16 +1,39 @@
-# React + Vite
+# Paradise Bungalow
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Marketing and booking-inquiry website for Paradise Bungalow, Midigama, Sri Lanka. React 19 + Vite + Tailwind CSS 4.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev      # local dev server (http://localhost:5173)
+npm run build    # production build into dist/
+npm run lint     # oxlint
+```
 
-## React Compiler
+## Environment
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+`VITE_WEB3FORMS_ACCESS_KEY` (in `.env`) is the Web3Forms access key used by the contact form. Booking inquiries do not use it: they open WhatsApp or the guest's email app.
 
-## Expanding the Oxlint configuration
+## Where things live
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+| What | Where |
+|---|---|
+| Rooms (names, beds, sizes, amenities, highlights, Airbnb links, seasonal rates) | `src/data/roomsData.js` |
+| Rate logic (seasons, breakfast supplement, stay totals) | `src/data/pricing.js` |
+| Photo gallery list | `src/data/galleryData.js` (photos in `public/images/<folder>/`) |
+| Live currency conversion (LKR / USD / EUR) | `src/context/CurrencyContext.jsx`, `src/context/currency.js` |
+| Amenity icons | `src/components/AmenityIcon.jsx` |
+| SEO meta tags and structured data | `index.html`, `public/sitemap.xml` |
+
+## Updating rates
+
+Rates are stored as room-only LKR per night in each room's `ratesRO` (September to April, from the tariff sheet). May to August are filled in automatically at the room's lowest rate by `yearRates()`. Bed and breakfast is room-only plus `BREAKFAST_PER_ADULT` (LKR 1,500) per adult per night. Update both `roomsData.js` and, if the tariff changes, `index.html` (structured data).
+
+## Currency
+
+Prices are authored in LKR. USD and EUR are converted using live rates from `open.er-api.com` (cached for 1 hour in the browser). If rates cannot be loaded the site falls back to LKR rather than showing a wrong number.
+
+## Booking inquiries
+
+The booking popup builds an inquiry message (room, dates, guests, breakfast, estimated total in LKR) and sends it through WhatsApp (`wa.me`) or an email draft (`mailto:`). Nothing is stored or confirmed automatically; the team confirms availability by reply.

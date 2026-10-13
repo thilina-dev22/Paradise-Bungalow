@@ -63,7 +63,7 @@ export default function Reviews() {
                   month: 'long',
                   year: 'numeric',
                 });
-              } catch (e) {
+              } catch {
                 formattedDate = rev.createdAt;
               }
             }

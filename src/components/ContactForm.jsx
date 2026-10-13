@@ -12,14 +12,14 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(false);
 
     try {
-      const accessKey = PROPERTY_DETAILS.web3formsAccessKey || 'YOUR_ACCESS_KEY_HERE';
-
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
@@ -27,7 +27,7 @@ export default function ContactForm() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: accessKey,
+          access_key: PROPERTY_DETAILS.web3formsAccessKey,
           name: formData.name,
           email: formData.email,
           phone: formData.phone || 'Not provided',
@@ -40,15 +40,15 @@ export default function ContactForm() {
       });
 
       const data = await response.json();
-      if (data.success || response.ok) {
+      if (response.ok && data.success) {
         setSubmitted(true);
       } else {
-        // Fallback set submitted so user experience is smooth
-        setSubmitted(true);
+        throw new Error(data.message || `HTTP ${response.status}`);
       }
     } catch (error) {
+      // Never tell the guest it worked when it did not: show the error and the direct contact options instead.
       console.error('Web3Forms submit error:', error);
-      setSubmitted(true);
+      setSubmitError(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -196,10 +196,11 @@ export default function ContactForm() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
+                    <label htmlFor="contact-name" className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
                       Your Full Name *
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       placeholder="e.g. John Doe"
@@ -210,10 +211,11 @@ export default function ContactForm() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
+                    <label htmlFor="contact-email" className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
                       Email Address *
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       required
                       placeholder="e.g. john@example.com"
@@ -226,10 +228,11 @@ export default function ContactForm() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
+                    <label htmlFor="contact-phone" className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
                       Phone / WhatsApp Number
                     </label>
                     <input
+                      id="contact-phone"
                       type="tel"
                       placeholder="+1 234 567 890"
                       value={formData.phone}
@@ -239,10 +242,11 @@ export default function ContactForm() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
+                    <label htmlFor="contact-subject" className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
                       Subject
                     </label>
                     <select
+                      id="contact-subject"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       className="w-full p-3.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none bg-stone-50"
@@ -257,10 +261,11 @@ export default function ContactForm() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
+                  <label htmlFor="contact-message" className="block text-xs font-bold text-emerald-950 uppercase tracking-wider mb-1.5">
                     Your Message *
                   </label>
                   <textarea
+                    id="contact-message"
                     required
                     rows="4"
                     placeholder="Write your questions or details here..."
@@ -269,6 +274,15 @@ export default function ContactForm() {
                     className="w-full p-3.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none bg-stone-50"
                   />
                 </div>
+
+                {submitError && (
+                  <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-xs sm:text-sm text-red-900">
+                    <strong className="block mb-1">Your message could not be sent.</strong>
+                    Please try again, or reach us directly on{' '}
+                    <a className="font-bold underline" href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>{' '}
+                    or at <a className="font-bold underline" href={`mailto:${PROPERTY_DETAILS.email}`}>{PROPERTY_DETAILS.email}</a>.
+                  </div>
+                )}
 
                 <button
                   type="submit"

@@ -10,8 +10,9 @@ import LocationMap from './components/LocationMap';
 import Reviews from './components/Reviews';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
+import CurrencySwitcher from './components/CurrencySwitcher';
 import { ROOMS_DATA, ROOM_CATEGORIES } from './data/roomsData';
-import { Sparkles, Filter } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -40,12 +41,12 @@ export default function App() {
       <Hero onOpenBooking={() => handleOpenBooking()} />
 
       {/* Main Accommodations Section */}
-      <section id="rooms" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+      <section id="rooms" className="py-14 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-900/10 text-emerald-900 text-xs font-bold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5" /> 7 Rooms
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-emerald-950 tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-5xl font-semibold text-emerald-950 tracking-tight">
             Handcrafted Accommodations
           </h2>
           <p className="text-stone-600 text-sm sm:text-base mt-3 font-light leading-relaxed">
@@ -53,13 +54,19 @@ export default function App() {
           </p>
         </div>
 
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">Show prices in</span>
+          <CurrencySwitcher tone="light" />
+        </div>
+
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 px-2 mb-12">
+        <div className="-mx-4 sm:mx-0 mb-10 sm:mb-12">
+        <div className="flex sm:flex-wrap sm:justify-center items-center gap-2.5 px-4 sm:px-2 overflow-x-auto no-scrollbar">
           {ROOM_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-300 ${
+              className={`shrink-0 px-5 py-3 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-300 ${
                 selectedCategory === cat.id
                   ? 'bg-emerald-950 text-amber-300 shadow-md shadow-emerald-950/20 scale-105'
                   : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'
@@ -69,9 +76,10 @@ export default function App() {
             </button>
           ))}
         </div>
+        </div>
 
         {/* Room Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredRooms.map((room) => (
             <RoomCard
               key={room.id}
@@ -83,13 +91,13 @@ export default function App() {
         </div>
 
         {/* Direct Booking Highlight Banner */}
-        <div className="mt-16 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 text-white rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl shadow-emerald-950/20 border border-emerald-800/30">
+        <div className="mt-16 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 text-white rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl shadow-emerald-950/20 border border-emerald-800/30">
           <div className="max-w-xl">
             <span className="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2">
               ⚡ Guaranteed Best Rate · 0% Extra Commission
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-amber-200 mb-2">
-              Book Direct &amp; Save 12%
+              Book Direct for the Best Rate
             </h3>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
               Skip third-party OTA fees and enjoy complimentary flexible check-in, priority room selection, airport transfer arrangements, and instant WhatsApp communication directly with the property host.

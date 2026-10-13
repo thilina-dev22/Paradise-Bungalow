@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Users, Maximize2, Bed, Coffee, Check, Eye, Info, MapPin, CheckCircle2 } from 'lucide-react';
+import { BREAKFAST_PER_ADULT, displayRate, breakfastSupplement } from '../data/pricing';
+import { useCurrency } from '../context/currency';
+import FitImage from './FitImage';
+import AmenityIcon from './AmenityIcon';
+import { Users, Maximize2, Bed, Coffee, Eye, Info, MapPin, CheckCircle2, ExternalLink } from 'lucide-react';
 
 const getShortBedText = (bedConfig) => {
   if (!bedConfig) return '';
@@ -14,22 +18,24 @@ const getShortBedText = (bedConfig) => {
 
 export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
   const [includeBreakfast, setIncludeBreakfast] = useState(false);
+  const { format } = useCurrency();
 
-  const price = includeBreakfast ? room.priceBreakfast : room.priceOnly;
-  const originalPrice = includeBreakfast ? room.originalPriceBreakfast : room.originalPriceOnly;
+  const rate = displayRate(room);
+  const price = rate.amount + (includeBreakfast ? breakfastSupplement(room.maxGuests) : 0);
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md shadow-emerald-950/8 border border-stone-200/60 flex flex-col h-full hover:shadow-2xl hover:shadow-emerald-950/10 hover:-translate-y-1.5 transition-all duration-400 group">
       
       {/* Thumbnail Container */}
-      <div 
-        className="relative h-56 sm:h-60 overflow-hidden cursor-pointer bg-emerald-950" 
+      <div
+        className="relative cursor-pointer"
         onClick={() => onViewDetails(room)}
       >
-        <img
+        <FitImage
           src={room.images[0]}
           alt={room.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="aspect-[5/4]"
+          imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
         />
         {/* Subtle vignette overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/40 via-transparent to-transparent" />
@@ -94,7 +100,7 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
         <ul className="grid grid-cols-2 gap-1.5 text-[11px] text-stone-600 mb-4">
           {room.highlights.slice(0, 4).map((hl, idx) => (
             <li key={idx} className="flex items-start gap-1.5">
-              <Check className="w-3 h-3 text-emerald-500 shrink-0 mt-0.5" />
+              <AmenityIcon label={hl} className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-px" />
               <span className="leading-tight">{hl}</span>
             </li>
           ))}
@@ -113,7 +119,7 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
         >
           <div className="flex items-center gap-2">
             <Coffee className={`w-3.5 h-3.5 ${includeBreakfast ? 'text-amber-600' : 'text-stone-400'}`} />
-            <span>Add Exceptional Breakfast</span>
+            <span>Add Breakfast (+{format(BREAKFAST_PER_ADULT)} / adult)</span>
           </div>
           <input
             type="checkbox"
@@ -124,19 +130,14 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
         </div>
 
         {/* Price & Action Row */}
-        <div className="flex items-end justify-between gap-2 mt-auto">
+        <div className="flex flex-wrap items-end justify-between gap-x-2 gap-y-3 mt-auto">
           <div>
-            <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-xs text-stone-400 line-through">
-                US${originalPrice}
-              </span>
-              <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold border border-emerald-200">
-                12% Off
-              </span>
-            </div>
+            <span className="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-0.5">
+              {rate.isCurrentMonth ? `${rate.month.label} rate` : 'From'}
+            </span>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-extrabold text-emerald-950">
-                US${price}
+              <span className="text-xl font-extrabold text-emerald-950">
+                {format(price)}
               </span>
               <span className="text-xs text-stone-400">/ night</span>
             </div>
@@ -146,7 +147,17 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ml-auto">
+            <a
+              href={room.airbnbUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full border border-stone-200 text-[#FF385C] hover:border-[#FF385C] hover:bg-[#FF385C] hover:text-white transition-all"
+              title="View this room on Airbnb"
+              aria-label={`View ${room.title} on Airbnb`}
+            >
+              <ExternalLink className="w-4 h-4" />
+            </a>
             <button
               onClick={() => onViewDetails(room)}
               className="p-2.5 rounded-full border border-stone-200 text-stone-500 hover:border-emerald-900 hover:bg-emerald-900 hover:text-white transition-all"

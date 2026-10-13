@@ -1,29 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+/*
+  Palette: deep rainforest green + warm sand, with a brass-gold accent drawn from the clay roof tiles.
+  Overriding the existing emerald / amber / stone scales recolours the whole site at once.
+*/
 @theme {
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --color-emerald-950: #032a1f;
-  --color-emerald-900: #064e3b;
-  --color-emerald-800: #0d6e53;
-  --color-emerald-700: #108e6c;
-  --color-gold-500: #d4af37;
-  --color-gold-400: #e5c158;
-  --color-gold-600: #b89328;
-  --color-amber-400: #e5c158;
-  --color-amber-500: #d4af37;
-  --color-amber-600: #c59b27;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+
+  --color-emerald-50: #eef5f0;
+  --color-emerald-100: #dbeadf;
+  --color-emerald-200: #bad5c3;
+  --color-emerald-300: #8fb9a0;
+  --color-emerald-400: #5f9a7c;
+  --color-emerald-500: #3f7e61;
+  --color-emerald-600: #2f6650;
+  --color-emerald-700: #265343;
+  --color-emerald-800: #1d4136;
+  --color-emerald-900: #15322a;
+  --color-emerald-950: #0d231d;
+
+  --color-amber-50: #fcf7ec;
+  --color-amber-100: #f7ecd0;
+  --color-amber-200: #f0dca6;
+  --color-amber-300: #e8c97b;
+  --color-amber-400: #dfb458;
+  --color-amber-500: #c8963a;
+  --color-amber-600: #a67a2c;
+  --color-amber-700: #835f24;
+  --color-amber-800: #654a1f;
+  --color-amber-900: #4a3619;
+  --color-amber-950: #2c200d;
+
+  --color-stone-50: #faf6ee;
+  --color-stone-100: #f3ede0;
+  --color-stone-200: #e7dfcd;
+  --color-stone-300: #d5cab3;
+  --color-stone-400: #a99e88;
+  --color-stone-500: #7d7461;
+  --color-stone-600: #5f5848;
+  --color-stone-700: #484235;
+  --color-stone-800: #312d24;
+  --color-stone-900: #1f1c16;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #faf8f5;
-  color: #172420;
+  background-color: #faf6ee;
+  color: #1f1c16;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   font-feature-settings: 'kern', 'liga', 'clig', 'calt';
@@ -34,12 +65,37 @@ body {
 
 h1, h2, h3, h4, .font-serif {
   font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Keep date/time pickers and inputs at 16px on phones so iOS does not zoom the page on focus */
+@media (max-width: 640px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Respect iPhone notch / home indicator */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* Selection style */
 ::selection {
-  background-color: #064e3b;
-  color: #e5c158;
+  background-color: #1d4136;
+  color: #dfb458;
 }
 
 /* Smooth transitions for all interactive elements */
@@ -63,14 +119,14 @@ html::-webkit-scrollbar {
   width: 7px;
 }
 html::-webkit-scrollbar-track {
-  background: #faf8f5;
+  background: #faf6ee;
 }
 html::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #064e3b, #0d6e53);
+  background: linear-gradient(to bottom, #1d4136, #2f6650);
   border-radius: 999px;
 }
 html::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #032a1f, #064e3b);
+  background: linear-gradient(to bottom, #0d231d, #1d4136);
 }
 
 /* Custom scrollbar for modals */
@@ -78,19 +134,35 @@ html::-webkit-scrollbar-thumb:hover {
   width: 6px;
 }
 .custom-modal-scrollbar::-webkit-scrollbar-track {
-  background: #f4efe6;
+  background: #f3ede0;
   border-radius: 999px;
 }
 .custom-modal-scrollbar::-webkit-scrollbar-thumb {
-  background: #0d6e53;
+  background: #2f6650;
   border-radius: 999px;
 }
 .custom-modal-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #064e3b;
+  background: #1d4136;
 }
 
 /* Focus ring for accessibility */
 :focus-visible {
-  outline: 2px solid #d4af37;
+  outline: 2px solid #c8963a;
   outline-offset: 2px;
+}
+
+/* Entrance animations used by modals and menus */
+@theme {
+  --animate-fade-in: fade-in 0.25s ease-out both;
+  --animate-sheet-up: sheet-up 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sheet-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -1,21 +1,21 @@
 import React from 'react';
-import { Wifi, Coffee, Utensils, Flame, Trees, Car, Shield, Wind, Sparkles } from 'lucide-react';
+import { Wifi, Croissant, CookingPot, Flame, TreePalm, AirVent, SquareParking, ShieldCheck, Sparkles } from 'lucide-react';
 
 const AMENITIES_LIST = [
   {
     icon: Wifi,
     title: 'Free High-Speed WiFi',
-    desc: 'Uninterrupted optical fiber WiFi across all 8 rooms, cabanas, balconies, and garden dining areas.'
+    desc: 'Uninterrupted optical fiber WiFi across all rooms, the cabana, balconies, and garden dining areas.'
   },
   {
-    icon: Coffee,
+    icon: Croissant,
     title: 'Exceptional Breakfast',
     desc: 'Fresh tropical fruits, custom omelettes, Ceylon tea, coffee, and traditional Sri Lankan delicacies.'
   },
   {
-    icon: Utensils,
-    title: 'Private Kitchen Suites',
-    desc: 'Superior Double Room features a fully equipped kitchen (stovetop, fridge, kettle, and kitchenware).'
+    icon: CookingPot,
+    title: 'Kitchen & Dining Areas',
+    desc: 'Family Room with Garden View and Superior Family Room include a private kitchen with stovetop, fridge, kettle and kitchenware.'
   },
   {
     icon: Flame,
@@ -23,22 +23,22 @@ const AMENITIES_LIST = [
     desc: 'Outdoor barbecue equipment and patio dining areas provided for evening garden dinners.'
   },
   {
-    icon: Trees,
+    icon: TreePalm,
     title: 'Lush Tropical Gardens',
     desc: 'Surrounded by vibrant exotic flora, quiet sit-outs, and singing birds in a serene ecosystem.'
   },
   {
-    icon: Wind,
+    icon: AirVent,
     title: 'Air Conditioning & Fans',
-    desc: 'Climate-controlled standard, family, and superior suites for your utmost comfort.'
+    desc: 'Fans in every room, and air conditioning in the king rooms, garden view rooms, family room and superior family room.'
   },
   {
-    icon: Car,
+    icon: SquareParking,
     title: 'Free On-Site Parking',
     desc: 'Secure private parking on premises for vehicles, rental bikes, and tuk-tuks.'
   },
   {
-    icon: Shield,
+    icon: ShieldCheck,
     title: 'Private Entrances & Safety',
     desc: 'Soundproofed walls, private entrances, mosquito netting, and 24/7 hospitality support.'
   }

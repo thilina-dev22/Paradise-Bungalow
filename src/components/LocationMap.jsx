@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, ExternalLink, Navigation, Compass, Utensils, Waves, TreePine, Train, Plane, HelpCircle, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, Mail, ExternalLink, Navigation, Compass, Utensils, Waves, TreePine, Train, HelpCircle, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
 import { PROPERTY_DETAILS, SURROUNDINGS_DATA, HOUSE_RULES, FAQS_DATA } from '../data/roomsData';
 
 export default function LocationMap() {
@@ -105,15 +105,6 @@ export default function LocationMap() {
                     >
                       <ExternalLink className="w-3 h-3" />
                       <span>Booking.com Listing</span>
-                    </a>
-                    <a
-                      href={PROPERTY_DETAILS.airbnbUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 py-2.5 px-3 rounded-full text-[11px] font-bold text-center text-white bg-[#FF5A5F]/90 hover:bg-[#FF5A5F] transition-colors flex items-center justify-center gap-1 border border-rose-400/30"
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                      <span>Airbnb Listing</span>
                     </a>
                   </div>
                 </div>
