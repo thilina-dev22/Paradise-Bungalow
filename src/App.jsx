@@ -7,7 +7,6 @@ import BookingModal from './components/BookingModal';
 import Amenities from './components/Amenities';
 import Gallery from './components/Gallery';
 import LocationMap from './components/LocationMap';
-import Reviews from './components/Reviews';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import CurrencySwitcher from './components/CurrencySwitcher';
@@ -121,9 +120,6 @@ export default function App() {
 
       {/* Surroundings & Location Map */}
       <LocationMap />
-
-      {/* Guest Reviews */}
-      <Reviews />
 
       {/* Contact & Inquiry Form */}
       <ContactForm onOpenBooking={() => handleOpenBooking()} />

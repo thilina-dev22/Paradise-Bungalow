@@ -134,7 +134,7 @@ export const ROOMS_DATA = [
       'Ensuite Bathroom & Bidet',
     ],
     amenities: ['Air conditioning', 'Interconnected rooms available', 'Ground floor unit', 'Mosquito net', 'Tile/marble floor', ...COMMON_AMENITIES],
-    images: photosOf('standard-garden-view', '52.jpg'),
+    images: photosOf('standard-garden-view', '52.webp'),
     description: 'A comfortable double room with views of our lush garden. A peaceful base for surfing, exploring the south coast, or simply relaxing.',
   },
   {
@@ -160,7 +160,7 @@ export const ROOMS_DATA = [
       'Interconnected Room Option',
     ],
     amenities: ['Air conditioning', ...KITCHEN_AMENITIES, 'Interconnected rooms available', 'Ground floor unit', 'Mosquito net', 'Tile/marble floor', ...COMMON_AMENITIES],
-    images: photosOf('family-garden-view', '53.jpg'),
+    images: photosOf('family-garden-view', '53.webp'),
     description: 'A spacious 65 m² ground-floor family room for up to four guests, with air conditioning, its own kitchen with stovetop, fridge and kettle, and garden views.',
   },
   {
@@ -186,7 +186,7 @@ export const ROOMS_DATA = [
       'Sofa & Sofa Bed',
     ],
     amenities: ['Air conditioning', 'Private balcony', ...KITCHEN_AMENITIES, 'Sofa', 'Sofa bed', 'Tile/marble floor', ...COMMON_AMENITIES],
-    images: photosOf('superior-family-balcony', '22.jpg'),
+    images: photosOf('superior-family-balcony', '22.webp'),
     description: 'A superior 65 m² room with a king bed, a single bed, a sofa bed, a private balcony and its own kitchen with stovetop, fridge and kettle.',
   },
   {
@@ -212,7 +212,7 @@ export const ROOMS_DATA = [
       'Ensuite Bathroom & Bidet',
     ],
     amenities: ['Private balcony', 'Mosquito net', 'Tile/marble floor', ...COMMON_AMENITIES],
-    images: photosOf('standard-balcony', '43.jpg'),
+    images: photosOf('standard-balcony', '43.webp'),
     description: 'A bright double room with a private balcony overlooking the gardens, perfect for a quiet morning coffee.',
   },
 ];
@@ -227,8 +227,6 @@ export const PROPERTY_DETAILS = {
   bookingComUrl: 'https://www.booking.com/Share-Cxf3kD',
   web3formsAccessKey: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'cf00ac11-7636-4c7c-b18a-d50a2c6a477e',
   totalRooms: 7,
-  rating: 9.6,
-  reviewCount: 148,
   highlights: [
     '7 Rooms in Total (Boutique)',
     'Free High-Speed WiFi',
@@ -237,30 +235,6 @@ export const PROPERTY_DETAILS = {
     'Free Cancellation & No Credit Card Needed Options'
   ]
 };
-
-export const REVIEWS_DATA = [
-  {
-    name: 'Sarah M.',
-    country: 'United Kingdom',
-    rating: 10,
-    comment: 'Paradise Bungalow is an absolute hidden gem! The wooden cabanas surrounded by lush tropical gardens were peaceful and beautifully clean. The breakfast served every morning was exceptional!',
-    date: 'July 2026'
-  },
-  {
-    name: 'Jan & Ellen',
-    country: 'Netherlands',
-    rating: 9.8,
-    comment: 'We stayed in the Superior Room with Kitchen. Having our own kitchenette on the high floor balcony was wonderful. The host was incredibly welcoming and arranged tours for us.',
-    date: 'June 2026'
-  },
-  {
-    name: 'Lukas K.',
-    country: 'Germany',
-    rating: 9.6,
-    comment: 'Super fast WiFi, clean rooms, quiet atmosphere, and very close to nature. Booking was super simple through WhatsApp. Highly recommended!',
-    date: 'May 2026'
-  }
-];
 
 export const SURROUNDINGS_DATA = {
   beaches: [
@@ -302,7 +276,7 @@ export const HOUSE_RULES = {
 export const FAQS_DATA = [
   {
     q: 'What kind of breakfast is served at Paradise Bungalow?',
-    a: 'Guests staying at Paradise Bungalow enjoy a top-rated breakfast (review score 10/10). Options include Continental, Vegetarian, and traditional Asian/Sri Lankan breakfast served with fresh tropical fruits.'
+    a: 'Guests staying at Paradise Bungalow enjoy breakfast with options including Continental, Vegetarian, and traditional Asian/Sri Lankan breakfast served with fresh tropical fruits.'
   },
   {
     q: 'How close is Paradise Bungalow to the beach & surf breaks?',

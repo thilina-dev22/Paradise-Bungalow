@@ -45,7 +45,8 @@ export const roomOnlyRate = (room, date) => {
 
 // Rate for the current month, falling back to the lowest published rate.
 export const displayRate = (room, date = new Date()) => {
-  const current = roomOnlyRate(room, date);
+  // Build-time rendering (no window): show the lowest rate as "From" so the saved HTML never goes out of date.
+  const current = typeof window === 'undefined' ? null : roomOnlyRate(room, date);
   if (current != null) return { amount: current, isCurrentMonth: true, month: monthOf(date) };
   return { amount: Math.min(...Object.values(room.ratesRO)), isCurrentMonth: false, month: null };
 };

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { thumbOf } from '../utils/images';
-import { Calendar, CheckCircle2, ChevronDown, Star, Waves } from 'lucide-react';
+import { Calendar, CheckCircle2, ChevronDown, Waves } from 'lucide-react';
 
 const HERO_IMAGES = [
-  '/images/general/8.jpg',
-  '/images/general/11.jpg',
-  '/images/general/15.jpg',
-  '/images/general/9.jpg',
-  '/images/general/14.jpg'
+  '/images/general/8.webp',
+  '/images/general/11.webp',
+  '/images/general/15.webp',
+  '/images/general/9.webp',
+  '/images/general/14.webp'
 ];
 
 const HIGHLIGHTS = ['Free cancellation', 'No prepayment needed', 'Best rate when you book direct'];
@@ -65,10 +65,6 @@ export default function Hero({ onOpenBooking }) {
 
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-5 sm:px-6 pt-28 pb-28 sm:pt-32 sm:pb-36 [text-shadow:0_2px_14px_rgba(0,0,0,0.6)]">
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6 sm:mb-8">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/25 text-[11px] sm:text-xs font-semibold">
-            <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" />
-            Rated 9.6 / 10 by guests
-          </span>
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-amber-300/40 text-[11px] sm:text-xs font-semibold text-amber-200">
             <Waves className="w-3.5 h-3.5" />
             50 m from Midigama beach

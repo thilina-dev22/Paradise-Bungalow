@@ -7,7 +7,8 @@ Marketing and booking-inquiry website for Paradise Bungalow, Midigama, Sri Lanka
 ```bash
 npm install
 npm run dev      # local dev server (http://localhost:5173)
-npm run build    # production build into dist/
+npm run build    # production build into dist/, then pre-renders the page into dist/index.html (scripts/prerender.mjs)
+npm run build:client  # build without the pre-render step
 npm run lint     # oxlint
 ```
 
@@ -21,7 +22,8 @@ npm run lint     # oxlint
 |---|---|
 | Rooms (names, beds, sizes, amenities, highlights, Airbnb links, seasonal rates) | `src/data/roomsData.js` |
 | Rate logic (seasons, breakfast supplement, stay totals) | `src/data/pricing.js` |
-| Photo gallery list | `src/data/galleryData.js` (photos in `public/images/<folder>/`) |
+| Photo gallery list | `src/data/galleryData.js` (WebP photos in `public/images/<folder>/`, 800px copies in `thumbs/`) |
+| Build-time pre-render (full page HTML for search engines) | `src/entry-server.jsx`, `scripts/prerender.mjs` |
 | Live currency conversion (LKR / USD / EUR) | `src/context/CurrencyContext.jsx`, `src/context/currency.js` |
 | Amenity icons | `src/components/AmenityIcon.jsx` |
 | SEO meta tags and structured data | `index.html`, `public/sitemap.xml` |
@@ -37,3 +39,9 @@ Prices are authored in LKR. USD and EUR are converted using live rates from `ope
 ## Booking inquiries
 
 The booking popup builds an inquiry message (room, dates, guests, breakfast, estimated total in LKR) and sends it through WhatsApp (`wa.me`) or an email draft (`mailto:`). Nothing is stored or confirmed automatically; the team confirms availability by reply.
+
+## SEO notes
+
+- The built `dist/index.html` already contains the full page (headings, rooms, rates, contact details), so crawlers that do not run JavaScript can read it. In that static copy prices show as "From LKR ..." so it never goes out of date; the live page shows the current month's rate.
+- Photos are WebP. `public/images/og-cover.jpg` is the 1200x630 JPEG used for social previews.
+- After deploying: submit `sitemap.xml` in Google Search Console and test the page with Google's Rich Results Test.

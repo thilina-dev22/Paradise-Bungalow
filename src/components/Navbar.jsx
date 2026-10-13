@@ -8,7 +8,6 @@ const NAV_LINKS = [
   { name: 'Rooms', href: '#rooms' },
   { name: 'Amenities', href: '#amenities' },
   { name: 'Gallery', href: '#gallery' },
-  { name: 'Reviews', href: '#reviews' },
   { name: 'Location', href: '#location' },
   { name: 'Contact', href: '#contact' },
 ];

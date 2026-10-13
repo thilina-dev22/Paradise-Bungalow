@@ -42,7 +42,6 @@ export default function Footer({ onOpenBooking }) {
               <li><a href="#amenities" className="hover:text-amber-400 transition-colors">Property Amenities</a></li>
               <li><a href="#gallery" className="hover:text-amber-400 transition-colors">Photo Gallery</a></li>
               <li><a href="#location" className="hover:text-amber-400 transition-colors">Location & Directions</a></li>
-              <li><a href="#reviews" className="hover:text-amber-400 transition-colors">Guest Reviews</a></li>
             </ul>
           </div>
 
@@ -67,11 +66,11 @@ export default function Footer({ onOpenBooking }) {
               Direct Contact & Booking
             </h4>
             <div className="space-y-3 text-xs sm:text-sm text-stone-300">
-              <a href={`tel:${PROPERTY_DETAILS.phoneClean}`} className="flex items-center gap-2 py-1.5 hover:text-amber-400 transition-colors">
+              <a href={`tel:${PROPERTY_DETAILS.phoneClean}`} className="flex items-center gap-2 py-2 hover:text-amber-400 transition-colors">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>{PROPERTY_DETAILS.phone}</span>
               </a>
-              <a href={`mailto:${PROPERTY_DETAILS.email}`} className="flex items-center gap-2 py-1.5 hover:text-amber-400 transition-colors">
+              <a href={`mailto:${PROPERTY_DETAILS.email}`} className="flex items-center gap-2 py-2 hover:text-amber-400 transition-colors">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>{PROPERTY_DETAILS.email}</span>
               </a>
@@ -79,13 +78,13 @@ export default function Footer({ onOpenBooking }) {
                 href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi%20Paradise%20Bungalow!%20I%20would%20like%20to%20inquire%20about%20a%20reservation.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 py-1.5 text-emerald-300 hover:text-emerald-200 transition-colors"
+                className="flex items-center gap-2 py-2 text-emerald-300 hover:text-emerald-200 transition-colors"
               >
                 <Phone className="w-4 h-4 shrink-0 text-[#25D366]" />
                 <span>WhatsApp Direct Host Chat</span>
               </a>
               <div className="pt-2 flex flex-wrap gap-2 text-xs">
-                <a href={PROPERTY_DETAILS.bookingComUrl} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-blue-300 hover:text-blue-200 underline underline-offset-2">
+                <a href={PROPERTY_DETAILS.bookingComUrl} target="_blank" rel="noopener noreferrer" className="inline-block py-2 text-blue-300 hover:text-blue-200 underline underline-offset-2">
                   Booking.com Listing
                 </a>
               </div>
