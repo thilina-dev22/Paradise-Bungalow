@@ -2,19 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/logo.png" />
-    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#064e3b" />
+    <meta name="theme-color" content="#0d231d" />
 
-    <!-- Google Fonts Preconnect for Core Web Vitals performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Self-hosted fonts: preload the two used above the fold -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/manrope-normal.woff2" crossorigin />
+    <!-- First hero photo: start downloading before the app script runs -->
+    <link rel="preload" as="image" href="/images/general/8.jpg" imagesrcset="/images/general/thumbs/8.jpg 800w, /images/general/8.jpg 1536w" imagesizes="100vw" fetchpriority="high" />
 
     <!-- Primary SEO Meta Tags -->
     <title>Paradise Bungalow | Hotel &amp; Wooden Cabanas in Midigama, Sri Lanka</title>
     <meta name="title" content="Paradise Bungalow | Hotel &amp; Wooden Cabanas in Midigama, Sri Lanka" />
-    <meta name="description" content="Paradise Bungalow in Midigama, Sri Lanka (50m from beach &amp; famous Lazy Right surf break). Book a wooden cabana, king rooms, garden view and balcony rooms, and family rooms. Rating 9.6/10." />
+    <meta name="description" content="Paradise Bungalow, Midigama, Sri Lanka: 7 rooms and a wooden cabana, 50 m from the beach and Lazy Right surf break. Rated 9.6/10. Book direct." />
     <meta name="keywords" content="Paradise Bungalow, Paradise Bungalow Midigama, Hotels in Midigama, Lazy Right Surf Break, Midigama Beach, Wooden Cabana Sri Lanka, Accommodation Midigama, Weligama Hotels, Midigama Surf Stay, Sri Lanka Beach Bungalow, Paradise Bungalow Sri Lanka" />
     <meta name="author" content="Paradise Bungalow" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -23,17 +25,18 @@
     <!-- Geo Location Tags for Local Search -->
     <meta name="geo.region" content="LK-3" />
     <meta name="geo.placename" content="Midigama, Weligama, Southern Province, Sri Lanka" />
-    <meta name="geo.position" content="5.9723;80.4187" />
-    <meta name="ICBM" content="5.9723, 80.4187" />
+    <meta name="geo.position" content="5.9665443;80.38872" />
+    <meta name="ICBM" content="5.9665443, 80.38872" />
 
     <!-- Open Graph / Facebook Social Snippet -->
-    <meta property="og:type" content="hotel" />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://paradisebungalow.lk/" />
     <meta property="og:title" content="Paradise Bungalow | Hotel &amp; Wooden Cabanas in Midigama, Sri Lanka" />
     <meta property="og:description" content="A peaceful garden sanctuary in Midigama (50m from beach &amp; famous Lazy Right surf break) featuring 7 rooms, a wooden cabana &amp; 9.6/10 guest rating." />
     <meta property="og:image" content="https://paradisebungalow.lk/images/general/8.jpg" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1067" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Paradise Bungalow main building and gardens in Midigama, Sri Lanka" />
     <meta property="og:site_name" content="Paradise Bungalow" />
     <meta property="og:locale" content="en_US" />
 
@@ -43,6 +46,7 @@
     <meta name="twitter:title" content="Paradise Bungalow | Midigama, Sri Lanka" />
     <meta name="twitter:description" content="Book a wooden cabana, king rooms &amp; family rooms 50m from Midigama beach &amp; famous Lazy Right surf break. Top rated 9.6/10." />
     <meta name="twitter:image" content="https://paradisebungalow.lk/images/general/8.jpg" />
+    <meta name="twitter:image:alt" content="Paradise Bungalow main building and gardens in Midigama, Sri Lanka" />
 
     <!-- JSON-LD 1: Hotel & Accommodation Rich Snippet Schema -->
     <script type="application/ld+json">
@@ -72,8 +76,8 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 5.9723,
-        "longitude": 80.4187
+        "latitude": 5.9665443,
+        "longitude": 80.38872
       },
       "hasMap": "https://maps.app.goo.gl/u9SN9kYg3KNBocra6",
       "priceRange": "LKR 4,500 - LKR 13,000",
@@ -81,10 +85,6 @@
       "paymentAccepted": "Cash, Credit Card, Visa, Mastercard",
       "checkinTime": "13:00",
       "checkoutTime": "11:00",
-      "starRating": {
-        "@type": "Rating",
-        "ratingValue": "9.6"
-      },
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "9.6",
@@ -229,6 +229,13 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Paradise Bungalow, Midigama, Sri Lanka</h1>
+      <p>A quiet garden sanctuary 50 m from Midigama Beach and the Lazy Right surf break, with 7 rooms: Wooden Cabana, King Room 1, King Room 2, Standard Double Room with Garden View, Family Room with Garden View, Superior Family Room with Balcony and Standard Double Room with Balcony.</p>
+      <p>Rates from LKR 4,500 per night. Check-in 1:00 PM, check-out 11:00 AM.</p>
+      <p>Book by WhatsApp or phone +94 76 282 5336, or email info@paradisebungalow.lk. Midigama, Weligama, Southern Province, Sri Lanka.</p>
+      <p>Please enable JavaScript to see photos, room details and live rates.</p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -95,9 +95,9 @@ export default function Reviews() {
                   <Quote className="w-8 h-8 text-amber-400/40 mb-2" />
 
                   {rev.title && (
-                    <h4 className="font-serif font-bold text-sm text-emerald-950 mb-1">
+                    <h3 className="font-serif font-bold text-sm text-emerald-950 mb-1">
                       {rev.title}
-                    </h4>
+                    </h3>
                   )}
 
                   <p className="text-sm text-stone-600 italic leading-relaxed mb-6">
@@ -115,9 +115,9 @@ export default function Reviews() {
                 <div className="flex items-center justify-between pt-4 border-t border-stone-200/80 text-xs">
                   <div>
                     <div className="font-bold text-emerald-950">{rev.guestName || 'Verified Guest'}</div>
-                    <div className="text-stone-400">{rev.country || 'International Traveler'}</div>
+                    <div className="text-stone-600">{rev.country || 'International Traveler'}</div>
                   </div>
-                  <div className="text-stone-400 font-medium">
+                  <div className="text-stone-600 font-medium">
                     {formattedDate}
                   </div>
                 </div>

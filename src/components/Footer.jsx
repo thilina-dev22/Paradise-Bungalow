@@ -108,7 +108,7 @@ export default function Footer({ onOpenBooking }) {
               href="https://paradisecrew.site"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-amber-300 font-semibold hover:text-amber-200 underline underline-offset-2 transition-colors"
+              className="inline-block py-2 text-amber-300 font-semibold hover:text-amber-200 underline underline-offset-2 transition-colors"
             >
               Paradise Crew
             </a>

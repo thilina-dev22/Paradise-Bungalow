@@ -43,7 +43,7 @@ export default function Navbar({ onOpenBooking }) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
-        <a href="#top" aria-label="Paradise Bungalow home" className="min-w-0">
+        <a href="#top" className="min-w-0">
           <Logo variant="light" />
         </a>
 
@@ -122,7 +122,7 @@ export default function Navbar({ onOpenBooking }) {
               href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=${encodeURIComponent('Hi Paradise Bungalow! I would like to ask about a stay.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3.5 rounded-full text-sm font-bold text-white bg-[#25D366] flex items-center justify-center gap-2"
+              className="py-3.5 rounded-full text-sm font-bold text-white bg-[#13803f] hover:bg-[#0f6b34] flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-4 h-4" />
               WhatsApp

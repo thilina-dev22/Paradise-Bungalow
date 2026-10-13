@@ -181,7 +181,7 @@ export default function ContactForm() {
                     href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hello%20Paradise%20Bungalow,%20I%20just%20sent%20a%20website%20inquiry.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center gap-1.5 shadow-sm"
+                    className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#13803f] hover:bg-[#0f6b34] transition-colors flex items-center gap-1.5 shadow-sm"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
                     Open WhatsApp Chat
@@ -308,7 +308,7 @@ export default function ContactForm() {
 
                 {/* Accepted Payment & Guarantee Badges */}
                 <div className="pt-5 border-t border-stone-200 mt-6 text-center">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block mb-2.5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-600 block mb-2.5">
                     Accepted Payment Methods &amp; Booking Perks
                   </span>
                   <div className="flex flex-wrap items-center justify-center gap-2 text-stone-700">

@@ -98,7 +98,7 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
             </div>
 
             <div className="sm:text-right">
-              <span className="text-xs text-stone-400 block">
+              <span className="text-xs text-stone-600 block">
                 {displayRate(room).isCurrentMonth ? `${displayRate(room).month.label} rate` : 'From'}
               </span>
               <div className="text-2xl sm:text-3xl font-extrabold text-emerald-950">
@@ -233,7 +233,7 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
               href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi!%20I%20am%20interested%20in%20booking%20the%20${encodeURIComponent(room.title)}.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full text-sm font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-2"
+              className="px-6 py-3 rounded-full text-sm font-bold text-white bg-[#13803f] hover:bg-[#0f6b34] transition-colors flex items-center justify-center gap-2"
             >
               <PhoneCall className="w-4 h-4" />
               <span>Inquire via WhatsApp</span>

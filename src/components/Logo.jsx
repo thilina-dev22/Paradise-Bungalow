@@ -12,7 +12,9 @@ export default function Logo({ variant = 'dark', size = 'normal' }) {
           : 'bg-emerald-950 border border-amber-500/40 shadow-md shadow-emerald-950/15'
       } ${size === 'large' ? 'w-12 h-12 p-0.5' : 'w-10 h-10 p-0.5'}`}>
         <img
-          src="/images/logo.png"
+          src="/images/logo-96.png"
+          width="96"
+          height="96"
           alt="Paradise Bungalow Logo"
           className="w-full h-full object-cover rounded-xl"
         />

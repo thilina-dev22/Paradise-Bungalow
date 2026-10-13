@@ -55,7 +55,7 @@ export default function App() {
         </div>
 
         <div className="flex items-center justify-center gap-3 mb-6">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">Show prices in</span>
+          <span className="text-[11px] font-bold uppercase tracking-widest text-stone-700">Show prices in</span>
           <CurrencySwitcher tone="light" />
         </div>
 

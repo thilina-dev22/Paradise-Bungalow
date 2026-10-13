@@ -89,7 +89,7 @@ export default function LocationMap() {
                       href={`https://wa.me/${PROPERTY_DETAILS.phoneClean}?text=Hi%20Paradise%20Bungalow!%20I%20am%20interested%20in%20reserving%20a%20stay.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-3 px-4 rounded-full text-xs font-bold text-center text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-1.5 shadow-md"
+                      className="flex-1 py-3 px-4 rounded-full text-xs font-bold text-center text-white bg-[#13803f] hover:bg-[#0f6b34] transition-colors flex items-center justify-center gap-1.5 shadow-md"
                     >
                       <Phone className="w-3.5 h-3.5" />
                       <span>WhatsApp Direct</span>
@@ -242,7 +242,7 @@ export default function LocationMap() {
             <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200">
               <span className="font-bold text-emerald-950 block mb-1">Children & Beds</span>
               <p className="text-stone-600">{HOUSE_RULES.children}</p>
-              <p className="text-stone-400 mt-1">{HOUSE_RULES.cots}</p>
+              <p className="text-stone-600 mt-1">{HOUSE_RULES.cots}</p>
             </div>
 
             <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200">

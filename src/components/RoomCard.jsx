@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BREAKFAST_PER_ADULT, displayRate, breakfastSupplement } from '../data/pricing';
 import { useCurrency } from '../context/currency';
 import FitImage from './FitImage';
+import { thumbOf } from '../utils/images';
 import AmenityIcon from './AmenityIcon';
 import { Users, Maximize2, Bed, Coffee, Eye, Info, MapPin, CheckCircle2, ExternalLink } from 'lucide-react';
 
@@ -32,7 +33,7 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
         onClick={() => onViewDetails(room)}
       >
         <FitImage
-          src={room.images[0]}
+          src={thumbOf(room.images[0])}
           alt={room.title}
           className="aspect-[5/4]"
           imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
@@ -123,6 +124,7 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
           </div>
           <input
             type="checkbox"
+            aria-label={`Add breakfast to ${room.title}`}
             checked={includeBreakfast}
             onChange={(e) => setIncludeBreakfast(e.target.checked)}
             className="w-4 h-4 accent-emerald-800 rounded cursor-pointer"
@@ -132,14 +134,14 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
         {/* Price & Action Row */}
         <div className="flex flex-wrap items-end justify-between gap-x-2 gap-y-3 mt-auto">
           <div>
-            <span className="block text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-0.5">
+            <span className="block text-[10px] font-bold uppercase tracking-wider text-stone-600 mb-0.5">
               {rate.isCurrentMonth ? `${rate.month.label} rate` : 'From'}
             </span>
             <div className="flex items-baseline gap-1">
               <span className="text-xl font-extrabold text-emerald-950">
                 {format(price)}
               </span>
-              <span className="text-xs text-stone-400">/ night</span>
+              <span className="text-xs text-stone-600">/ night</span>
             </div>
             <span className="inline-flex items-center gap-1 text-[11px] text-emerald-600 font-semibold mt-0.5">
               <CheckCircle2 className="w-3 h-3" />

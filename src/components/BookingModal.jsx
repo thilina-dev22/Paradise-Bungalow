@@ -231,7 +231,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose }
               type="button"
               onClick={handleWhatsApp}
               disabled={!datesValid}
-              className="flex-1 py-3.5 rounded-full text-[13px] sm:text-sm font-bold text-white bg-[#25D366] hover:bg-[#1eb956] transition-colors flex items-center justify-center gap-2 shadow-md active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
+              className="flex-1 py-3.5 rounded-full text-[13px] sm:text-sm font-bold text-white bg-[#13803f] hover:bg-[#0f6b34] transition-colors flex items-center justify-center gap-2 shadow-md active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
             >
               <MessageCircle className="w-4 h-4" />
               Send via WhatsApp

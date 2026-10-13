@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { thumbOf } from '../utils/images';
 import { Calendar, CheckCircle2, ChevronDown, Star, Waves } from 'lucide-react';
 
 const HERO_IMAGES = [
@@ -13,13 +14,28 @@ const HIGHLIGHTS = ['Free cancellation', 'No prepayment needed', 'Best rate when
 
 export default function Hero({ onOpenBooking }) {
   const [currentBg, setCurrentBg] = useState(0);
+  // Slides 2 to 5 are mounted only after the page has loaded, so they never compete with the first photo.
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
+    const start = () => setTimeout(() => setShowAll(true), 1200);
+    if (document.readyState === 'complete') {
+      const t = start();
+      return () => clearTimeout(t);
+    }
+    let t;
+    const onLoad = () => { t = start(); };
+    window.addEventListener('load', onLoad, { once: true });
+    return () => { window.removeEventListener('load', onLoad); clearTimeout(t); };
+  }, []);
+
+  useEffect(() => {
+    if (!showAll) return undefined;
     const timer = setInterval(() => {
       setCurrentBg((prev) => (prev + 1) % HERO_IMAGES.length);
     }, 6500);
     return () => clearInterval(timer);
-  }, []);
+  }, [showAll]);
 
   return (
     <section
@@ -27,13 +43,14 @@ export default function Hero({ onOpenBooking }) {
       className="relative min-h-[100svh] flex items-center justify-center text-white overflow-hidden"
     >
       {/* Background slideshow */}
-      {HERO_IMAGES.map((img, idx) => (
+      {HERO_IMAGES.map((img, idx) => (idx === 0 || showAll || idx === currentBg) && (
         <img
           key={img}
           src={img}
+          srcSet={`${thumbOf(img)} 800w, ${img} 1536w`}
+          sizes="100vw"
           alt=""
           aria-hidden="true"
-          loading={idx === 0 ? 'eager' : 'lazy'}
           fetchPriority={idx === 0 ? 'high' : 'auto'}
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-in-out ${
             idx === currentBg ? 'opacity-100 scale-105' : 'opacity-0 scale-100'

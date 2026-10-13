@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Camera, X, ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { GALLERY_CATEGORIES, ALL_GALLERY_ITEMS } from '../data/galleryData';
+import { thumbOf, altFromTitle } from '../utils/images';
 
 const PAGE_SIZE = 16;
 
@@ -93,11 +94,10 @@ export default function Gallery() {
               key={item.src}
               onClick={() => setLightboxIndex(idx)}
               className="relative block w-full mb-2.5 sm:mb-4 break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden group shadow-md hover:shadow-xl transition-shadow duration-300 bg-stone-200"
-              aria-label={`Open photo: ${item.title}`}
             >
               <img
-                src={item.src}
-                alt={item.title}
+                src={thumbOf(item.src)}
+                alt={altFromTitle(item.title)}
                 width={item.width}
                 height={item.height}
                 loading="lazy"
@@ -153,7 +153,7 @@ export default function Gallery() {
           <figure className="max-w-5xl w-full px-14 sm:px-20 text-center" onClick={(e) => e.stopPropagation()}>
             <img
               src={current.src}
-              alt={current.title}
+              alt={altFromTitle(current.title)}
               className="mx-auto max-w-full max-h-[78vh] rounded-xl object-contain shadow-2xl"
             />
             <figcaption className="text-amber-300 mt-3 text-sm sm:text-base font-semibold">
