@@ -30,7 +30,7 @@ const AMENITIES_LIST = [
   {
     icon: AirVent,
     title: 'Air Conditioning & Fans',
-    desc: 'Fans in every room, and air conditioning in the king rooms, garden view rooms, family room and superior family room.'
+    desc: 'Fans in every room, and air conditioning in the king rooms, garden view rooms, balcony rooms, and family rooms.'
   },
   {
     icon: SquareParking,
