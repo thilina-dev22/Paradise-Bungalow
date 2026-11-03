@@ -3,9 +3,10 @@ import { Wifi, Copy, Check, Zap, Shield, ChevronRight, ExternalLink } from 'luci
 
 // ─── WiFi configuration ───────────────────────────────────────────────────────
 const NETWORKS = [
-  { ssid: 'PB Fiber Main',   band: '2.4 / 5 GHz', hint: 'Best range · furthest rooms' },
-  { ssid: 'PB Fiber AP1 5G', band: '5 GHz',        hint: 'Fastest speed · near lobby' },
-  { ssid: 'PB Fiber AP2',    band: '2.4 / 5 GHz', hint: 'Best range · garden & cabana' },
+  { ssid: 'PB Fiber Main',    band: '2.4 / 5 GHz', hint: 'Nearest rooms & lobby' },
+  { ssid: 'PB Fiber AP1 5G',  band: '5 GHz',        hint: 'Upper floor · fastest speed' },
+  { ssid: 'PB Fiber AP1 2.4G',band: '2.4 GHz',      hint: 'Upper floor · best range' },
+  { ssid: 'PB Fiber AP2',     band: '2.4 / 5 GHz', hint: 'Best range · garden & cabana' },
 ];
 const PASSWORD = 'pb@12345';
 // ─────────────────────────────────────────────────────────────────────────────
@@ -216,7 +217,7 @@ export default function WifiPage() {
             <div className="mt-4 flex items-start gap-2 bg-amber-400/8 rounded-xl px-3.5 py-3 border border-amber-400/15">
               <ChevronRight className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
               <p className="text-amber-300/80 text-[11px] leading-relaxed">
-                <span className="font-bold">Tip:</span> All three networks share the same password.
+                <span className="font-bold">Tip:</span> All four networks share the same password.
                 Choose the network with the strongest signal bars on your device.
               </p>
             </div>
