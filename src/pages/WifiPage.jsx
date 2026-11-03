@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wifi, Copy, Check, Zap, Shield, ChevronRight } from 'lucide-react';
+import { Wifi, Copy, Check, Zap, Shield, ChevronRight, ExternalLink } from 'lucide-react';
 
 // ─── WiFi configuration ───────────────────────────────────────────────────────
 const NETWORKS = [
@@ -19,7 +19,6 @@ function CopyButton({ text, label }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback for older browsers / HTTP
       const el = document.createElement('textarea');
       el.value = text;
       document.body.appendChild(el);
@@ -50,7 +49,7 @@ function CopyButton({ text, label }) {
   );
 }
 
-function NetworkCard({ network, index }) {
+function NetworkCard({ network }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopySSID = async () => {
@@ -69,18 +68,10 @@ function NetworkCard({ network, index }) {
   };
 
   return (
-    <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 flex items-start gap-3 group hover:bg-white/15 transition-all duration-200">
-      {/* Signal strength visual */}
-      <div className="shrink-0 mt-0.5 flex flex-col items-center justify-end gap-0.5 h-8 w-5">
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={i}
-            className={`w-full rounded-sm transition-all ${
-              i >= (3 - index) ? 'bg-amber-400' : 'bg-white/25'
-            }`}
-            style={{ height: `${(i + 1) * 4 + 4}px` }}
-          />
-        ))}
+    <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 flex items-center gap-3 hover:bg-white/15 transition-all duration-200">
+      {/* Wifi icon */}
+      <div className="shrink-0 w-8 h-8 rounded-lg bg-amber-400/15 flex items-center justify-center">
+        <Wifi className="w-4 h-4 text-amber-400" />
       </div>
 
       <div className="flex-1 min-w-0">
@@ -97,7 +88,7 @@ function NetworkCard({ network, index }) {
           </button>
         </div>
         <p className="text-amber-300/80 text-[11px] font-semibold mt-0.5">{network.band}</p>
-        <p className="text-white/60 text-[11px] mt-0.5">{network.hint}</p>
+        <p className="text-white/50 text-[11px] mt-0.5">{network.hint}</p>
       </div>
     </div>
   );
@@ -107,10 +98,9 @@ export default function WifiPage() {
   const [pageVisible, setPageVisible] = useState(false);
 
   useEffect(() => {
-    // Set page title and noindex meta
     document.title = 'WiFi · Paradise Bungalow';
 
-    // Inject noindex so Google ignores this page
+    // Enforce noindex on this page
     let meta = document.querySelector('meta[name="robots"]');
     if (meta) {
       meta.setAttribute('content', 'noindex, nofollow');
@@ -121,7 +111,6 @@ export default function WifiPage() {
       document.head.appendChild(meta);
     }
 
-    // Fade in
     const t = setTimeout(() => setPageVisible(true), 60);
     return () => clearTimeout(t);
   }, []);
@@ -143,17 +132,31 @@ export default function WifiPage() {
 
       <div className="relative w-full max-w-sm">
 
-        {/* Logo */}
-        <div className="flex flex-col items-center mb-8">
-          <img
-            src="/images/logo.png"
-            alt="Paradise Bungalow"
-            className="w-28 h-28 object-contain drop-shadow-2xl"
-          />
-          <p className="text-amber-400/70 text-[11px] font-bold uppercase tracking-[0.2em] mt-3">
+        {/* Logo — links to main website */}
+        <a
+          href="https://paradisebungalow.lk"
+          className="flex flex-col items-center mb-8 group"
+          title="Visit Paradise Bungalow website"
+        >
+          {/* Round frame that matches the dark-green page background so logo blends cleanly */}
+          <div
+            className="w-36 h-36 rounded-full flex items-center justify-center overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-amber-400/20 group-hover:ring-amber-400/50 transition-all duration-300"
+            style={{ background: '#0d3d2e' }}
+          >
+            <img
+              src="/images/logo.png"
+              alt="Paradise Bungalow"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <p className="text-amber-400/70 text-[11px] font-bold uppercase tracking-[0.2em] mt-4">
             Midigama · Sri Lanka
           </p>
-        </div>
+          <span className="inline-flex items-center gap-1 text-white/30 text-[10px] mt-1 group-hover:text-amber-400/60 transition-colors duration-200">
+            <ExternalLink className="w-2.5 h-2.5" />
+            paradisebungalow.lk
+          </span>
+        </a>
 
         {/* Card */}
         <div
@@ -173,7 +176,7 @@ export default function WifiPage() {
             </div>
 
             {/* Badges */}
-            <div className="flex items-center gap-2 mt-4">
+            <div className="flex items-center gap-2 mt-4 flex-wrap">
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/15 text-amber-300 text-[10px] font-bold uppercase tracking-wide">
                 <Zap className="w-3 h-3" /> Gigabit Fiber
               </span>
@@ -186,7 +189,7 @@ export default function WifiPage() {
             </div>
           </div>
 
-          {/* Password section */}
+          {/* Password */}
           <div className="px-6 py-5 border-b border-white/10">
             <p className="text-white/50 text-[11px] font-bold uppercase tracking-widest mb-2">Password (all networks)</p>
             <div className="flex items-center justify-between gap-3 bg-black/30 rounded-xl px-4 py-3">
@@ -204,8 +207,8 @@ export default function WifiPage() {
               <span className="text-white/40 text-[10px]">Pick the strongest signal</span>
             </div>
             <div className="flex flex-col gap-2.5">
-              {NETWORKS.map((net, i) => (
-                <NetworkCard key={net.ssid} network={net} index={i} />
+              {NETWORKS.map((net) => (
+                <NetworkCard key={net.ssid} network={net} />
               ))}
             </div>
 
@@ -236,12 +239,18 @@ export default function WifiPage() {
           </div>
         </div>
 
-        {/* Bottom wordmark */}
-        <p className="text-center text-white/25 text-[10px] font-semibold uppercase tracking-[0.15em] mt-8">
-          Paradise Bungalow · Midigama, Sri Lanka
-        </p>
+        {/* Bottom link to main website */}
+        <div className="flex justify-center mt-8">
+          <a
+            href="https://paradisebungalow.lk"
+            className="inline-flex items-center gap-1.5 text-white/30 hover:text-amber-400/70 text-[11px] font-semibold uppercase tracking-widest transition-colors duration-200"
+          >
+            <ExternalLink className="w-3 h-3" />
+            Visit our website
+          </a>
+        </div>
+
       </div>
     </div>
   );
 }
-
