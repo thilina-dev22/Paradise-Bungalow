@@ -93,13 +93,13 @@ export default function App() {
         <div className="mt-16 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 text-white rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl shadow-emerald-950/20 border border-emerald-800/30">
           <div className="max-w-xl">
             <span className="text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2">
-              ⚡ Guaranteed Best Rate · 0% Extra Commission
+              ⚡ Guaranteed Direct Rates · Cheaper than OTAs
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-amber-200 mb-2">
-              Book Direct for the Best Rate
+              Book Direct for the Lowest Rate
             </h3>
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
-              Skip third-party OTA fees and enjoy complimentary flexible check-in, priority room selection, airport transfer arrangements, and instant WhatsApp communication directly with the property host.
+              Skip third-party OTA fees (Booking.com & Airbnb) and secure our best rates directly. Direct bookings require advance payment and are non-refundable.
             </p>
           </div>
 

@@ -105,6 +105,9 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
               <span className="text-xs text-emerald-600 font-semibold block">
                 Breakfast +{format(BREAKFAST_PER_ADULT)} per adult
               </span>
+              <span className="text-[11px] text-amber-700 font-semibold block mt-0.5">
+                Advance payment required · Non-refundable
+              </span>
             </div>
           </div>
 

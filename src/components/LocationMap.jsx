@@ -252,7 +252,8 @@ export default function LocationMap() {
             </div>
 
             <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200">
-              <span className="font-bold text-emerald-950 block mb-1">Accepted Payment Methods</span>
+              <span className="font-bold text-emerald-950 block mb-1">Payment & Policy</span>
+              <p className="text-stone-600">Advance payment required · Non-refundable direct rate (cheaper than OTAs).</p>
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {HOUSE_RULES.paymentMethods.map((m, idx) => (
                   <span key={idx} className="bg-emerald-900 text-white text-[11px] font-bold px-2 py-0.5 rounded">
