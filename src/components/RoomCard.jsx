@@ -135,7 +135,7 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
         <div className="flex flex-wrap items-end justify-between gap-x-2 gap-y-3 mt-auto">
           <div>
             <span className="block text-[10px] font-bold uppercase tracking-wider text-stone-600 mb-0.5">
-              {rate.isCurrentMonth ? `${rate.month.label} rate` : 'From'}
+              Per night
             </span>
             <div className="flex items-baseline gap-1">
               <span className="text-xl font-extrabold text-emerald-950">

@@ -1,5 +1,4 @@
 import { ALL_GALLERY_ITEMS } from './galleryData';
-import { yearRates } from './pricing';
 
 // Room photos in gallery order; `cover` (file name) is moved to the front as the card's main photo.
 const photosOf = (category, cover) => {
@@ -45,8 +44,8 @@ export const ROOMS_DATA = [
     maxGuests: 2,
     bedConfig: '1 King Bed',
     view: 'Garden View & Private Patio',
-    // LKR per night, room only (tariff months; May-Aug are filled in by yearRates)
-    ratesRO: yearRates({ sep: 4500, oct: 4500, nov: 6500, dec: 7500, jan: 7500, feb: 6500, mar: 4500, apr: 4500 }),
+    // LKR per night, room only
+    priceRO: 9500,
     highlights: [
       '27 m² Private Space',
       'Ground Floor Garden View',
@@ -71,8 +70,8 @@ export const ROOMS_DATA = [
     maxGuests: 2,
     bedConfig: '1 King Bed',
     view: 'Garden View',
-    // LKR per night, room only (tariff months; May-Aug are filled in by yearRates)
-    ratesRO: yearRates({ sep: 6000, oct: 6000, nov: 8000, dec: 10000, jan: 10000, feb: 8000, mar: 6000, apr: 6000 }),
+    // LKR per night, room only
+    priceRO: 12000,
     highlights: [
       '42 m² Spacious Room',
       'King-Size Bed',
@@ -97,8 +96,8 @@ export const ROOMS_DATA = [
     maxGuests: 2,
     bedConfig: '1 King Bed',
     view: 'Garden View',
-    // LKR per night, room only (tariff months; May-Aug are filled in by yearRates)
-    ratesRO: yearRates({ sep: 6000, oct: 6000, nov: 8000, dec: 10000, jan: 10000, feb: 8000, mar: 6000, apr: 6000 }),
+    // LKR per night, room only
+    priceRO: 12000,
     highlights: [
       '42 m² Spacious Room',
       'King-Size Bed',
@@ -123,8 +122,8 @@ export const ROOMS_DATA = [
     maxGuests: 2,
     bedConfig: '1 King Bed',
     view: 'Garden View',
-    // LKR per night, room only (tariff months; May-Aug are filled in by yearRates)
-    ratesRO: yearRates({ sep: 5000, oct: 5000, nov: 6000, dec: 7500, jan: 7500, feb: 6000, mar: 5000, apr: 5000 }),
+    // LKR per night, room only
+    priceRO: 9500,
     highlights: [
       '32 m² Room',
       'King Bed',
@@ -149,8 +148,8 @@ export const ROOMS_DATA = [
     maxGuests: 4,
     bedConfig: '2 King Beds',
     view: 'Garden View',
-    // LKR per night, room only (tariff months; May-Aug are filled in by yearRates)
-    ratesRO: yearRates({ sep: 9000, oct: 9000, nov: 11000, dec: 13000, jan: 13000, feb: 11000, mar: 9000, apr: 9000 }),
+    // LKR per night, room only
+    priceRO: 15000,
     highlights: [
       '65 m² Family Room',
       'Sleeps up to 4 Guests',
@@ -175,8 +174,8 @@ export const ROOMS_DATA = [
     maxGuests: 3,
     bedConfig: '1 King Bed + 1 Single Bed',
     view: 'Balcony & Garden View',
-    // LKR per night, room only (tariff months; May-Aug are filled in by yearRates)
-    ratesRO: yearRates({ sep: 7000, oct: 7000, nov: 9000, dec: 13000, jan: 13000, feb: 9000, mar: 7000, apr: 7000 }),
+    // LKR per night, room only
+    priceRO: 15000,
     highlights: [
       '65 m² Superior Room',
       'Sleeps up to 3 Adults',
@@ -201,8 +200,8 @@ export const ROOMS_DATA = [
     maxGuests: 2,
     bedConfig: '1 King Bed',
     view: 'Balcony & Garden View',
-    // LKR per night, room only (tariff months; May-Aug are filled in by yearRates)
-    ratesRO: yearRates({ sep: 5000, oct: 5000, nov: 6000, dec: 7500, jan: 7500, feb: 6000, mar: 5000, apr: 5000 }),
+    // LKR per night, room only
+    priceRO: 9500,
     highlights: [
       '32 m² Room',
       'King Bed',

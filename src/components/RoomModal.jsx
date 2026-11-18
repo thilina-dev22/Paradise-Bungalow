@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Users, Maximize2, Bed, ChevronLeft, ChevronRight, PhoneCall, Calendar, MapPin, ExternalLink } from 'lucide-react';
 import { PROPERTY_DETAILS } from '../data/roomsData';
-import { BREAKFAST_PER_ADULT, displayRate, breakfastSupplement, seasonRates } from '../data/pricing';
+import { BREAKFAST_PER_ADULT, displayRate, breakfastSupplement } from '../data/pricing';
 import { useCurrency } from '../context/currency';
 import FitImage from './FitImage';
 import AmenityIcon from './AmenityIcon';
@@ -9,8 +9,6 @@ import useModalBehavior from '../hooks/useModalBehavior';
 
 export default function RoomModal({ room, onClose, onOpenBooking }) {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
-  const [withBreakfast, setWithBreakfast] = useState(false);
-  const currentMonth = new Date().getMonth();
   const { format } = useCurrency();
   useModalBehavior(onClose);
 
@@ -99,7 +97,7 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
 
             <div className="sm:text-right">
               <span className="text-xs text-stone-600 block">
-                {displayRate(room).isCurrentMonth ? `${displayRate(room).month.label} rate` : 'From'}
+                Per night
               </span>
               <div className="text-2xl sm:text-3xl font-extrabold text-emerald-950">
                 {format(displayRate(room).amount)} <span className="text-sm font-normal text-stone-500">/ night</span>
@@ -108,75 +106,6 @@ export default function RoomModal({ room, onClose, onOpenBooking }) {
                 Breakfast +{format(BREAKFAST_PER_ADULT)} per adult
               </span>
             </div>
-          </div>
-
-          {/* Seasonal Rates */}
-          <div className="mb-6">
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <h3 className="font-serif text-lg font-bold text-emerald-950">Rates by Season</h3>
-              <div className="inline-flex rounded-full bg-stone-100 p-0.5 text-xs font-bold" role="group" aria-label="Meal plan">
-                {[
-                  { value: false, label: 'Room only' },
-                  { value: true, label: 'With breakfast' },
-                ].map((opt) => (
-                  <button
-                    key={opt.label}
-                    type="button"
-                    aria-pressed={withBreakfast === opt.value}
-                    onClick={() => setWithBreakfast(opt.value)}
-                    className={`px-3.5 py-1.5 rounded-full transition-colors ${
-                      withBreakfast === opt.value ? 'bg-emerald-900 text-white shadow' : 'text-stone-600 hover:text-emerald-950'
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {seasonRates(room).map((season) => {
-                const isNow = season.months.some((m) => m.index === currentMonth);
-                const isPeak = season.season === 'peak';
-                const amount = season.amount + (withBreakfast ? breakfastSupplement(room.maxGuests) : 0);
-                return (
-                  <div
-                    key={season.season}
-                    className={`rounded-2xl border p-4 ${
-                      isPeak ? 'bg-emerald-950 border-emerald-950 text-white' : 'bg-stone-50 border-stone-200 text-emerald-950'
-                    } ${isNow ? 'ring-2 ring-amber-400 ring-offset-2' : ''}`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className={`text-[11px] font-bold uppercase tracking-wider ${isPeak ? 'text-amber-300' : 'text-amber-700'}`}>
-                        {season.label}
-                      </span>
-                      {isNow && (
-                        <span className="text-[10px] font-bold bg-amber-400 text-emerald-950 rounded-full px-2 py-0.5">Now</span>
-                      )}
-                    </div>
-                    <div className="mt-2 font-serif text-2xl font-semibold leading-none">
-                      {format(amount)}
-                      <span className={`ml-1 font-sans text-xs font-normal ${isPeak ? 'text-white/60' : 'text-stone-500'}`}>/ night</span>
-                    </div>
-                    <div className="mt-3 flex flex-wrap gap-1">
-                      {season.months.map((m) => (
-                        <span
-                          key={m.key}
-                          className={`text-[10px] font-semibold rounded-md px-1.5 py-0.5 ${
-                            isPeak ? 'bg-white/10 text-white/80' : 'bg-white border border-stone-200 text-stone-600'
-                          }`}
-                        >
-                          {m.short}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <p className="text-[11px] text-stone-500 mt-2">
-              Per room, per night. Breakfast is {format(BREAKFAST_PER_ADULT)} per adult (shown here for {room.maxGuests} adults).
-            </p>
           </div>
 
           {/* Specs */}

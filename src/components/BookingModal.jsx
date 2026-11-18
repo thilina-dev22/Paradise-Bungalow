@@ -32,18 +32,18 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose }
     if (guests > activeRoom.maxGuests) setGuests(activeRoom.maxGuests);
   }, [activeRoom, guests]);
 
-  const { total: totalPrice, nights, unpricedNights } = stayTotal(activeRoom, checkIn, checkOut, includeBreakfast, guests);
+  const { total: totalPrice, nights } = stayTotal(activeRoom, checkIn, checkOut, includeBreakfast, guests);
   const datesValid = Boolean(checkIn && checkOut) && checkOut > checkIn;
-  const hasRates = datesValid && unpricedNights === 0;
+  const hasRates = datesValid;
 
   // Keep check-out after check-in when the arrival date is moved later
   const handleCheckIn = (value) => {
     setCheckIn(value);
     if (value && checkOut <= value) setCheckOut(addDays(value, 1));
   };
-  const estimateText = !datesValid ? '-' : hasRates ? format(totalPrice) : 'Rate on request';
+  const estimateText = !datesValid ? '-' : format(totalPrice);
   // The inquiry always states the LKR amount (the tariff currency), plus the converted figure if another currency is shown.
-  const messageTotal = !hasRates
+  const messageTotal = !datesValid
     ? 'Rate on request'
     : currency === 'LKR'
       ? `LKR ${totalPrice.toLocaleString('en-US')}`
@@ -136,7 +136,7 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose }
             >
               {ROOMS_DATA.map((r) => (
                 <option key={r.id} value={r.id}>
-                  {r.title} — from {format(displayRate(r).amount)}/night
+                  {r.title} — {format(displayRate(r).amount)}/night
                 </option>
               ))}
             </select>

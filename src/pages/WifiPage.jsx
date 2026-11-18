@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Wifi, Copy, Check, Zap, Shield, ChevronRight, ExternalLink } from 'lucide-react';
 
 // ─── WiFi configuration ───────────────────────────────────────────────────────
-const NETWORKS = [
-  { ssid: 'PB Fiber Main',    band: '2.4 / 5 GHz', hint: 'Nearest rooms & lobby' },
-  { ssid: 'PB Fiber AP1 5G',  band: '5 GHz',        hint: 'Upper floor · fastest speed' },
-  { ssid: 'PB Fiber AP1 2.4G',band: '2.4 GHz',      hint: 'Upper floor · best range' },
-  { ssid: 'PB Fiber AP2',     band: '2.4 / 5 GHz', hint: 'Best range · garden & cabana' },
-];
+const NETWORK_NAME = 'PB STARLINK';
 const PASSWORD = 'pb@12345';
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -47,51 +42,6 @@ function CopyButton({ text, label }) {
         <><Copy className="w-3.5 h-3.5" /> Copy</>
       )}
     </button>
-  );
-}
-
-function NetworkCard({ network }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopySSID = async () => {
-    try {
-      await navigator.clipboard.writeText(network.ssid);
-    } catch {
-      const el = document.createElement('textarea');
-      el.value = network.ssid;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-    }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 flex items-center gap-3 hover:bg-white/15 transition-all duration-200">
-      {/* Wifi icon */}
-      <div className="shrink-0 w-8 h-8 rounded-lg bg-amber-400/15 flex items-center justify-center">
-        <Wifi className="w-4 h-4 text-amber-400" />
-      </div>
-
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center justify-between gap-2">
-          <p className="font-bold text-white text-sm truncate">{network.ssid}</p>
-          <button
-            onClick={handleCopySSID}
-            className={`shrink-0 p-1.5 rounded-lg transition-all active:scale-95 ${
-              copied ? 'bg-amber-400/20 text-amber-300' : 'text-white/50 hover:text-amber-400 hover:bg-white/10'
-            }`}
-            title="Copy network name"
-          >
-            {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-          </button>
-        </div>
-        <p className="text-amber-300/80 text-[11px] font-semibold mt-0.5">{network.band}</p>
-        <p className="text-white/50 text-[11px] mt-0.5">{network.hint}</p>
-      </div>
-    </div>
   );
 }
 
@@ -179,20 +129,37 @@ export default function WifiPage() {
             {/* Badges */}
             <div className="flex items-center gap-2 mt-4 flex-wrap">
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/15 text-amber-300 text-[10px] font-bold uppercase tracking-wide">
-                <Zap className="w-3 h-3" /> Gigabit Fiber
+                <Zap className="w-3 h-3" /> Starlink Satellite
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 text-white/70 text-[10px] font-bold uppercase tracking-wide">
                 <Shield className="w-3 h-3" /> WPA2 Secured
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 text-white/60 text-[10px] font-semibold">
-                Dialog Air Fiber
+                High-Speed
               </span>
+            </div>
+          </div>
+
+          {/* Network Name (SSID) */}
+          <div className="px-6 py-5 border-b border-white/10">
+            <p className="text-white/50 text-[11px] font-bold uppercase tracking-widest mb-2">Network Name (SSID)</p>
+            <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 flex items-center justify-between gap-3 hover:bg-white/15 transition-all duration-200">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="shrink-0 w-8 h-8 rounded-lg bg-amber-400/15 flex items-center justify-center">
+                  <Wifi className="w-4 h-4 text-amber-400" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-bold text-white text-base tracking-wide truncate">{NETWORK_NAME}</p>
+                  <p className="text-amber-300/80 text-[11px] font-semibold mt-0.5">Dual-Band 2.4 / 5 GHz</p>
+                </div>
+              </div>
+              <CopyButton text={NETWORK_NAME} label="network name" />
             </div>
           </div>
 
           {/* Password */}
           <div className="px-6 py-5 border-b border-white/10">
-            <p className="text-white/50 text-[11px] font-bold uppercase tracking-widest mb-2">Password (all networks)</p>
+            <p className="text-white/50 text-[11px] font-bold uppercase tracking-widest mb-2">Password</p>
             <div className="flex items-center justify-between gap-3 bg-black/30 rounded-xl px-4 py-3">
               <code className="text-amber-300 font-mono font-bold text-lg tracking-widest select-all">
                 {PASSWORD}
@@ -201,24 +168,12 @@ export default function WifiPage() {
             </div>
           </div>
 
-          {/* Networks */}
+          {/* Connection Tip */}
           <div className="px-6 py-5">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-white/50 text-[11px] font-bold uppercase tracking-widest">Available Networks</p>
-              <span className="text-white/40 text-[10px]">Pick the strongest signal</span>
-            </div>
-            <div className="flex flex-col gap-2.5">
-              {NETWORKS.map((net) => (
-                <NetworkCard key={net.ssid} network={net} />
-              ))}
-            </div>
-
-            {/* Tip */}
-            <div className="mt-4 flex items-start gap-2 bg-amber-400/8 rounded-xl px-3.5 py-3 border border-amber-400/15">
+            <div className="flex items-start gap-2 bg-amber-400/8 rounded-xl px-3.5 py-3 border border-amber-400/15">
               <ChevronRight className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
               <p className="text-amber-300/80 text-[11px] leading-relaxed">
-                <span className="font-bold">Tip:</span> All four networks share the same password.
-                Choose the network with the strongest signal bars on your device.
+                <span className="font-bold">Tip:</span> Select <strong className="text-amber-300">{NETWORK_NAME}</strong> in your Wi-Fi settings and enter the password above to connect.
               </p>
             </div>
           </div>

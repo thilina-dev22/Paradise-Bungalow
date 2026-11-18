@@ -5,7 +5,7 @@ const AMENITIES_LIST = [
   {
     icon: Wifi,
     title: 'Free High-Speed WiFi',
-    desc: 'Uninterrupted optical fiber WiFi across all rooms, the cabana, balconies, and garden dining areas.'
+    desc: 'Uninterrupted Starlink satellite WiFi across all rooms, the cabana, balconies, and garden dining areas.'
   },
   {
     icon: Croissant,

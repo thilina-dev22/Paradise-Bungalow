@@ -54,7 +54,7 @@ export default function Footer({ onOpenBooking }) {
               {ROOMS_DATA.map((room) => (
                 <li key={room.id} className="flex items-center gap-2">
                   <BedDouble className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>{room.title} (from {format(displayRate(room).amount)})</span>
+                  <span>{room.title} ({format(displayRate(room).amount)}/night)</span>
                 </li>
               ))}
             </ul>
