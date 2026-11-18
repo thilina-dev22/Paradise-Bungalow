@@ -324,9 +324,9 @@ export default function ContactForm() {
                       <Building2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
                       Direct Bank Transfer
                     </span>
-                    <span className="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-900 flex items-center gap-1.5 shadow-2xs">
-                      <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                      Pay at Property
+                    <span className="px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-900 flex items-center gap-1.5 shadow-2xs">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                      Advance Payment Required
                     </span>
                   </div>
                 </div>

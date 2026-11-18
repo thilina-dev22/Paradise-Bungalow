@@ -230,8 +230,8 @@ export const PROPERTY_DETAILS = {
     '7 Rooms in Total (Boutique)',
     'Free High-Speed WiFi',
     'Exceptional Breakfast Included Option',
-    'Direct Booking Best Rate Guarantee (0% Commission)',
-    'Free Cancellation & No Credit Card Needed Options'
+    'Direct Booking Rates (Cheaper than OTAs)',
+    'Advance Payment Required · Non-Refundable'
   ]
 };
 
@@ -287,7 +287,11 @@ export const FAQS_DATA = [
   },
   {
     q: 'How does direct booking work?',
-    a: 'Send your booking inquiry through our website by WhatsApp or email. Booking directly gives you the guaranteed lowest rate with 0% extra commissions, instant email confirmation, and flexible payment at the property.'
+    a: 'Send your booking inquiry through our website by WhatsApp or email. Booking directly gives you our best rates—cheaper than OTAs (Booking.com & Airbnb) with 0% middleman fees. Advance payment is required to confirm your reservation and is non-refundable.'
+  },
+  {
+    q: 'What is the cancellation and prepayment policy for direct bookings?',
+    a: 'Direct bookings offer exclusive discounted rates cheaper than OTAs. Under this direct rate, advance payment is required to confirm your booking and reservations are non-refundable.'
   },
   {
     q: 'What are the check-in and check-out times?',

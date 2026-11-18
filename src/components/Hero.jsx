@@ -10,7 +10,7 @@ const HERO_IMAGES = [
   '/images/general/14.webp'
 ];
 
-const HIGHLIGHTS = ['Free cancellation', 'No prepayment needed', 'Best rate when you book direct'];
+const HIGHLIGHTS = ['Cheaper than OTAs', 'Advance payment required', 'Non-refundable direct rates'];
 
 export default function Hero({ onOpenBooking }) {
   const [currentBg, setCurrentBg] = useState(0);

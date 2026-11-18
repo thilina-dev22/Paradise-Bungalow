@@ -143,9 +143,9 @@ export default function RoomCard({ room, onSelectRoom, onViewDetails }) {
               </span>
               <span className="text-xs text-stone-600">/ night</span>
             </div>
-            <span className="inline-flex items-center gap-1 text-[11px] text-emerald-600 font-semibold mt-0.5">
-              <CheckCircle2 className="w-3 h-3" />
-              Free Cancellation
+            <span className="inline-flex items-center gap-1 text-[11px] text-amber-800 font-semibold mt-0.5">
+              <CheckCircle2 className="w-3 h-3 text-amber-600" />
+              Advance payment · Non-refundable
             </span>
           </div>
 

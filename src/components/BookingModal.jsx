@@ -246,8 +246,8 @@ export default function BookingModal({ room, defaultBreakfast = false, onClose }
               Send via Email
             </button>
           </div>
-          <p className="hidden sm:block text-[11px] text-stone-500 text-center">
-            This is an inquiry, not a confirmed booking. We will reply to confirm availability and details.
+          <p className="text-[11px] text-stone-500 text-center leading-relaxed">
+            Direct rate (cheaper than OTAs). Advance payment is required to confirm and is non-refundable.
           </p>
         </div>
       </div>
